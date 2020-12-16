@@ -1,0 +1,14 @@
+.navigation{
+    display:flex;
+    justify-content: space-between;
+}
+.navigation__dropdown {
+    display:flex;
+    align-items: center;
+}
+
+.language {
+    display:block;
+    background-color: transparent;
+    border: none;
+}
