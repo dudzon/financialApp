@@ -1,7 +1,7 @@
 .form-calc {
     width:40%;
     height:100%;
-    margin:auto;
+   margin:auto;
 }
 
 .credit-data {
@@ -14,7 +14,7 @@
 span, input{
     font-size: .8rem;
 }
-.progress {
+.progress-calc{
     margin: 1.5rem 0;
 }
 .texts div:nth-child(2){
