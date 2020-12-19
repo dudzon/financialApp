@@ -32,17 +32,54 @@
       </nav>
     </header>
     <section class="step-progress">
-        <div class="container">
-            <span>0%</span>
-            <div class="progress">
-                <div class="determinate" style="width: 0%"></div>
-            </div>
-            <div class="info">
-                <p>Debt situation</p>
-                <p><span class="active">Applicant</span></p>
-                <p>Contact details</p>
-            </div>
+      <div class="container">
+        <span>0%</span>
+        <div class="progress">
+          <div class="determinate" style="width: 0%"></div>
         </div>
+        <div class="info">
+          <p>Debt situation</p>
+          <p><span class="active">Applicant</span></p>
+          <p>Contact details</p>
+        </div>
+      </div>
     </section>
+    <main class="container">
+      <form action="" class="form-stepper">
+        <div class="row">
+          <div class="input-field col s6 push-s3 no-padding">
+            <span>Credit Purposes</span>
+            <select class="browser-default">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 push-s3 no-padding">
+            <span>Do you have any comments for your credit application?</span>
+            <textarea id="textarea1" class="materialize-textarea"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 push-s3 no-padding">
+            <span>Desired loan amount</span>
+            <input type="text" value="EUR 10.000" class="input-data" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 push-s3 no-padding">
+            <span>Duration in months</span>
+            <input type="text" value="24" class="input-data" />
+          </div>
+        </div>
+        <div class="row">
+            <button class="waves-effect waves-light btn-large col s6 push-s3 no-padding">Determine credit rate</button>
+        </div>
+      </form>
+    </main>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </html>

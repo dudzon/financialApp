@@ -3,3 +3,6 @@
     height:7rem;
     background: var(--progress-background-color);
 }
+.textarea {
+    margin-bottom:0;
+}

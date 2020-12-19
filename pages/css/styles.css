@@ -3,7 +3,7 @@
     --progress-background-color:#ddd;
     --main-color : #b4cd3a;
 }
-html {
+html,body {
     height:100%;
 }
 
@@ -42,4 +42,14 @@ nav {
 }
 .active {
       color: var(--main-color);
+}
+.input-data {
+    border:1px solid rgba(0,0,0,.2) !important;
+}
+.input-field {
+    margin-bottom:0;
+    padding:0;
+}
+.form-stepper {
+    width:100%;
 }
