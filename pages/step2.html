@@ -1,49 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Step2</title>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-      integrity="sha512-UJfAaOlIRtdR+0P6C3KUoTDAxVTuy3lnSXLyLKlHYJlcSU8Juge/mjeaxDNMlw9LgeIotgz5FP8eUQPhX1q10A=="
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/step.css" />
-  </head>
 
-  <body>
-    <header>
-      <nav class="navigation">
-        <div>
-          <img src="/pages/assets/logo.png" alt="logo" />
-        </div>
-        <div class="navigation__dropdown">
-          <select class="language">
-            <option value="EN">EN</option>
-            <option value="PL">PL</option>
-          </select>
-        </div>
-      </nav>
-    </header>
-    <section class="step-progress">
-      <div class="container">
-        <span>20%</span>
-        <div class="progress">
-          <div class="determinate" style="width: 0%"></div>
-        </div>
-        <div class="info">
-          <p>Debt situation</p>
-          <p><span class="active">Applicant</span></p>
-          <p>Contact details</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step2</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    integrity="sha512-UJfAaOlIRtdR+0P6C3KUoTDAxVTuy3lnSXLyLKlHYJlcSU8Juge/mjeaxDNMlw9LgeIotgz5FP8eUQPhX1q10A=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/step.css" />
+</head>
+
+<body>
+  <header>
+    <nav class="navigation">
+      <div>
+        <img src="/pages/assets/logo.png" alt="logo" />
+      </div>
+      <div class="navigation__dropdown">
+        <select class="language">
+          <option value="EN">EN</option>
+          <option value="PL">PL</option>
+        </select>
+      </div>
+    </nav>
+  </header>
+  <section class="step-progress">
+    <div class="container">
+      <span>20%</span>
+      <div class="progress">
+        <div class="determinate" style="width: 0%"></div>
+      </div>
+      <div class="info">
+        <p>Debt situation</p>
+        <p><span class="active">Applicant</span></p>
+        <p>Contact details</p>
+      </div>
+    </div>
+  </section>
+  <main class="container">
+    <h5 class="center-align">Who applies for the credit?</h5>
+    <form action="" class="form-stepper">
+      <div class="row checkbox">
+        <div class="col s6 push-s3">
+          <label>
+            <input type="radio" name="radio1" class="with-gap" />
+            <span>Myself</span>
+          </label>
         </div>
       </div>
-    </section>
-  </body>
+      <div class="row checkbox">
+        <div class="col s6 push-s3">
+          <label>
+            <input type="radio" name="radio1" class="with-gap" checked />
+            <span>Me and my partner</span>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 push-s3 no-padding">
+          <span>What is your marital status</span>
+          <select class="browser-default no-padding">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <h6 class="col push-s3 no-padding">Do you live in the same household?</h6>
+      </div>
+      <div class="row checkbox">
+        <div class="col s3 push-s3">
+          <label>
+            <input type="radio" class="with-gap" name="radio2" checked />
+            <span>Yes</span>
+          </label>
+        </div>
+        <div class="col s3 push-s3">
+          <label>
+            <input type="radio" class="with-gap" name="radio2" />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      <div class="row buttons">
+        <button class="col s2 push-s3 waves-effect waves-light btn-large button-back">BACK</button>
+        <button class="col s2 push-s5 waves-effect waves-light btn-large">NEXT</button>
+      </div>
+    </form>
+  </main>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </html>

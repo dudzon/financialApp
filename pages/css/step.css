@@ -6,3 +6,12 @@
 .textarea {
     margin-bottom:0;
 }
+.checkbox {
+    margin-top:2.5rem;
+}
+.buttons {
+    margin-top:3rem;
+}
+.button-back {
+    background:#979797;
+}
