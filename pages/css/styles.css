@@ -3,9 +3,6 @@
     --progress-background-color:#ddd;
     --main-color : #b4cd3a;
 }
-html,body {
-    height:100%;
-}
 
 nav {
     width:100%;
