@@ -13,23 +13,23 @@
   <link rel="stylesheet" href="css/step.css" />
 </head>
 
-<body>
-  <header>
-    <nav class="navigation">
-      <div>
-        <img src="/pages/assets/logo.png" alt="logo" />
-      </div>
-      <div class="navigation__dropdown">
-        <select class="language">
-          <option value="EN">EN</option>
-          <option value="PL">PL</option>
-        </select>
-      </div>
-    </nav>
-  </header>
+<body id="app">
+    <header>
+      <nav class="navigation">
+        <div>
+          <img src="/pages/assets/logo.png" alt="logo">
+        </div>
+        <div class="navigation__dropdown ">
+          <select v-change="method(ev)" class="language">
+            <option v-html="elem" value="EN">EN</option>
+            <option v-html="elem" value="PL">PL</option>
+          </select>
+        </div>
+      </nav>
+    </header>
   <section class="step-progress">
     <div class="container">
-      <span>30%</span>
+      <span v-html="elem">30%</span>
       <div class="progress">
         <div class="determinate" style="width: 0%"></div>
       </div>
@@ -42,7 +42,7 @@
   </section>
   <main class="container step3">
     <h5 class="center-align">Your contact information</h5>
-    <form action="" class="form-stepper">
+    <form action="" class="form-stepper" v-submit="method(ev)"  v-html="elem">
       <div class="row">
         <div class="input-field col s6 push-s3 no-padding">
           <span>Title</span>
@@ -59,12 +59,12 @@
       </div>
       <div class="row names">
         <div class="input-field col s6 push-s3 no-padding ">
-          <input placeholder="First Name" id="first-name" type="text">
+          <input v-input="method(ev)" placeholder="First Name" id="first-name" type="text">
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6 push-s3 no-padding ">
-          <input placeholder="Last Name" id="last-name" type="text">
+          <input v-input="method(ev)" placeholder="Last Name" id="last-name" type="text">
         </div>
       </div>
       <h5 class="center-align">Fill in the information about your partner</h5>
@@ -84,17 +84,17 @@
       </div>
       <div class="row names">
         <div class="input-field col s6 push-s3 no-padding ">
-          <input placeholder="First Name" id="partner-first-name" type="text">
+          <input v-html="elem" v-input="method(ev)" placeholder="First Name" id="partner-first-name" type="text">
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6 push-s3 no-padding ">
-          <input placeholder="Last Name" id="partner-last-name" type="text">
+          <input v-html="elem" v-input="method(ev)" placeholder="Last Name" id="partner-last-name" type="text">
         </div>
       </div>
       <div class="row buttons">
-        <button class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
-        <button class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
+        <button v-click="method(ev)" class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
+        <button v-click="method(ev)" class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
       </div>
     </form>
   </main>

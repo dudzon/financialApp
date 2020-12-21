@@ -13,23 +13,23 @@
   <link rel="stylesheet" href="css/step.css" />
 </head>
 
-<body>
-  <header>
-    <nav class="navigation">
-      <div>
-        <img src="/pages/assets/logo.png" alt="logo" />
-      </div>
-      <div class="navigation__dropdown">
-        <select class="language">
-          <option value="EN">EN</option>
-          <option value="PL">PL</option>
-        </select>
-      </div>
-    </nav>
-  </header>
+<body id="app">
+    <header>
+      <nav class="navigation">
+        <div>
+          <img src="/pages/assets/logo.png" alt="logo">
+        </div>
+        <div class="navigation__dropdown ">
+          <select v-html="elem" v-change="method(ev)" class="language">
+            <option v-html="elem" value="EN">EN</option>
+            <option v-html="elem" value="PL">PL</option>
+          </select>
+        </div>
+      </nav>
+    </header>
   <section class="step-progress">
     <div class="container">
-      <span>20%</span>
+      <span v-html="elem">20%</span>
       <div class="progress">
         <div class="determinate" style="width: 0%"></div>
       </div>
@@ -42,13 +42,13 @@
   </section>
 </body>
 <main class="container">
-  <form action="" class="form-stepper">
+  <form action="" class="form-stepper" v-submit="method(ev)"  v-html="elem">
     <div class="row names">
       <p class="col push-s3 no-padding names">When were you born?</p>
     </div>
     <div class="row names">
       <div class="input-field col s6 push-s3 no-padding datepicker">
-        <input placeholder="Date of birth" id="dob" type="text">
+        <input v-html="elem" v-input="method(ev)" placeholder="Date of birth" id="dob" type="text">
       </div>
     </div>
     <div class="row">
@@ -78,12 +78,12 @@
     </div>
     <div class="row names">
       <div class="input-field col s6 push-s3 no-padding datepicker">
-        <input id="residence" type="text">
+        <input v-input="method(ev)"  v-html="elem" id="residence" type="text">
       </div>
     </div>
     <div class="row buttons">
-      <button class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
-      <button class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
+      <button v-click="method(ev)" class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
+      <button v-click="method(ev)" class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
     </div>
   </form>
 </main>

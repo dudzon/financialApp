@@ -13,43 +13,45 @@
     <link rel="stylesheet" href="css/calc.css" />
 </head>
 
-<body>
+<body id="app">
     <header>
         <nav class="navigation">
             <div>
                 <img src="/pages/assets/logo.png" alt="logo">
             </div>
             <div class="navigation__dropdown ">
-                <select class="language">
-                    <option value="EN">EN</option>
-                    <option value="PL">PL</option>
+                <select v-html="elem" v-change="method(ev)" class="language">
+                    <option v-html="elem" value="EN">EN</option>
+                    <option v-html="elem" value="PL">PL</option>
                 </select>
             </div>
         </nav>
     </header>
-    <main class="form-calc">
-        <form action="">
+    <main class="form-calc" v-html="elem">
+        <form action="" v-submit="method(ev)" v-html="elem">
             <div class="row valign-wrapper">
                 <div class="col s6">
                     <span>Credit Amount</span>
                 </div>
                 <div class="col s6">
-                    <input class="browser-default credit-data right" type="text" value="EUR 12,000" />
+                    <input v-html="elem" v-input="method(ev)" class="browser-default credit-data right" type="text"
+                        value="EUR 12,000" />
                 </div>
             </div>
             <div class="progress progress-calc">
-                <div class="determinate" style="width: 70%"></div>
+                <div v-html="elem" class="determinate" style="width: 70%"></div>
             </div>
             <div class="row valign-wrapper">
                 <div class="col s6">
                     <span>Duration</span>
                 </div>
                 <div class="col s6">
-                    <input class="browser-default credit-data right" type="text" value="24 month" />
+                    <input v-html="elem" v-input="method(ev)" class="browser-default credit-data right" type="text"
+                        value="24 month" />
                 </div>
             </div>
             <div class="progress">
-                <div class="determinate" style="width: 70%"></div>
+                <div v-html="elem" class="determinate" style="width: 70%"></div>
             </div>
 
             <div class="row texts valign-wrapper">
@@ -57,7 +59,8 @@
                     <span class="texts__main">Monthly rate</span>
                 </div>
                 <div class="col s6">
-                    <p class="texts__secondary">from <span>68EUR</span> to <span>89EUR</span></p>
+                    <p class="texts__secondary">from <span v-html="elem">68EUR</span> to <span
+                            v-html="elem">89EUR</span></p>
                 </div>
             </div>
             <div class="row texts valign-wrapper">
@@ -65,10 +68,11 @@
                     <span class="texts__main">Nominal interest</span>
                 </div>
                 <div class="col s6">
-                    <p class="texts__secondary">from <span>5.67%</span> to <span>9.8%</span></p>
+                    <p class="texts__secondary">from <span v-html="elem">5.67%</span> to <span v-html="elem">9.8%</span>
+                    </p>
                 </div>
             </div>
-            <button class="waves-effect waves-light btn-large">Apply your loan</button>
+            <button v-click="method(ev)" class="waves-effect waves-light btn-large">Apply your loan</button>
         </form>
     </main>
 </body>

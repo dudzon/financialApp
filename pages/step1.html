@@ -17,23 +17,23 @@
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/step.css" />
   </head>
-  <body>
+  <body id="app">
     <header>
       <nav class="navigation">
         <div>
-          <img src="/pages/assets/logo.png" alt="logo" />
+          <img src="/pages/assets/logo.png" alt="logo">
         </div>
-        <div class="navigation__dropdown">
-          <select class="language">
-            <option value="EN">EN</option>
-            <option value="PL">PL</option>
+        <div class="navigation__dropdown ">
+          <select v-html="elem" v-change="method(ev)" class="language">
+            <option v-html="elem" value="EN">EN</option>
+            <option v-html="elem" value="PL">PL</option>
           </select>
         </div>
       </nav>
     </header>
     <section class="step-progress">
       <div class="container">
-        <span>0%</span>
+        <span v-html="elem" >0%</span>
         <div class="progress">
           <div class="determinate" style="width: 0%"></div>
         </div>
@@ -45,7 +45,7 @@
       </div>
     </section>
     <main class="container">
-      <form action="" class="form-stepper">
+      <form action="" class="form-stepper" v-submit="method(ev)"  v-html="elem">
         <div class="row">
           <div class="input-field col s6 push-s3 no-padding">
             <span>Credit Purposes</span>
@@ -60,23 +60,23 @@
         <div class="row">
           <div class="input-field col s6 push-s3 no-padding">
             <span>Do you have any comments for your credit application?</span>
-            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <textarea v-html="elem" v-input="method(ev)" id="textarea1" class="materialize-textarea"></textarea>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6 push-s3 no-padding">
             <span>Desired loan amount</span>
-            <input type="text" value="EUR 10.000" class="input-data" />
+            <input v-html="elem" v-input="method(ev)" type="text" value="EUR 10.000" class="input-data" />
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6 push-s3 no-padding">
             <span>Duration in months</span>
-            <input type="text" value="24" class="input-data" />
+            <input v-html="elem" v-input="method(ev)" type="text" value="24" class="input-data" />
           </div>
         </div>
         <div class="row">
-            <button class="waves-effect waves-light btn-large col s6 push-s3 no-padding">Determine credit rate</button>
+            <button v-click="method(ev)" class="waves-effect waves-light btn-large col s6 push-s3 no-padding">Determine credit rate</button>
         </div>
       </form>
     </main>
