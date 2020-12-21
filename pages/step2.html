@@ -29,7 +29,7 @@
     </header>
   <section class="step-progress">
     <div class="container">
-      <span>20%</span>
+      <span v-html="elem">20%</span>
       <div class="progress">
         <div class="determinate" style="width: 0%"></div>
       </div>
@@ -42,7 +42,7 @@
   </section>
   <main class="container">
     <h5 class="center-align">Who applies for the credit?</h5>
-    <form action="" class="form-stepper" v-submit="method(ev)"  v-html="elem">
+    <form action="" class="form-stepper" v-submit="method(ev)">
       <div class="row checkbox">
         <div class="col s6 push-s3">
           <label>
