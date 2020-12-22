@@ -3,16 +3,20 @@ import { CustomAttributes } from "../models/custom-attrs";
 export class myFramework {
 
   constructor(obj: { [key: string]: any }) {
-    this.el = obj.el,
-      this.data = obj?.data,
-      this.methods = obj?.methods,
-      this.values = obj?.values
+    this.el = obj.el;
+    this.data = obj?.data;
+    this.methods = obj?.methods;
+    this.values = obj?.values;
+    this.init();
   }
 
   el: HTMLElement;
   data: () => {};
   methods: {};
   values: {};
+  init() {
+    this.render();
+  };
   render(nodes: HTMLCollection = null) {
     const elems = nodes || this.el.children;
 

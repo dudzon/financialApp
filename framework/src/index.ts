@@ -5,10 +5,10 @@ import { myFramework } from './base/myFramework';
 const framework = new myFramework({
     el: document.getElementById("root"),
     values:{
-        something:'not whatever'
+        something:'not-whatever'
         }
     }
 );
-framework.render();
+
 
 
