@@ -2,16 +2,19 @@ import { CustomAttributes } from "../models/custom-attrs";
 
 export class myFramework {
  
-  constructor(el:HTMLElement,data?:{}, methods?:{},values?:{}){
-      this.el = el
-      this.data = data,
-      this.methods = methods,
-      this.values = values
-    }  
+  constructor(obj:{[key:string]: any}){
+      this.el = obj.el,
+      this.data = obj?.data,
+      this.methods = obj?.methods,
+      this.values = obj?.values
+    }
+
     el:HTMLElement;
-    data: {};
+    data: () => {};
     methods:{};
-    values: {};
+    values: {
+        // something:'custom-string'
+    };
     render(nodes: HTMLCollection = null) {
         const elems = nodes || this.el.children;
 
@@ -28,10 +31,14 @@ export class myFramework {
                             element.textContent = customHtml;
                             break;
 
-                        // case CustomAttributes.vif:
-                        //        console.log(element.attributes, 'element');
-                        //        const customAttr = element.getAttribute(attrName);
-                        //        console.log(customAttr, 'customAttr')
+                        case CustomAttributes.vif:
+                               console.log(element.attributes, 'element');
+                               const customAttr = element.getAttribute(attrName);
+                               const splitted = customAttr.split(' ');
+                               if(this.values) {
+                               Object.keys(this.values).forEach(key => console.log(key,'key'))
+                               }
+                               console.log(splitted, 'customAttr')
 
                     }
                 }
