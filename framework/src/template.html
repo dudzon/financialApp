@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
-<body>
-    <div id="root"></div>
+<body id="root">
+    <div id="example" v-click="method(ev)" v-if="something" >
+        <p v-html="elem" class="child">tom</p>
+    </div>
 </body>
 </html>
