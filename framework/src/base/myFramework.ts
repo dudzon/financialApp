@@ -12,7 +12,7 @@ export class myFramework {
 
   el: HTMLElement;
   data: () => {};
-  methods: {};
+  methods: {}
   values: {};
   init() {
     this.render();
@@ -45,6 +45,23 @@ export class myFramework {
                     }
                   }
                 })
+              }
+              break;
+
+            case CustomAttributes.vclick:
+            case CustomAttributes.vchange:
+              let customEventName: string = element.getAttributeNode(attrName).name;
+              let eventCallbackName: string = element.getAttributeNode(attrName).value;
+              const prefix: string = 'v-';
+              const leftBracket: string = '(';
+              const bracketIndex = eventCallbackName.indexOf(leftBracket);
+              eventCallbackName = eventCallbackName.slice(0, bracketIndex);
+
+              if (customEventName.startsWith(prefix)) {
+                customEventName = customEventName.slice(2);
+              }
+              if (typeof (this as any).methods[eventCallbackName] === 'function') {
+                element.addEventListener(customEventName, (this as any).methods[eventCallbackName])
               }
               break;
           }

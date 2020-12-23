@@ -6,8 +6,8 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body id="root">
-    <div id="example" v-click="method(ev)" v-if="something === whatever" >
-        <p v-html="elem" class="child">tom</p>
+    <div id="example" v-if="something === whatever" >
+        <p v-html="elem" v-click="someMethod(ev)" class="child">tom</p>
     </div>
 </body>
 </html>

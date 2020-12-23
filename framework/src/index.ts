@@ -6,8 +6,13 @@ const framework = new myFramework({
     el: document.getElementById("root"),
     values:{
         something:'not-whatever'
+        },
+    methods:{
+        someMethod(ev:Event) {
+        console.log(ev.target);
         }
     }
+  },
 );
 
 
