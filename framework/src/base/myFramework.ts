@@ -64,6 +64,20 @@ export class myFramework {
                 element.addEventListener(customEventName, (this as any).methods[eventCallbackName])
               }
               break;
+            case CustomAttributes.vvalue:
+              let customValueTag: string = element.getAttributeNode(attrName).value;
+              const data = this.data();
+
+              if (data) {
+                Object.entries(data).forEach(([key, value]) => {
+                  if (customValueTag === key) {
+                    if (element instanceof HTMLInputElement) {
+                      element.value = value as string
+                      element.placeholder = value as string;
+                    }
+                  }
+                });
+              }
           }
         }
       });
