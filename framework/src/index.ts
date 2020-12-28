@@ -14,12 +14,13 @@ const framework = new myFramework({
 		something: 'not-whatever',
 	},
 	methods: {
-		someMethod(ev: Event) {
+		someMethod: function(ev: Event) {
 			console.log(ev.target);
 		},
-		anotherMethod(ev:Event) {
-            console.log((<HTMLInputElement>ev.target).value);
-            console.dir(ev.target)
+		anotherMethod:function (ev:Event){
+            console.log((framework as any).value1++);
+            console.log(ev);
+            console.log(framework);
 		}
-	}
+    },
 });

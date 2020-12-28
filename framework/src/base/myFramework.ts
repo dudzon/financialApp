@@ -18,6 +18,7 @@ export class myFramework {
     this.render();
   };
   render(nodes: HTMLCollection = null) {
+    this.setData();
     const elems = nodes || this.el.children;
 
     for (let i = 0; i < elems.length; i++) {
@@ -85,5 +86,15 @@ export class myFramework {
         this.render(elems[i].children);
       }
     }
+  };
+  setData(){
+    const data = this.data();
+    Object.entries(data).forEach(([key,value]) => {
+      Object.defineProperty(this,key,{
+      value,
+      enumerable:true,
+      writable:true
+    });
+    })
   }
 }
