@@ -7,18 +7,20 @@ export class myFramework {
     this.data = obj?.data;
     this.methods = obj?.methods;
     this.values = obj?.values;
+    this.watchers = obj?.watchers;
     this.init();
   }
 
   el: HTMLElement;
-  data: () => {};
-  methods: {}
+  data: {};
+  methods: {};
   values: {};
+  watchers: {};
   init() {
     this.render();
+    this.setWatchers();
   };
   render(nodes: HTMLCollection = null) {
-    this.setData();
     const elems = nodes || this.el.children;
 
     for (let i = 0; i < elems.length; i++) {
@@ -67,9 +69,10 @@ export class myFramework {
               break;
             case CustomAttributes.vvalue:
               let customValueTag: string = element.getAttributeNode(attrName).value;
-              const data = this.data();
-
+              const data = this.data;
+             
               if (data) {
+                 console.dir(element,'element')
                 Object.entries(data).forEach(([key, value]) => {
                   if (customValueTag === key) {
                     if (element instanceof HTMLInputElement) {
@@ -87,14 +90,72 @@ export class myFramework {
       }
     }
   };
-  setData(){
-    const data = this.data();
-    Object.entries(data).forEach(([key,value]) => {
-      Object.defineProperty(this,key,{
-      value,
-      enumerable:true,
-      writable:true
+  setWatchers() {
+  
+    let data = this.data;
+
+    let deps = new Map();
+    let target:any = null;
+    Object.keys(data).forEach(key => {
+      deps.set(key,new Dependency(target));   
+    })
+  
+    let data_without_proxy = data;
+    data = new Proxy(data_without_proxy, {
+      get(obj,key) {
+        console.log(obj,'obj')
+        console.log(key, 'key')
+        deps.get(key).depend();
+  
+        return (obj as any)[key];
+      },
+      set: function(obj,key,newVal) {
+        (obj as any)[key] = newVal;
+        deps.get(key).notify();
+        return true;
+      }
     });
+    console.log(data)
+  
+ 
+  function watcher(myFunc:any) {
+      target = myFunc;
+      console.log(target,'target')
+      target();
+      target = null;
+    
+    }
+
+  Object.keys(this.watchers).forEach(key => {
+    watcher(() => {
+      (this.watchers as any)[key].call(this);
+    })
     })
   }
 }
+
+
+class Dependency {
+  subscribers:any[];
+  target:any;
+  
+
+  constructor(target:any){
+    this.subscribers =[];
+    this.target = target;
+  }
+
+  depend() {
+      console.log(this.subscribers,'subscribers-depend')
+    if (this.target && !this.subscribers.includes(this.target)) {
+      this.subscribers.push(this.target);
+    
+    }
+  }
+  notify() {
+    this.subscribers.forEach(sub => sub());
+    console.log(this.subscribers,'subscribers-notify')
+  }
+}
+
+
