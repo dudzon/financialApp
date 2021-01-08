@@ -36,8 +36,10 @@ const framework = new myFramework({
 		},
     },
     watchers: {
-        value1(oldValue:number){  
-            console.log(this.data.value1, 'watchers -value1', oldValue)
+        value1(){ 
+             
+            console.log(this.data.value1, 'watchers -value1')
+            // this.data.value1  = this.data.value1 + 1;
 
         }
     }

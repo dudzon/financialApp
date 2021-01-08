@@ -1,5 +1,9 @@
 import { CustomAttributes } from "../models/custom-attrs";
-
+ let target:any = null;
+//  const data = {
+//    value1: 7,
+//    value2: 10
+//  }
 export class myFramework {
 
   constructor(obj: { [key: string]: any }) {
@@ -95,11 +99,12 @@ export class myFramework {
     let data = this.data;
 
     let deps = new Map();
-    let target:any = null;
+   
     Object.keys(data).forEach(key => {
-      deps.set(key,new Dependency(target));   
+      deps.set(key,new Dependency()); 
+    
     })
-  
+  console.log(deps,'deps')
     let data_without_proxy = data;
     data = new Proxy(data_without_proxy, {
       get(obj,key) {
@@ -109,46 +114,52 @@ export class myFramework {
   
         return (obj as any)[key];
       },
-      set: function(obj,key,newVal) {
+      set (obj,key,newVal) {
+        console.log(obj,'obj');
         (obj as any)[key] = newVal;
         deps.get(key).notify();
         return true;
       }
     });
-    console.log(data)
+    console.log(data);
   
  
-  function watcher(myFunc:any) {
-      target = myFunc;
-      console.log(target,'target')
-      target();
-      target = null;
+  // function watcher(myFunc:any) {
+  //     target = myFunc;
+  //     console.log(target,'target')
+  //     target();
+  //     target = null;
     
-    }
-
-  Object.keys(this.watchers).forEach(key => {
-    watcher(() => {
-      (this.watchers as any)[key].call(this);
-    })
-    })
+  //   }
+  // let total = 0;
+  // // Object.keys(this.watchers).forEach(key => {
+  // //   watcher(() => {
+  // //     (this.watchers as any)[key].call(this);
+  // //   })
+  // //   })
+  // watcher(() => {
+  //   total = (this.data as any).value1;
+  //   console.log(total);
+  // })
   }
 }
 
 
 class Dependency {
   subscribers:any[];
-  target:any;
+  // target:any;
   
 
-  constructor(target:any){
+  constructor(){
     this.subscribers =[];
-    this.target = target;
+    // this.target = target;
   }
 
   depend() {
       console.log(this.subscribers,'subscribers-depend')
-    if (this.target && !this.subscribers.includes(this.target)) {
-      this.subscribers.push(this.target);
+      console.log(target, 'target from deps')
+    if (target && !this.subscribers.includes(target)) {
+      this.subscribers.push(target);
     
     }
   }
@@ -157,5 +168,24 @@ class Dependency {
     console.log(this.subscribers,'subscribers-notify')
   }
 }
+
+  // function watcher(myFunc:any) {
+  //     target = myFunc;
+  //     console.log(target,'target')
+  //     target();
+  //     target = null;
+    
+  //   }
+  // let total = 0;
+  // // Object.keys(this.watchers).forEach(key => {
+  // //   watcher(() => {
+  // //     (this.watchers as any)[key].call(this);
+  // //   })
+  // //   })
+  // watcher(() => {
+  //   total = (this.data as any).value1;
+  //   console.log(total);
+  // })
+
 
 
