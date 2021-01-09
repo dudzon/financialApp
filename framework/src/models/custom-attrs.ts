@@ -5,3 +5,9 @@ export enum CustomAttributes {
     vif = 'v-if',
     vvalue = 'v-value'
 }
+
+export interface ParamsObject {
+    el : string;
+    data : () => {};
+    methods : Object;
+}
