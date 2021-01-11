@@ -29,6 +29,7 @@ export class myFramework {
 
           switch (attrName) {
             case CustomAttributes.vhtml:
+              // TODO: take out in to separate functions will be cleaner
               const customHtml = element.getAttribute(attrName);
               element.textContent = this.watchers[customHtml]
               break;
@@ -53,6 +54,7 @@ export class myFramework {
               let customEventName: string = element.getAttributeNode(attrName).name;
               let eventCallbackName: string = element.getAttributeNode(attrName).value;
 
+              // TODO: parse logic also will be good to separate
               const prefix: string = 'v-';
               const leftBracket: string = '(';
               const bracketIndex = eventCallbackName.indexOf(leftBracket);
