@@ -9,7 +9,7 @@ const framework = new myFramework({
 		    value1: 'A random string',
             value2: 10,
             something: 'not-whatever',
-            elem:'John'
+            elem:'John',
         }
 	},
 	methods: {
@@ -24,6 +24,10 @@ const framework = new myFramework({
             const oldValue = +(ev.target as HTMLInputElement).value;
             const newValue = oldValue + 5;
             (ev.target as HTMLInputElement).value = newValue.toString();
-		},
+        },
+        whatever: function(){
+            console.log(this,'this')
+            return true;
+        }
     },
 });
