@@ -25,9 +25,5 @@ const framework = new myFramework({
             const newValue = oldValue + 5;
             (ev.target as HTMLInputElement).value = newValue.toString();
         },
-        whatever: function(){
-            console.log(this,'this')
-            return true;
-        }
     },
 });
