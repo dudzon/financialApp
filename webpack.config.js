@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
 
@@ -47,10 +49,20 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: './src/index.ts',
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: '[name].bundle.[hash].js',
+  },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.ProgressPlugin(),
-    new MiniCssExtractPlugin({ filename: 'main.[contenthash].css' })
+    new HtmlWebpackPlugin({
+      title: 'framework',
+      template: path.resolve(__dirname, './src') + '/index.html',
+      filename: 'index.html',
+    }),
+    new MiniCssExtractPlugin({ filename: 'main.[contenthash].css' }),
   ],
 
   module: {
@@ -64,8 +76,6 @@ module.exports = {
 
       use: [{
         loader: MiniCssExtractPlugin.loader
-      }, {
-        loader: "style-loader"
       }, {
         loader: "css-loader",
 
