@@ -1,0 +1,144 @@
+
+:root {
+    --grey:#E5E5E5;
+    --progress-background-color:#ddd;
+    --main-color : #b4cd3a;
+}
+
+nav {
+    width:100%;
+    height:4rem;
+    background: var(--grey);
+}
+
+.navigation{
+    display:flex;
+    justify-content: space-between;
+}
+.navigation__dropdown {
+    display:flex;
+    align-items: center;
+}
+
+.language {
+    display:block;
+    background-color: transparent;
+    border: none;
+}
+#login {
+    height:100vh;
+}
+.button-login {
+    margin-top:3rem;
+}
+.form{
+    position: absolute;
+    top: 50%; 
+    right: 50%;
+    transform: translate(50%,-50%); 
+}
+.container {
+    height:100%;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.step-progress .container {
+    height:100%;
+    padding-top:1rem;
+}
+.step-progress span {
+    font-size:1.2rem;
+    font-weight:bold;
+    color: var(--main-color);
+
+}
+.step-progress .progress{
+    background: #FFF;
+    height:10px;
+    margin-bottom:0;
+}
+.info {
+    width:70%;
+    display: flex;
+    justify-content: space-between;
+    margin:0 auto;
+    font-weight:200;
+}
+.active {
+      color: var(--main-color);
+}
+.input-data {
+    border:1px solid rgba(0,0,0,.2) !important;
+}
+.input-field {
+    margin-bottom:0;
+    padding:0;
+}
+.form-stepper {
+    width:100%;
+}
+
+.form-calc {
+    width:40%;
+    height:100%;
+    margin:10rem auto 0;
+}
+
+.credit-data {
+    display:block;
+    text-align: right;
+    width:10rem;
+    padding:5px;
+    border: 2px solid var(--grey);
+}
+span, input{
+    font-size: .8rem;
+}
+.progress-calc{
+    margin: 1.5rem 0;
+}
+.texts div:nth-child(2){
+    text-align:right;
+}
+.texts__main {
+    text-transform:uppercase;
+    font-weight: bold;
+}
+.texts__secondary {
+    color: rgba(0,0,0,.3);
+    font-size:.8rem;
+}
+.texts__secondary span {
+    color:#000;
+}
+#calc button {
+    width:100%;
+}
+.step-progress {
+    width:100%;
+    height:7rem;
+    background: var(--progress-background-color);
+}
+.textarea {
+    margin-bottom:0;
+}
+.checkbox {
+    margin-top:2.5rem;
+}
+.buttons {
+    margin-top:3rem;
+}
+.button-back {
+    background:#979797;
+}
+.names {
+    margin-bottom:0;
+}
+.step3 {
+    margin-bottom:5rem;
+}
+#login,#calc,#step1,#step2,#step3,#step4{
+    height:100vh;
+}

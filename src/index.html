@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        integrity="sha512-UJfAaOlIRtdR+0P6C3KUoTDAxVTuy3lnSXLyLKlHYJlcSU8Juge/mjeaxDNMlw9LgeIotgz5FP8eUQPhX1q10A=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- <link rel="stylesheet" href="css/login.css" /> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body id="app">
+    <section id="login">
+        <header>
+            <nav class="navigation">
+                <div>
+                    <img src="./assets/logo.png" alt="logo">
+                </div>
+                <div class="navigation__dropdown ">
+                    <select v-html="elem" v-change="method(ev)" class="language">
+                        <option v-html="elem" value="EN">EN</option>
+                        <option v-html="elem" value="PL">PL</option>
+                    </select>
+                </div>
+            </nav>
+        </header>
+        <main class="container">
+            <form action="" class="form" v-submit="method(ev)" v-html="elem">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input v-html="elem" v-input="method(ev)" placeholder="Username" id="username" type="text"
+                            class="validate">
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input v-html="elem" v-input="method(ev)" placeholder="Password" id="password" type="password"
+                            class="validate">
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="col s12">
+                        <button v-click="method(ev)"
+                            class="waves-effect waves-light btn-large col s12 button-login">Login</button>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </section>
+    <section id="calc">
+        <main class="form-calc" v-html="elem">
+            <form action="" v-submit="method(ev)" v-html="elem">
+                <div class="row valign-wrapper">
+                    <div class="col s6">
+                        <span>Credit Amount</span>
+                    </div>
+                    <div class="col s6">
+                        <input v-html="elem" v-input="method(ev)" class="browser-default credit-data right" type="text"
+                            value="EUR 12,000" />
+                    </div>
+                </div>
+                <div class="progress progress-calc">
+                    <div v-html="elem" class="determinate" style="width: 70%"></div>
+                </div>
+                <div class="row valign-wrapper">
+                    <div class="col s6">
+                        <span>Duration</span>
+                    </div>
+                    <div class="col s6">
+                        <input v-html="elem" v-input="method(ev)" class="browser-default credit-data right" type="text"
+                            value="24 month" />
+                    </div>
+                </div>
+                <div class="progress">
+                    <div v-html="elem" class="determinate" style="width: 70%"></div>
+                </div>
+
+                <div class="row texts valign-wrapper">
+                    <div class="col s6">
+                        <span class="texts__main">Monthly rate</span>
+                    </div>
+                    <div class="col s6">
+                        <p class="texts__secondary">from <span v-html="elem">68EUR</span> to <span
+                                v-html="elem">89EUR</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row texts valign-wrapper">
+                    <div class="col s6">
+                        <span class="texts__main">Nominal interest</span>
+                    </div>
+                    <div class="col s6">
+                        <p class="texts__secondary">from <span v-html="elem">5.67%</span> to <span
+                                v-html="elem">9.8%</span>
+                        </p>
+                    </div>
+                </div>
+                <button v-click="method(ev)" class="waves-effect waves-light btn-large">Apply your loan</button>
+            </form>
+        </main>
+    </section>
+    <section id="step1">
+        <div class="step-progress">
+            <div class="container">
+                <span v-html="elem">0%</span>
+                <div class="progress">
+                    <div class="determinate" style="width: 0%"></div>
+                </div>
+                <div class="info">
+                    <p>Debt situation</p>
+                    <p><span class="active">Applicant</span></p>
+                    <p>Contact details</p>
+                </div>
+            </div>
+        </div>
+        <main class="container">
+            <form action="" class="form-stepper" v-submit="method(ev)">
+                <div class="row">
+                    <div class="input-field col s6 push-s3 no-padding">
+                        <span>Credit Purposes</span>
+                        <select class="browser-default">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6 push-s3 no-padding">
+                        <span>Do you have any comments for your credit application?</span>
+                        <textarea v-html="elem" v-input="method(ev)" id="textarea1"
+                            class="materialize-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6 push-s3 no-padding">
+                        <span>Desired loan amount</span>
+                        <input v-html="elem" v-input="method(ev)" type="text" value="EUR 10.000" class="input-data" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6 push-s3 no-padding">
+                        <span>Duration in months</span>
+                        <input v-html="elem" v-input="method(ev)" type="text" value="24" class="input-data" />
+                    </div>
+                </div>
+                <div class="row">
+                    <button v-click="method(ev)"
+                        class="waves-effect waves-light btn-large col s6 push-s3 no-padding">Determine
+                        credit rate</button>
+                </div>
+            </form>
+        </main>
+
+    </section>
+    <section id="step2">
+        <div class="step-progress">
+            <div class="container">
+                <span v-html="elem">20%</span>
+                <div class="progress">
+                    <div class="determinate" style="width: 0%"></div>
+                </div>
+                <div class="info">
+                    <p>Debt situation</p>
+                    <p><span class="active">Applicant</span></p>
+                    <p>Contact details</p>
+                </div>
+            </div>
+        </div>
+        <main class="container">
+            <h5 class="center-align">Who applies for the credit?</h5>
+            <form action="" class="form-stepper" v-submit="method(ev)">
+                <div class="row checkbox">
+                    <div class="col s6 push-s3">
+                        <label>
+                            <input v-html="elem" v-input="method(ev)" type="radio" name="radio1" class="with-gap" />
+                            <span>Myself</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row checkbox">
+                    <div class="col s6 push-s3">
+                        <label>
+                            <input v-html="elem" v-input="method(ev)" type="radio" name="radio1" class="with-gap"
+                                checked />
+                            <span>Me and my partner</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6 push-s3 no-padding">
+                        <span>What is your marital status</span>
+                        <select class="browser-default no-padding">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <h6 class="col push-s3 no-padding">Do you live in the same household?</h6>
+                </div>
+                <div class="row checkbox">
+                    <div class="col s3 push-s3">
+                        <label>
+                            <input v-html="elem" v-input="method(ev)" type="radio" class="with-gap" name="radio2"
+                                checked />
+                            <span>Yes</span>
+                        </label>
+                    </div>
+                    <div class="col s3 push-s3">
+                        <label>
+                            <input v-html="elem" v-input="method(ev)" type="radio" class="with-gap" name="radio2" />
+                            <span>No</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row buttons">
+                    <button v-click="method(ev)"
+                        class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
+                    <button v-click="method(ev)" class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
+                </div>
+            </form>
+        </main>
+    </section>
+    <section id="step3">
+<div class="step-progress">
+    <div class="container">
+        <span v-html="elem">30%</span>
+        <div class="progress">
+            <div class="determinate" style="width: 0%"></div>
+        </div>
+        <div class="info">
+            <p>Debt situation</p>
+            <p><span class="active">Applicant</span></p>
+            <p>Contact details</p>
+        </div>
+    </div>
+</div>
+<main class="container step3">
+    <h5 class="center-align">Your contact information</h5>
+    <form action="" class="form-stepper" v-submit="method(ev)">
+        <div class="row">
+            <div class="input-field col s6 push-s3 no-padding">
+                <span>Title</span>
+                <select class="browser-default no-padding">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+            </div>
+        </div>
+        <div class="row names">
+            <p class="col push-s3 no-padding names">What is your name?</p>
+        </div>
+        <div class="row names">
+            <div class="input-field col s6 push-s3 no-padding ">
+                <input v-input="method(ev)" placeholder="First Name" id="first-name" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6 push-s3 no-padding ">
+                <input v-input="method(ev)" placeholder="Last Name" id="last-name" type="text">
+            </div>
+        </div>
+        <h5 class="center-align">Fill in the information about your partner</h5>
+        <div class="row">
+            <div class="input-field col s6 push-s3 no-padding">
+                <span>Title</span>
+                <select class="browser-default no-padding">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+            </div>
+        </div>
+        <div class="row names">
+            <p class="col push-s3 no-padding names">What is your partner's name?</p>
+        </div>
+        <div class="row names">
+            <div class="input-field col s6 push-s3 no-padding ">
+                <input v-html="elem" v-input="method(ev)" placeholder="First Name" id="partner-first-name" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6 push-s3 no-padding ">
+                <input v-html="elem" v-input="method(ev)" placeholder="Last Name" id="partner-last-name" type="text">
+            </div>
+        </div>
+        <div class="row buttons">
+            <button v-click="method(ev)" class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
+            <button v-click="method(ev)" class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
+        </div>
+    </form>
+</main>
+    </section>
+    <section id="step4">
+<div class="step-progress">
+    <div class="container">
+        <span v-html="elem">20%</span>
+        <div class="progress">
+            <div class="determinate" style="width: 0%"></div>
+        </div>
+        <div class="info">
+            <p>Debt situation</p>
+            <p><span class="active">Applicant</span></p>
+            <p>Contact details</p>
+        </div>
+    </div>
+</div>
+<main class="container">
+    <form action="" class="form-stepper" v-submit="method(ev)">
+        <div class="row names">
+            <p class="col push-s3 no-padding names">When were you born?</p>
+        </div>
+        <div class="row names">
+            <div class="input-field col s6 push-s3 no-padding datepicker">
+                <input v-html="elem" v-input="method(ev)" placeholder="Date of birth" id="dob" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6 push-s3 no-padding">
+                <span>What is your nationality?</span>
+                <select id="nationality" class="browser-default no-padding">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6 push-s3 no-padding">
+                <span>Which residence permit do you have?</span>
+                <select id="residence-permit" class="browser-default no-padding">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+            </div>
+        </div>
+        <div class="row names">
+            <p class="col push-s3 no-padding names">How long have you been resident in Poland?</p>
+        </div>
+        <div class="row names">
+            <div class="input-field col s6 push-s3 no-padding datepicker">
+                <input v-input="method(ev)" v-html="elem" id="residence" type="text">
+            </div>
+        </div>
+        <div class="row buttons">
+            <button v-click="method(ev)" class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
+            <button v-click="method(ev)" class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
+        </div>
+    </form>
+</main>
+    </section>
+</body>
+
+</html>

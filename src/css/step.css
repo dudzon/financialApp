@@ -1,0 +1,23 @@
+.step-progress {
+    width:100%;
+    height:7rem;
+    background: var(--progress-background-color);
+}
+.textarea {
+    margin-bottom:0;
+}
+.checkbox {
+    margin-top:2.5rem;
+}
+.buttons {
+    margin-top:3rem;
+}
+.button-back {
+    background:#979797;
+}
+.names {
+    margin-bottom:0;
+}
+.step3 {
+    margin-bottom:5rem;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculation Page</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        integrity="sha512-UJfAaOlIRtdR+0P6C3KUoTDAxVTuy3lnSXLyLKlHYJlcSU8Juge/mjeaxDNMlw9LgeIotgz5FP8eUQPhX1q10A=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="./../../css/styles.css" />
+    <link rel="stylesheet" href="calc.css" />
+    
+</head>
+
+<body id="app">
+    <!-- <header>
+        <nav class="navigation">
+            <div>
+                <img src="/pages/assets/logo.png" alt="logo">
+            </div>
+            <div class="navigation__dropdown ">
+                <select v-html="elem" v-change="method(ev)" class="language">
+                    <option v-html="elem" value="EN">EN</option>
+                    <option v-html="elem" value="PL">PL</option>
+                </select>
+            </div>
+        </nav>
+    </header> -->
+    <main class="form-calc" v-html="elem">
+        <form action="" v-submit="method(ev)" v-html="elem">
+            <div class="row valign-wrapper">
+                <div class="col s6">
+                    <span>Credit Amount</span>
+                </div>
+                <div class="col s6">
+                    <input v-html="elem" v-input="method(ev)" class="browser-default credit-data right" type="text"
+                        value="EUR 12,000" />
+                </div>
+            </div>
+            <div class="progress progress-calc">
+                <div v-html="elem" class="determinate" style="width: 70%"></div>
+            </div>
+            <div class="row valign-wrapper">
+                <div class="col s6">
+                    <span>Duration</span>
+                </div>
+                <div class="col s6">
+                    <input v-html="elem" v-input="method(ev)" class="browser-default credit-data right" type="text"
+                        value="24 month" />
+                </div>
+            </div>
+            <div class="progress">
+                <div v-html="elem" class="determinate" style="width: 70%"></div>
+            </div>
+
+            <div class="row texts valign-wrapper">
+                <div class="col s6">
+                    <span class="texts__main">Monthly rate</span>
+                </div>
+                <div class="col s6">
+                    <p class="texts__secondary">from <span v-html="elem">68EUR</span> to <span
+                            v-html="elem">89EUR</span></p>
+                </div>
+            </div>
+            <div class="row texts valign-wrapper">
+                <div class="col s6">
+                    <span class="texts__main">Nominal interest</span>
+                </div>
+                <div class="col s6">
+                    <p class="texts__secondary">from <span v-html="elem">5.67%</span> to <span v-html="elem">9.8%</span>
+                    </p>
+                </div>
+            </div>
+            <button v-click="method(ev)" class="waves-effect waves-light btn-large">Apply your loan</button>
+        </form>
+    </main>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</html>
