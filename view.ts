@@ -15,32 +15,32 @@ export class View {
         switch(this.view) {
             case RoutesNames.default,
                  RoutesNames.login :
-                (window as any).currentView = null;
+                this.exit();
                 (window as any).currentView = new Login().init();
             break;
             
             case RoutesNames.calc :
-                (window as any).currentView = null;
+                this.exit();
                 (window as any).currentView = new Calc().init();
             break;
 
             case RoutesNames.step1 :
-                (window as any).currentView = null;
+                this.exit();
                 (window as any).currentView = new Step1().init();
             break;
 
             case RoutesNames.step2 :
-                (window as any).currentView = null;
+                this.exit();
                 (window as any).currentView = new Step2().init();
             break;
 
             case RoutesNames.step3 :
-                (window as any).currentView = null;
+                this.exit();
                 (window as any).currentView = new Step3().init();
             break;
 
             case RoutesNames.step4 :
-                (window as any).currentView = null;
+                this.exit();
                 (window as any).currentView = new Step4().init();
             break;
 
@@ -48,5 +48,8 @@ export class View {
             throw new Error('Unknown value')
             
         }
+    }
+    exit() {
+            (window as any).currentView = null;
     }
 }
