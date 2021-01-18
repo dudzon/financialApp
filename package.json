@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack serve --watch",
+    "start": "webpack --watch",
     "server": "nodemon server.ts"
   },
   "repository": {
@@ -38,6 +38,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "express": "^4.17.1",
     "nodemon": "^2.0.7",
+    "routerjs": "^2.4.5",
     "ts-node": "^9.1.1"
   }
 }

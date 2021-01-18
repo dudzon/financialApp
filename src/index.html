@@ -16,7 +16,7 @@
         <header>
             <nav class="navigation">
                 <div>
-                    <img src="./assets/logo.png" alt="logo">
+                    <img src="assets/logo.png" alt="logo">
                 </div>
                 <div class="navigation__dropdown ">
                     <select v-html="elem" v-change="method(ev)" class="language">
@@ -30,7 +30,7 @@
             <form action="" class="form" v-submit="method(ev)" v-html="elem">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input v-html="elem" v-input="method(ev)" placeholder="Username" id="username" type="text"
+                        <input v-input="method(ev)" placeholder="Username" id="username" type="text"
                             class="validate">
                         <label for="username">Username</label>
                     </div>
@@ -99,7 +99,7 @@
             </form>
         </main>
     </section>
-    <section id="step1">
+    <section id="one">
         <div class="step-progress">
             <div class="container">
                 <span v-html="elem">0%</span>
@@ -154,7 +154,7 @@
         </main>
 
     </section>
-    <section id="step2">
+    <section id="two">
         <div class="step-progress">
             <div class="container">
                 <span v-html="elem">20%</span>
@@ -225,7 +225,7 @@
             </form>
         </main>
     </section>
-    <section id="step3">
+    <section id="three">
 <div class="step-progress">
     <div class="container">
         <span v-html="elem">30%</span>
@@ -298,7 +298,7 @@
     </form>
 </main>
     </section>
-    <section id="step4">
+    <section id="four">
 <div class="step-progress">
     <div class="container">
         <span v-html="elem">20%</span>
@@ -361,4 +361,5 @@
     </section>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </html>
