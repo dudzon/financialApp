@@ -4,7 +4,7 @@ export enum CustomAttributes {
     vclick = 'v-click',
     vchange = 'v-change',
     vif = 'v-if',
-    vvalue = 'v-value'
+    vmodel= 'v-model'
 }
 
 export interface ParamsObject {

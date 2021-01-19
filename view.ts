@@ -14,19 +14,19 @@ export class View {
     }
     init() {
         switch (this.view) {
-            case RoutesNames.default,
-                RoutesNames.login:
+            case RoutesNames.login:
                 this.exit();
                 (window as any).currentView = new myFramework({
                     el: 'login',
                     data() {
                         return {
-                            name: '',
+                            username: '',
                             password: ''
                         }
                     },
                     methods: {}
                 })
+                console.log(window)
                 // refactor view
                 // add http library
                 // send request

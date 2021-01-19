@@ -40,8 +40,8 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new webpack.ProgressPlugin(),
+    // new CleanWebpackPlugin(),
+    // new webpack.ProgressPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -57,7 +57,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'framework',
       template: path.resolve(__dirname, './src') + '/index.html',
-      filename: 'index.html',
+      // filename: 'index.html',
       minify: false
     }),
     new MiniCssExtractPlugin({ filename: 'main.[contenthash].css' }),

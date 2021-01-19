@@ -19,9 +19,9 @@
                     <img src="assets/logo.png" alt="logo">
                 </div>
                 <div class="navigation__dropdown ">
-                    <select v-html="elem" v-change="method(ev)" class="language">
-                        <option v-html="elem" value="EN">EN</option>
-                        <option v-html="elem" value="PL">PL</option>
+                    <select class="language">
+                        <option value="EN">EN</option>
+                        <option value="PL">PL</option>
                     </select>
                 </div>
             </nav>
@@ -30,12 +30,12 @@
             <form action="" class="form">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input placeholder="Username" id="username" type="text" v-model
+                        <input placeholder="Username" id="username" type="text" v-model='username'
                             class="validate">
                         <label for="username">Username</label>
                     </div>
                     <div class="input-field col s12">
-                        <input placeholder="Password" id="password" type="password"
+                        <input placeholder="Password" id="password" type="password" v-model='password'
                             class="validate">
                         <label for="password">Password</label>
                     </div>
