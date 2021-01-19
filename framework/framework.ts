@@ -69,6 +69,8 @@ export class myFramework {
                 element.value = this.watchers[customValueTag];
                 element.placeholder = this.watchers[customValueTag];
               }
+              //on change event listener here on each change, reaasign the value in watchers
+              // it will initiate re-render
           }
         }
       });

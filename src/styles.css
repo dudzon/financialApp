@@ -132,6 +132,9 @@ span, input{
 .step3 {
     margin-bottom:5rem;
 }
-#login,#calc,#one,#two,#three,#four{
+#login,#calc,#step1,#step2,#step3,#step4{
     height:100vh;
+}
+section {
+    display:none;
 }
