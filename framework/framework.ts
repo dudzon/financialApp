@@ -11,7 +11,7 @@ export class myFramework {
   methods: Object;
   watchers: any;
 
-  init(params: ParamsObject) {
+  init(params: ParamsObject): void {
     this.setWatchers(params);
     this.render();
   }
@@ -83,7 +83,10 @@ export class myFramework {
 
                 Object.keys(this.watchers).forEach((key: string) => {
                   if (key === char) {
-                    el.removeEventListener("change", () => {});
+                    // el.removeEventListener("change", (ev: Event) => {
+                    //   this.watchers[key] = (ev.target as any).value;
+                    //   //   console.log(this.watchers);
+                    // });
                     el.addEventListener("change", (ev: Event) => {
                       this.watchers[key] = (ev.target as any).value;
                       console.log(this.watchers);
@@ -101,7 +104,7 @@ export class myFramework {
     }
     return true;
   }
-  setWatchers(params: ParamsObject) {
+  setWatchers(params: ParamsObject): void {
     const self = this;
     this.watchers = new Proxy(
       { ...params.data(), ...params.methods },
