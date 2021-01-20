@@ -44,6 +44,8 @@
                     </div>
                 </div>
             </form>
+            <p v-if = "loginStatus === success" class = "login login-success">Login successful</p>
+            <p v-if = "loginStatus === error"  v-html="errorName" class = "login login-error"></p>
         </main>
     </section>
     <section id="calc">

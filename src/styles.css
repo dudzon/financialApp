@@ -138,3 +138,9 @@ span, input{
 section {
     display:none;
 }
+.login-success { 
+    color:green;
+}
+.login-error {
+    color: red;
+}

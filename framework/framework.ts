@@ -83,13 +83,9 @@ export class myFramework {
 
                 Object.keys(this.watchers).forEach((key: string) => {
                   if (key === char) {
-                    // el.removeEventListener("change", (ev: Event) => {
-                    //   this.watchers[key] = (ev.target as any).value;
-                    //   //   console.log(this.watchers);
-                    // });
+                    el.removeEventListener("change", () => {});
                     el.addEventListener("change", (ev: Event) => {
                       this.watchers[key] = (ev.target as any).value;
-                      console.log(this.watchers);
                     });
                   }
                 });
@@ -105,6 +101,7 @@ export class myFramework {
     return true;
   }
   setWatchers(params: ParamsObject): void {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
     this.watchers = new Proxy(
       { ...params.data(), ...params.methods },
@@ -126,10 +123,10 @@ export class myFramework {
   }
   getIfAttr(el: Element, attributeName: string): void {
     const [key, value]: string[] = this.parseAttributeName(el, attributeName);
-
+    (el as HTMLElement).style.display = "none";
     if (this.watchers[key] === value) {
       if (el instanceof HTMLElement) {
-        el.style.display = "none";
+        el.style.display = "block";
       }
     }
   }
