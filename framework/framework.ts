@@ -36,7 +36,7 @@ export class myFramework {
               break;
 
             case CustomAttributes.vclick:
-            case CustomAttributes.vchange:
+            // case CustomAttributes.vchange:
               const attr = element.getAttribute(attrName);
               let customEventName: string = element.getAttributeNode(attrName)
                 .name;
@@ -60,17 +60,18 @@ export class myFramework {
               if (
                 typeof (this as any).methods[eventCallbackName] === "function"
               ) {
-                element.removeEventListener(customEventName, (args) =>
-                  (this as any).methods[eventCallbackName].call(
-                    (this as any).methods[eventCallbackName],
-                    args
-                  )
+                // bind or apply not call. not call anonymous function
+                // pass the method (event calback name)
+                // parse the function parameteres , what is inside the brackets
+                // bind also arguments
+                element.removeEventListener(
+                  customEventName,
+                  (this as any).methods[eventCallbackName].bind(this)
                 );
-                element.addEventListener(customEventName, (args) =>
-                  (this as any).methods[eventCallbackName].call(
-                    (this as any).methods[eventCallbackName],
-                    args
-                  )
+
+                element.addEventListener(
+                  customEventName,
+                  (this as any).methods[eventCallbackName].bind(this)
                 );
               }
               break;

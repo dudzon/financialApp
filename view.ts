@@ -1,9 +1,9 @@
 import { Login } from "./src/components/login";
-// import { Calc } from './src/components/calc';
-// import { Step1 } from './src/components/step1';
-// import { Step2 } from './src/components/step2';
-// import { Step3 } from './src/components/step3';
-// import { Step4 } from './src/components/step4';
+import { Calc } from "./src/components/calc";
+import { Step1 } from "./src/components/step1";
+import { Step2 } from "./src/components/step2";
+import { Step3 } from "./src/components/step3";
+import { Step4 } from "./src/components/step4";
 import { RoutesNames } from "./model";
 import { myFramework } from "./framework/framework";
 
@@ -21,72 +21,27 @@ export class View {
 
       case RoutesNames.calc:
         this.exit();
-        (window as any).currentView = new myFramework({
-          el: "calc",
-          data() {
-            return {
-              name: "",
-              password: "",
-            };
-          },
-          methods: {},
-        });
+        new Calc();
         break;
 
       case RoutesNames.step1:
         this.exit();
-        (window as any).currentView = new myFramework({
-          el: "step1",
-          data() {
-            return {
-              name: "",
-              password: "",
-            };
-          },
-          methods: {},
-        });
+        new Step1();
         break;
 
       case RoutesNames.step2:
         this.exit();
-        (window as any).currentView = new myFramework({
-          el: "step2",
-          data() {
-            return {
-              name: "",
-              password: "",
-            };
-          },
-          methods: {},
-        });
+        new Step2();
         break;
 
       case RoutesNames.step3:
         this.exit();
-        (window as any).currentView = new myFramework({
-          el: "step3",
-          data() {
-            return {
-              name: "",
-              password: "",
-            };
-          },
-          methods: {},
-        });
+        new Step3();
         break;
 
       case RoutesNames.step4:
         this.exit();
-        (window as any).currentView = new myFramework({
-          el: "step4",
-          data() {
-            return {
-              name: "",
-              password: "",
-            };
-          },
-          methods: {},
-        });
+        new Step4();
         break;
 
       default:
@@ -101,19 +56,4 @@ export class View {
     const el = document.getElementById(this.view);
     el.style.display = "block";
   }
-  // loginResponse(response: AxiosResponse) {
-  //   if (response.data) {
-  //     console.log(response.data);
-  //     (window as any).currentView.watchers.loginStatus = "success";
-  //     setTimeout(() => {
-  //       (window as any).currentView.watchers.loginStatus = "";
-  //     }, 2000);
-  //   } else {
-  //     console.log(response.data);
-  //     (window as any).currentView.watchers.loginStatus = "error";
-  //     setTimeout(() => {
-  //       (window as any).currentView.watchers.loginStatus = "";
-  //     }, 2000);
-  //   }
-  // }
 }

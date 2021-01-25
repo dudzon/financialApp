@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { myFramework } from "./../../framework/framework";
-import { User } from "../../model";
+import { RoutesNames, User } from "../../model";
 
 export class Login {
   constructor() {
@@ -34,6 +34,7 @@ export class Login {
             .then(function (response: AxiosResponse) {
               (window as any).currentView.watchers.loginStatus = "success";
               setTimeout(() => {
+                (window as any).location = RoutesNames.calc;
                 (window as any).currentView.watchers.loginStatus = "";
               }, 2000);
             })

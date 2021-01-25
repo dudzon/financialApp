@@ -15,6 +15,11 @@ app.get("/*", (req: any, res: any) => {
 });
 
 app.post("/api/login", controller.login);
+app.post("/api/calc", controller.calc);
+app.post("/api/step1", controller.step1);
+app.post("/api/step2", controller.step2);
+app.post("/api/step3", controller.step3);
+app.post("/api/step4", controller.step4);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

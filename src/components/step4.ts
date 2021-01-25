@@ -1,16 +1,35 @@
-import { myFramework } from './../../framework/framework';
+import axios, { AxiosResponse, AxiosError } from "axios";
+import { RoutesNames } from "../../model";
+import { myFramework } from "./../../framework/framework";
 
 export class Step4 {
-    
-    init() {
-        const step4 = new myFramework({
-            el: 'four',
-            data() {
-                return {}
-            },
-            methods: {}
-        })
+  constructor() {
+    this.init();
+  }
+  init() {
+    const step4 = new myFramework({
+      el: "step4",
+      data() {
+        return {};
+      },
+      methods: {
+        back: function (e: Event) {
+          e.preventDefault();
+          (window as any).location = RoutesNames.step3;
+        },
+        next: function (e: Event) {
+          e.preventDefault();
 
-        return step4;
-    }
+          axios
+            .post("api/step4", { prop: "ok" })
+            .then(function (response: AxiosResponse) {
+              console.log("ok");
+            })
+            .catch(function (err: AxiosError) {
+              throw new Error(err.message);
+            });
+        },
+      },
+    });
+  }
 }

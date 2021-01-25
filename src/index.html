@@ -94,7 +94,7 @@
                         </p>
                     </div>
                 </div>
-                <button v-click="method(ev)" class="waves-effect waves-light btn-large">Apply your loan</button>
+                <button v-click="calc()" class="waves-effect waves-light btn-large">Apply your loan</button>
             </form>
         </main>
     </section>
@@ -119,9 +119,9 @@
                         <span>Credit Purposes</span>
                         <select class="browser-default">
                             <option value="" disabled selected>Choose your option</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
+                            <option value="1">Mortgage</option>
+                            <option value="2">Student Credit</option>
+                            <option value="3">Car credit</option>
                         </select>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button class="waves-effect waves-light btn-large col s6 push-s3 no-padding">Determine
+                    <button v-click="checkCreditRate()" class="waves-effect waves-light btn-large col s6 push-s3 no-padding">Determine
                         credit rate</button>
                 </div>
             </form>
@@ -189,10 +189,10 @@
                     <div class="input-field col s6 push-s3 no-padding">
                         <span>What is your marital status</span>
                         <select class="browser-default no-padding">
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
+                            <option value="" disabled selected>Married</option>
+                            <option value="1">Divorced</option>
+                            <option value="2">Single</option>
+                            <option value="3">It's complicated</option>
                         </select>
                     </div>
                 </div>
@@ -215,8 +215,8 @@
                     </div>
                 </div>
                 <div class="row buttons">
-                    <button class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
-                    <button  class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
+                    <button v-click = "back()" class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
+                    <button v-click = "next()" class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
                 </div>
             </form>
         </main>
@@ -242,10 +242,10 @@
             <div class="input-field col s6 push-s3 no-padding">
                 <span>Title</span>
                 <select class="browser-default no-padding">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    <option value="" disabled selected>Mister</option>
+                    <option value="1">Miss</option>
+                    <option value="2">His Lordship</option>
+                    <option value="3">His Majesty</option>
                 </select>
             </div>
         </div>
@@ -267,10 +267,10 @@
             <div class="input-field col s6 push-s3 no-padding">
                 <span>Title</span>
                 <select class="browser-default no-padding">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    <option value="" disabled selected>Mister</option>
+                    <option value="1">Miss</option>
+                    <option value="2">His Lordship</option>
+                    <option value="3">His Majesty</option>
                 </select>
             </div>
         </div>
@@ -288,8 +288,8 @@
             </div>
         </div>
         <div class="row buttons">
-            <button class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
-            <button class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
+            <button v-click = "back()" class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
+            <button v-click = "next()" class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
         </div>
     </form>
 </main>
@@ -322,10 +322,10 @@
             <div class="input-field col s6 push-s3 no-padding">
                 <span>What is your nationality?</span>
                 <select id="nationality" class="browser-default no-padding">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    <option value="" disabled selected>Polish</option>
+                    <option value="1">Russian</option>
+                    <option value="2">German</option>
+                    <option value="3">Ukrainian</option>
                 </select>
             </div>
         </div>
@@ -333,10 +333,10 @@
             <div class="input-field col s6 push-s3 no-padding">
                 <span>Which residence permit do you have?</span>
                 <select id="residence-permit" class="browser-default no-padding">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    <option value="" disabled selected>Poland</option>
+                    <option value="1">Russia</option>
+                    <option value="2">Germany</option>
+                    <option value="3">Ukraine</option>
                 </select>
             </div>
         </div>
@@ -349,8 +349,8 @@
             </div>
         </div>
         <div class="row buttons">
-            <button class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
-            <button class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
+            <button v-click = "back()" class="col s2 push-s3 waves-effect waves-light btn button-back">BACK</button>
+            <button v-click = "next()" class="col s2 push-s5 waves-effect waves-light btn">NEXT</button>
         </div>
     </form>
 </main>
