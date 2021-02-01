@@ -36,7 +36,15 @@ export class myFramework {
               break;
 
             case CustomAttributes.vclick:
-            // case CustomAttributes.vchange:
+              // case CustomAttributes.vchange:
+
+              // argument should be found in the context;
+              //implement v- change attribute
+              // check context in all components
+              // destroy previous component for router navigation
+              // store in local storage information for your identification
+              //guard midleware in router check it
+
               const attr = element.getAttribute(attrName);
               let customEventName: string = element.getAttributeNode(attrName)
                 .name;
@@ -66,12 +74,12 @@ export class myFramework {
                 // bind also arguments
                 element.removeEventListener(
                   customEventName,
-                  (this as any).methods[eventCallbackName].bind(this)
+                  (this as any).methods[eventCallbackName]
                 );
 
                 element.addEventListener(
                   customEventName,
-                  (this as any).methods[eventCallbackName].bind(this)
+                  (this as any).methods[eventCallbackName]
                 );
               }
               break;
@@ -101,11 +109,18 @@ export class myFramework {
     }
     return true;
   }
+  initMethods(methods: any): any {
+    const result = {};
+    for (const method in methods) {
+      (result as any)[method] = methods[method].bind(this);
+    }
+    return result;
+  }
   setWatchers(params: ParamsObject): void {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
     this.watchers = new Proxy(
-      { ...params.data(), ...params.methods },
+      { ...params.data(), ...this.initMethods(params.methods) },
       {
         get(target, prop) {
           return (target as any)[prop];

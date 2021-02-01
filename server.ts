@@ -10,8 +10,29 @@ app.use(bodyParser.json());
 
 app.use("/", express.static(__dirname + "/dist"));
 
+// app.get("/", (req: any, res: any) => {
+//   console.log('ook 0one');
+//   res.redirect("/login");
+// });
+// // guard in router to navigate to login
+// // app.get("/login", (req: any, res: any) => {
+// //   console.log('ok');
+// //   res.json();
+// // });
+// app.get("/*", (req: any, res: any) => {
+//   console.log('ok two');
+//   res.sendFile(path.resolve(__dirname + "/dist/index.html"));
+// });
+
+app.get("/", (req: any, res: any) => {
+  res.redirect("/login");
+});
+app.get("/login", (req: any, res: any) => {
+  res.sendFile(path.resolve(__dirname + "/dist/index.html"));
+});
 app.get("/*", (req: any, res: any) => {
   res.sendFile(path.resolve(__dirname + "/dist/index.html"));
+  
 });
 
 app.post("/api/login", controller.login);

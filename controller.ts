@@ -27,6 +27,7 @@ function calc(req: any, res: any) {
 
 function step1(req: any, res: any) {
   if (req.body.prop === "ok") {
+    console.log(req.body);
     res.json(true);
   } else {
     res.status(500).send({ error: "Some kind of error" });

@@ -1,13 +1,16 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
+import { createRouter } from "routerjs";
 import { RoutesNames } from "../../model";
+import { View } from "../../view";
 import { myFramework } from "./../../framework/framework";
+import { router } from "./../../router";
 
 export class Step1 {
   constructor() {
     this.init();
   }
   init() {
-    const step1 = new myFramework({
+    (window as any).currentView = new myFramework({
       el: "step1",
       data() {
         return {};
@@ -19,7 +22,7 @@ export class Step1 {
           axios
             .post("api/step1", { prop: "ok" })
             .then(function (response: AxiosResponse) {
-              (window as any).location = RoutesNames.step2;
+              router.navigate(`${RoutesNames.default}${RoutesNames.step2}`);
             })
             .catch(function (err: AxiosError) {
               throw new Error(err.message);

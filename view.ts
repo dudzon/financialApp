@@ -5,7 +5,6 @@ import { Step2 } from "./src/components/step2";
 import { Step3 } from "./src/components/step3";
 import { Step4 } from "./src/components/step4";
 import { RoutesNames } from "./model";
-import { myFramework } from "./framework/framework";
 
 export class View {
   view: string;
@@ -50,10 +49,28 @@ export class View {
   }
   exit() {
     (window as any).currentView = null;
+    const ids = this.getAllRoutes();
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      el.style.display = "none";
+    });
   }
 
   show() {
     const el = document.getElementById(this.view);
     el.style.display = "block";
+  }
+
+  getAllRoutes(): string[] {
+    const routesArr = [
+      RoutesNames.login,
+      RoutesNames.calc,
+      RoutesNames.step1,
+      RoutesNames.step2,
+      RoutesNames.step3,
+      RoutesNames.step4,
+    ];
+
+    return routesArr;
   }
 }

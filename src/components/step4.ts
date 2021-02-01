@@ -1,5 +1,6 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { RoutesNames } from "../../model";
+import { router } from "../../router";
 import { myFramework } from "./../../framework/framework";
 
 export class Step4 {
@@ -7,7 +8,7 @@ export class Step4 {
     this.init();
   }
   init() {
-    const step4 = new myFramework({
+    (window as any).currentView = new myFramework({
       el: "step4",
       data() {
         return {};
@@ -15,7 +16,7 @@ export class Step4 {
       methods: {
         back: function (e: Event) {
           e.preventDefault();
-          (window as any).location = RoutesNames.step3;
+          router.navigate(`${RoutesNames.default}${RoutesNames.step3}`);
         },
         next: function (e: Event) {
           e.preventDefault();
