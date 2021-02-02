@@ -3,6 +3,7 @@ import { myFramework } from "./../../framework/framework";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { RoutesNames } from "../../model";
 import { router } from "../../router";
+import { dataToValidate } from "./../../validator";
 
 const RATE = {
   minimumRate: 5.67,
@@ -17,12 +18,14 @@ export class Calc {
     (window as any).currentView = new myFramework({
       el: "calc",
       data() {
+        const self = this;
         return {
           creditAmount: "",
           duration: "",
           monthlyRateMin: "",
           monthlyRateMax: "",
-          errorMessage: "",
+          errorAmount: "",
+          errorDuration: "",
         };
       },
       methods: {
@@ -40,16 +43,9 @@ export class Calc {
         },
         calculateRate: function (e: Event) {
           e.preventDefault();
-          if (
-            !(window as any).currentView.watchers.creditAmount ||
-            isNaN(+(window as any).currentView.watchers.creditAmount) ||
-            !(window as any).currentView.watchers.duration ||
-            isNaN(+(window as any).currentView.watchers.duration)
-          ) {
-            console.log(window, "window from validate");
-            (window as any).currentView.watchers.monthlyRateMin = "";
-            (window as any).currentView.watchers.monthlyRateMax = "";
-            (window as any).currentView.watchers.errorMessage = "Wrong value";
+          console.log(self, "self");
+          const passValidation = (self as any).currentView.methods.validate();
+          if (!passValidation) {
             return;
           }
           const amount = +(window as any).currentView.watchers.creditAmount;
@@ -68,6 +64,31 @@ export class Calc {
             )),
             ((window as any).currentView.watchers.errorMessage = ""),
           ];
+        },
+        validate: function (): boolean {
+          return dataToValidate(
+            [
+              (window as any).currentView.watchers.creditAmount,
+              (window as any).currentView.watchers.duration,
+            ],
+            (window as any).currentView.el
+          );
+          // validation((window as any).currentView.watchers.creditAmount);
+          // validation((window as any).currentView.watchers.duration);
+          // if (
+          //   !(window as any).currentView.watchers.creditAmount ||
+          //   isNaN(+(window as any).currentView.watchers.creditAmount) ||
+          //   !(window as any).currentView.watchers.duration ||
+          //   isNaN(+(window as any).currentView.watchers.duration)
+          // ) {
+          //   console.log(window, "window from validate");
+          //   // (window as any).currentView.watchers.monthlyRateMin = "";
+          //   // (window as any).currentView.watchers.monthlyRateMax = "";
+          //   console.log(window, "window");
+          //   (window as any).currentView.watchers.errorMessage = "Wrong value";
+          //   return false;
+          // }
+          // return true;
         },
       },
     });
