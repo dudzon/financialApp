@@ -11,7 +11,14 @@ export class Step3 {
     (window as any).currentView = new myFramework({
       el: "step3",
       data() {
-        return {};
+        return {
+          applicantTitle: "",
+          partnerTitle: "",
+          applicantFirstName: "",
+          applicantLastName: "",
+          partnerFirstName: "",
+          partnerLastName: "",
+        };
       },
       methods: {
         back: function (e: Event) {

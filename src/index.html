@@ -53,11 +53,12 @@
             <form action="" >
                 <div class="row valign-wrapper">
                     <div class="col s6">
-                        <span>Credit Amount</span>
+                        <span>Credit Amount in EUR</span>
                     </div>
-                    <div class="col s6">
+                    <div class="col s6 calc-data">
                         <input  class="browser-default credit-data right" type="text"
-                            value="EUR 12,000" />
+                            v-model="creditAmount"/>
+                         <span v-html="errorMessage"></span>
                     </div>
                 </div>
                 <div class="progress progress-calc">
@@ -65,11 +66,12 @@
                 </div>
                 <div class="row valign-wrapper">
                     <div class="col s6">
-                        <span>Duration</span>
+                        <span>Duration in months</span>
                     </div>
-                    <div class="col s6">
+                    <div class="col s6 calc-data">
                         <input class="browser-default credit-data right" type="text"
-                            value="24 month" />
+                            v-model="duration"/>
+                        <span v-html="errorMessage">Wrong value</span>
                     </div>
                 </div>
                 <div class="progress">
@@ -81,8 +83,8 @@
                         <span class="texts__main">Monthly rate</span>
                     </div>
                     <div class="col s6">
-                        <p class="texts__secondary">from <span>68EUR</span> to <span>89EUR</span>
-                        </p>
+                        <p class="texts__secondary">from <span v-html="monthlyRateMin"></span><span>EUR</span> to <span v-html="monthlyRateMax"></span><span>EUR</span>
+                        </p> 
                     </div>
                 </div>
                 <div class="row texts valign-wrapper">
@@ -94,13 +96,16 @@
                         </p>
                     </div>
                 </div>
-                <button v-click="calc()" class="waves-effect waves-light btn-large">Apply your loan</button>
+                <div class="row buttons">
+                    <button v-click="calculateRate()" class="col s6 waves-effect waves-light btn">Apply your loan</button>
+                    <button v-click="calc()"class="col s3 push-s3 waves-effect waves-light btn">NEXT</button>
+                </div>
             </form>
         </main>
     </section>
     <section id="step1">
         <div class="step-progress">
-            <div class="container">
+            <div class="container"> 
                 <span>0%</span>
                 <div class="progress">
                     <div class="determinate" style="width: 0%"></div>
@@ -117,11 +122,11 @@
                 <div class="row">
                     <div class="input-field col s6 push-s3 no-padding">
                         <span>Credit Purposes</span>
-                        <select class="browser-default">
+                        <select class="browser-default" v-model="creditPurpose">
                             <option value="" disabled selected>Choose your option</option>
-                            <option value="1">Mortgage</option>
-                            <option value="2">Student Credit</option>
-                            <option value="3">Car credit</option>
+                            <option value="Mortgage">Mortgage</option>
+                            <option value="Student Credit">Student Credit</option>
+                            <option value="Car Credit">Car credit</option>
                         </select>
                     </div>
                 </div>
@@ -129,19 +134,19 @@
                     <div class="input-field col s6 push-s3 no-padding">
                         <span>Do you have any comments for your credit application?</span>
                         <textarea id="textarea1"
-                            class="materialize-textarea"></textarea>
+                            class="materialize-textarea" v-model="comments"></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6 push-s3 no-padding">
-                        <span>Desired loan amount</span>
-                        <input type="text" value="EUR 10.000" class="input-data" />
+                        <span>Desired loan amount in EUR</span>
+                        <input type="text" class="input-data" v-model="loanAmount"/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6 push-s3 no-padding">
                         <span>Duration in months</span>
-                        <input type="text" value="24" class="input-data" />
+                        <input type="text" class="input-data" v-model="duration"/>
                     </div>
                 </div>
                 <div class="row">
@@ -171,7 +176,7 @@
                 <div class="row checkbox">
                     <div class="col s6 push-s3">
                         <label>
-                            <input type="radio" name="radio1" class="with-gap" />
+                            <input type="radio" value="Myself" name="radio1" class="with-gap" v-model="applicant"/>
                             <span>Myself</span>
                         </label>
                     </div>
@@ -179,8 +184,7 @@
                 <div class="row checkbox">
                     <div class="col s6 push-s3">
                         <label>
-                            <input type="radio" name="radio1" class="with-gap"
-                                checked />
+                            <input type="radio" value="Me and my partner" name="radio1" class="with-gap" v-model="applicant"/>
                             <span>Me and my partner</span>
                         </label>
                     </div>
@@ -188,11 +192,11 @@
                 <div class="row">
                     <div class="input-field col s6 push-s3 no-padding">
                         <span>What is your marital status</span>
-                        <select class="browser-default no-padding">
-                            <option value="" disabled selected>Married</option>
-                            <option value="1">Divorced</option>
-                            <option value="2">Single</option>
-                            <option value="3">It's complicated</option>
+                        <select class="browser-default no-padding" v-model="maritalStatus">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="Divorced">Divorced</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
                         </select>
                     </div>
                 </div>
@@ -202,14 +206,13 @@
                 <div class="row checkbox">
                     <div class="col s3 push-s3">
                         <label>
-                            <input type="radio" class="with-gap" name="radio2"
-                                checked />
+                            <input type="radio" class="with-gap" value="yes" name="radio2" v-model="sameHouseholdStatus"/>
                             <span>Yes</span>
                         </label>
                     </div>
                     <div class="col s3 push-s3">
                         <label>
-                            <input  type="radio" class="with-gap" name="radio2" />
+                            <input  type="radio" class="with-gap" value="no" name="radio2" v-model="sameHouseholdStatus"/>
                             <span>No</span>
                         </label>
                     </div>
@@ -241,11 +244,11 @@
         <div class="row">
             <div class="input-field col s6 push-s3 no-padding">
                 <span>Title</span>
-                <select class="browser-default no-padding">
-                    <option value="" disabled selected>Mister</option>
-                    <option value="1">Miss</option>
-                    <option value="2">His Lordship</option>
-                    <option value="3">His Majesty</option>
+                <select class="browser-default no-padding" v-model="applicantTitle">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Miss">Miss</option>
+                    <option value="Mister">Mister</option>
+                    <option value="No title">No Title</option>
                 </select>
             </div>
         </div>
@@ -254,23 +257,23 @@
         </div>
         <div class="row names">
             <div class="input-field col s6 push-s3 no-padding ">
-                <input v-input="method(ev)" placeholder="First Name" id="first-name" type="text">
+                <input v-input="method(ev)" placeholder="First Name" id="first-name" type="text" v-model="applicantFirstName">
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6 push-s3 no-padding ">
-                <input v-input="method(ev)" placeholder="Last Name" id="last-name" type="text">
+                <input v-input="method(ev)" placeholder="Last Name" id="last-name" type="text" v-model="applicantLastName">
             </div>
         </div>
         <h5 class="center-align">Fill in the information about your partner</h5>
         <div class="row">
             <div class="input-field col s6 push-s3 no-padding">
                 <span>Title</span>
-                <select class="browser-default no-padding">
-                    <option value="" disabled selected>Mister</option>
-                    <option value="1">Miss</option>
-                    <option value="2">His Lordship</option>
-                    <option value="3">His Majesty</option>
+                <select class="browser-default no-padding" v-model="partnerTitle">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Miss">Miss</option>
+                    <option value="Mister">Mister</option>
+                    <option value="No title">No Title</option>
                 </select>
             </div>
         </div>
@@ -279,12 +282,12 @@
         </div>
         <div class="row names">
             <div class="input-field col s6 push-s3 no-padding ">
-                <input  placeholder="First Name" id="partner-first-name" type="text">
+                <input  placeholder="First Name" id="partner-first-name" type="text" v-model="partnerFirstName">
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6 push-s3 no-padding ">
-                <input placeholder="Last Name" id="partner-last-name" type="text">
+                <input placeholder="Last Name" id="partner-last-name" type="text" v-model="partnerLastName">
             </div>
         </div>
         <div class="row buttons">
@@ -315,28 +318,28 @@
         </div>
         <div class="row names">
             <div class="input-field col s6 push-s3 no-padding datepicker">
-                <input  placeholder="Date of birth" id="dob" type="text">
+                <input  placeholder="Date of birth" id="dob" type="date" v-model="dateOfBirth">
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6 push-s3 no-padding">
                 <span>What is your nationality?</span>
-                <select id="nationality" class="browser-default no-padding">
-                    <option value="" disabled selected>Polish</option>
-                    <option value="1">Russian</option>
-                    <option value="2">German</option>
-                    <option value="3">Ukrainian</option>
+                <select id="nationality" class="browser-default no-padding" v-model="nationality">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Polish">Polish</option>
+                    <option value="German">German</option>
+                    <option value="Czech">Czech</option>
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6 push-s3 no-padding">
                 <span>Which residence permit do you have?</span>
-                <select id="residence-permit" class="browser-default no-padding">
-                    <option value="" disabled selected>Poland</option>
-                    <option value="1">Russia</option>
-                    <option value="2">Germany</option>
-                    <option value="3">Ukraine</option>
+                <select id="residence-permit" class="browser-default no-padding" v-model="residence">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Poland">Poland</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Czech Republic">Czech Republic</option>
                 </select>
             </div>
         </div>
@@ -345,7 +348,7 @@
         </div>
         <div class="row names">
             <div class="input-field col s6 push-s3 no-padding datepicker">
-                <input id="residence" type="text">
+                <input id="residence" type="text" v-model="residentPeriod">
             </div>
         </div>
         <div class="row buttons">

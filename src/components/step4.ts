@@ -11,7 +11,12 @@ export class Step4 {
     (window as any).currentView = new myFramework({
       el: "step4",
       data() {
-        return {};
+        return {
+          dateOfBirth: "",
+          nationality: "",
+          residence: "",
+          residentPeriod: "",
+        };
       },
       methods: {
         back: function (e: Event) {
@@ -24,7 +29,7 @@ export class Step4 {
           axios
             .post("api/step4", { prop: "ok" })
             .then(function (response: AxiosResponse) {
-              console.log("ok");
+              console.log(window);
             })
             .catch(function (err: AxiosError) {
               throw new Error(err.message);

@@ -36,8 +36,7 @@ export class myFramework {
               break;
 
             case CustomAttributes.vclick:
-              // case CustomAttributes.vchange:
-
+            case CustomAttributes.vchange:
               // argument should be found in the context;
               //implement v- change attribute
               // check context in all components
@@ -87,7 +86,11 @@ export class myFramework {
             case CustomAttributes.vmodel:
               const el = element.getAttributeNode(attrName).ownerElement;
 
-              if (el instanceof HTMLInputElement) {
+              if (
+                el instanceof HTMLInputElement ||
+                el instanceof HTMLTextAreaElement ||
+                el instanceof HTMLSelectElement
+              ) {
                 const [char] = this.parseAttributeName(el, attrName);
 
                 Object.keys(this.watchers).forEach((key: string) => {

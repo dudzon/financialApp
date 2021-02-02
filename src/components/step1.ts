@@ -13,12 +13,16 @@ export class Step1 {
     (window as any).currentView = new myFramework({
       el: "step1",
       data() {
-        return {};
+        return {
+          creditPurpose: "",
+          comments: "",
+          loanAmount: "",
+          duration: "",
+        };
       },
       methods: {
         checkCreditRate: function (e: Event) {
           e.preventDefault();
-
           axios
             .post("api/step1", { prop: "ok" })
             .then(function (response: AxiosResponse) {
