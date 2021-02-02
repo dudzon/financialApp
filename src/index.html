@@ -55,7 +55,7 @@
                     <div class="col s6">
                         <span>Credit Amount in EUR</span>
                     </div>
-                    <div class="col s6 calc-data">
+                    <div class="col s6 error-data">
                         <input  class="browser-default credit-data right" type="text"
                             v-model="creditAmount"/>
                          <span v-html="errorMessage"></span>
@@ -68,10 +68,10 @@
                     <div class="col s6">
                         <span>Duration in months</span>
                     </div>
-                    <div class="col s6 calc-data">
+                    <div class="col s6 error-data">
                         <input class="browser-default credit-data right" type="text"
                             v-model="duration"/>
-                        <span v-html="errorMessage">Wrong value</span>
+                        <span v-html="errorMessage"></span>
                     </div>
                 </div>
                 <div class="progress">
@@ -138,15 +138,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s6 push-s3 no-padding">
+                    <div class="input-field col s6 push-s3 no-padding error-data">
                         <span>Desired loan amount in EUR</span>
                         <input type="text" class="input-data" v-model="loanAmount"/>
+                        <span v-html="errorMessage"></span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s6 push-s3 no-padding">
+                    <div class="input-field col s6 push-s3 no-padding error-data">
                         <span>Duration in months</span>
                         <input type="text" class="input-data" v-model="duration"/>
+                        <span v-html="errorMessage"></span>
                     </div>
                 </div>
                 <div class="row">

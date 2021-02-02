@@ -138,7 +138,7 @@ section {
 .login-error {
     color: red;
 }
-.calc-data span {
+.error-data span[v-html='errorMessage']{
     display:block;
     color:red;
     font-size: 10px;

@@ -24,8 +24,6 @@ export class Calc {
           duration: "",
           monthlyRateMin: "",
           monthlyRateMax: "",
-          errorAmount: "",
-          errorDuration: "",
         };
       },
       methods: {
@@ -43,7 +41,6 @@ export class Calc {
         },
         calculateRate: function (e: Event) {
           e.preventDefault();
-          console.log(self, "self");
           const passValidation = (self as any).currentView.methods.validate();
           if (!passValidation) {
             return;
@@ -73,22 +70,6 @@ export class Calc {
             ],
             (window as any).currentView.el
           );
-          // validation((window as any).currentView.watchers.creditAmount);
-          // validation((window as any).currentView.watchers.duration);
-          // if (
-          //   !(window as any).currentView.watchers.creditAmount ||
-          //   isNaN(+(window as any).currentView.watchers.creditAmount) ||
-          //   !(window as any).currentView.watchers.duration ||
-          //   isNaN(+(window as any).currentView.watchers.duration)
-          // ) {
-          //   console.log(window, "window from validate");
-          //   // (window as any).currentView.watchers.monthlyRateMin = "";
-          //   // (window as any).currentView.watchers.monthlyRateMax = "";
-          //   console.log(window, "window");
-          //   (window as any).currentView.watchers.errorMessage = "Wrong value";
-          //   return false;
-          // }
-          // return true;
         },
       },
     });

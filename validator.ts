@@ -3,7 +3,7 @@ function validation(value: string, el: HTMLElement) {
     (window as any).currentView.watchers.errorMessage = "Wrong value";
     return false;
   }
-//   hideValidationError(el);
+  hideValidationError(el);
   return true;
 }
 
@@ -15,20 +15,18 @@ export function dataToValidate(values: string[], el: HTMLElement): boolean {
   return validateArr.every((item) => item === true);
 }
 
-// function hideValidationError(el: HTMLElement): void {
-//     const id = el.id;
-
-//   debugger;
-//   const section = document.getElementById(id);
-//   debugger;
-//   console.log(section, "section");
-//   const errorEl = Array.from(
-//     section.querySelectorAll("span[v-model=errorMessage]")
-//   );
-//   console.log(errorEl, "errorEl");
-//   errorEl.forEach((el: HTMLInputElement) => {
-//     if (!el.value || isNaN(+el.value)) {
-//       el.style.display = "none";
-//     }
-//   });
-// }
+function hideValidationError(el: HTMLElement): void {
+  const id = el.id;
+  const section = document.getElementById(id);
+  const errorEl = Array.from(
+    section.querySelectorAll("span[v-html='errorMessage']")
+  );
+  errorEl.forEach((el: HTMLInputElement) => {
+    const input: HTMLInputElement = el.previousElementSibling as HTMLInputElement;
+    if (!isNaN(+input.value) || !input.value) {
+      el.style.visibility = "hidden";
+    } else {
+      el.style.visibility = "visible";
+    }
+  });
+}
