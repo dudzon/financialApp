@@ -6,7 +6,7 @@ import { RoutesNames } from "./model";
 export const router = createRouter({
   engine: BrowserHistoryEngine({ bindClick: true }),
 })
-  .get("/", (req:any,context:any) => {
+  .get("/", (req: any, context: any) => {
     router.navigate(`${RoutesNames.default}${RoutesNames.login}`);
   })
   .get("/login", (req: any, context: any) => {

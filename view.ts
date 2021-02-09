@@ -1,9 +1,9 @@
-import { Login } from "./src/components/login";
-import { Calc } from "./src/components/calc";
-import { Step1 } from "./src/components/step1";
-import { Step2 } from "./src/components/step2";
-import { Step3 } from "./src/components/step3";
-import { Step4 } from "./src/components/step4";
+import { Login } from "./src/components/login/login";
+import { Calc } from "./src/components/calc/calc";
+import { Step1 } from "./src/components/step1/step1";
+import { Step2 } from "./src/components/step2/step2";
+import { Step3 } from "./src/components/step3/step3";
+import { Step4 } from "./src/components/step4/step4";
 import { RoutesNames } from "./model";
 
 export class View {

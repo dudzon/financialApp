@@ -1,18 +1,30 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { myFramework } from "./../../framework/framework";
-import { RoutesNames, User } from "../../model";
-import { router } from "../../router";
+import { myFramework } from "../../../framework/framework";
+import { RoutesNames, User } from "../../../model";
+import { router } from "../../../router";
+import { appStore } from "../../../store/appStore";
+// import * as LoginActions from "./login.actions";
+import * as AppActions from "./../../../store/app.actions";
 
 const IS_AUTHENTICATED = "is_authenticated";
 
 export class Login {
+  store: any;
+  state: any;
   constructor() {
+    this.store = appStore;
+    this.state = this.store.getState();
+    console.log(this.state, "state");
+
     this.init();
+    this.isUserAuthenticated();
   }
   init() {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
-    this.isUserAuthenticated();
+
+    // debugger;
+
     (window as any).currentView = new myFramework({
       el: "login",
       data() {
@@ -36,6 +48,13 @@ export class Login {
             })
             .then(function (response: AxiosResponse) {
               (window as any).currentView.watchers.loginStatus = "success";
+              self.store.dispatch(
+                new AppActions.LoginSuccess({
+                  user: username,
+                  password: password,
+                  isAuthenticated: true,
+                })
+              );
               self.authenticate();
               setTimeout(() => {
                 router.navigate(`${RoutesNames.default}${RoutesNames.calc}`);
@@ -46,6 +65,9 @@ export class Login {
               (window as any).currentView.watchers.loginStatus = "error";
               (window as any).currentView.watchers.errorName =
                 error.response.data.error;
+              self.store.dispatch(
+                new AppActions.Auth({ isAuthenticated: false })
+              );
               setTimeout(() => {
                 (window as any).currentView.watchers.loginStatus = "";
               }, 2000);
@@ -63,10 +85,12 @@ export class Login {
   authenticate(): void {
     if (!localStorage.getItem(IS_AUTHENTICATED)) {
       localStorage.setItem(IS_AUTHENTICATED, "true");
+      this.store.dispatch(new AppActions.Auth({ isAuthenticated: true }));
     }
   }
   isUserAuthenticated(): void {
     if (localStorage.getItem(IS_AUTHENTICATED)) {
+      this.store.dispatch(new AppActions.Auth({ isAuthenticated: true }));
       router.navigate(`${RoutesNames.default}${RoutesNames.calc}`);
     }
   }

@@ -1,9 +1,11 @@
 import Axios from "axios";
-import { myFramework } from "./../../framework/framework";
+import { myFramework } from "./../../../framework/framework";
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { RoutesNames } from "../../model";
-import { router } from "../../router";
-import { dataToValidate } from "./../../validator";
+import { RoutesNames } from "../../../model";
+import { router } from "../../../router";
+import { dataToValidate } from "./../../../validator";
+import { appStore } from "../../../store/appStore";
+import * as AppActions from "../../../store/app.actions";
 
 const RATE = {
   minimumRate: 5.67,
@@ -11,14 +13,20 @@ const RATE = {
 };
 
 export class Calc {
+  store: any;
+  state: any;
   constructor() {
+    this.store = appStore;
+    this.state = this.store.getState();
+
+    console.log(this.state, "state-calc");
     this.init();
   }
   init(): void {
+    const self = this;
     (window as any).currentView = new myFramework({
       el: "calc",
       data() {
-        const self = this;
         return {
           creditAmount: "",
           duration: "",
@@ -41,7 +49,7 @@ export class Calc {
         },
         calculateRate: function (e: Event) {
           e.preventDefault();
-          const passValidation = (self as any).currentView.methods.validate();
+          const passValidation = (window as any).currentView.methods.validate();
           if (!passValidation) {
             return;
           }
@@ -52,15 +60,19 @@ export class Calc {
           const interestMax = (amount * RATE.maximumRate) / 100;
           const resultMax = (amount + interestMax) / duration;
 
-          return [
-            ((window as any).currentView.watchers.monthlyRateMin = Math.round(
-              resultMin
-            )),
-            ((window as any).currentView.watchers.monthlyRateMax = Math.round(
-              resultMax
-            )),
-            ((window as any).currentView.watchers.errorMessage = ""),
-          ];
+          self.store.dispatch(
+            new AppActions.CalculateLoanExample({
+              creditExampleAmount: amount,
+              creditExampleDuration: duration,
+              resultMin: resultMin,
+              resultMax: resultMax,
+            })
+          );
+          const updatedState = appStore.getState();
+          (window as any).currentView.watchers.monthlyRateMin =
+            updatedState.monthlyRateMin;
+          (window as any).currentView.watchers.monthlyRateMax =
+            updatedState.monthlyRateMax;
         },
         validate: function (): boolean {
           return dataToValidate(

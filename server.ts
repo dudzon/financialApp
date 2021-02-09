@@ -32,7 +32,6 @@ app.get("/login", (req: any, res: any) => {
 });
 app.get("/*", (req: any, res: any) => {
   res.sendFile(path.resolve(__dirname + "/dist/index.html"));
-  
 });
 
 app.post("/api/login", controller.login);
