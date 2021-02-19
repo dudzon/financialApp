@@ -2,16 +2,29 @@
   <section id="login">
     <Navigation />
     <main class="container">
-      <form action="" class="form" @submit ="login()">
+      <form action="" class="form" @submit="login()">
         <div class="row">
-              <Input placeholder="Username" id="username" type ="text" v-model = "username"/>
-              <Input placeholder="Password" id="password" type ="password" v-model= "password"/>
-              <Button wrapperClass= "col s12" buttonClass= "waves-effect waves-light btn-large col s12 button-login" buttonText= "Login"/>
+          <Input
+            placeholder="Username"
+            id="username"
+            type="text"
+            v-model="username"
+          />
+          <Input
+            placeholder="Password"
+            id="password"
+            type="password"
+            v-model="password"
+          />
+          <Button
+            wrapperClass="col s12"
+            buttonClass="waves-effect waves-light btn-large col s12 button-login"
+            buttonText="Login"
+          />
         </div>
-        
       </form>
-      <!-- <p v-if = "loginStatus === success" class = "login login-success">Login successful</p>
-            <p v-if = "loginStatus === error"  v-html="errorName" class = "login login-error"></p> -->
+      <p v-if = "statusName" class = "login login-success">Login successful</p>
+      <p v-else v-html= "errorName" class = "login login-error"></p>
     </main>
   </section>
 </template>
@@ -20,29 +33,60 @@
 import Navigation from "../components/Navigation.vue";
 import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
+import router from "./../router/index";
+import { loginMixin } from "./../mixins/login"
+
+const IS_AUTHENTICATED = "is_authenticated";
+
 export default {
   name: "Login",
   components: { Navigation, Input, Button },
+  mixins: [loginMixin],
   data() {
-      return {
-          username: '',
-          password: ''
-      }
+    return {
+      username: "",
+      password: "",
+      errorName: "",
+      statusName: ""
+    };
   },
-  computed:{
-      loginStatus: ''
+  created() {
+      this.isUserAuthenticated();
   },
   methods: {
-      login() {
-          console.log(this.username, 'username');
-          console.log(this.password, 'password');
-          this.resetInputs();
-      },
-      resetInputs() {
-          this.username ='';
-          this.password =''
+   login() {
+      this.loginRequest(this.username,this.password)
+        .then(() => {
+          this.statusName = "success";
+
+          this.authenticate();
+            setTimeout(() => {
+              router.push('calc')
+            }, 2000);
+        })
+        .catch(error => {
+       this.errorName = error.response.data.error
+            setTimeout(() => {
+              this.errorName = "";
+            }, 2000);
+        });
+      this.resetInputs();
+    },
+    resetInputs() {
+      this.username = "";
+      this.password = "";
+    },
+    authenticate() {
+      if (!localStorage.getItem(IS_AUTHENTICATED)) {
+        localStorage.setItem(IS_AUTHENTICATED, "true");
       }
-  }
+    },
+    isUserAuthenticated() {
+      if (localStorage.getItem(IS_AUTHENTICATED)) {
+        router.push("calc");
+      }
+    }
+  },
   
 };
 </script>
@@ -59,5 +103,11 @@ export default {
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
+}
+.login-success { 
+    color:green;
+}
+.login-error {
+    color: red;
 }
 </style>
