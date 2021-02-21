@@ -9,20 +9,14 @@
             <span>Credit Purposes</span>
             <select class="browser-default" v-model="creditPurpose">
               <option value="" disabled selected>Choose your option</option>
-              <option value="Mortgage">Mortgage</option>
-              <option value="Student Credit">Student Credit</option>
-              <option value="Car Credit">Car credit</option>
+              <option v-for= "option in options" :value="option.value" :key="option.value">{{option.text}}</option>
             </select>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6 push-s3 no-padding">
             <span>Do you have any comments for your credit application?</span>
-            <textarea
-              id="textarea1"
-              class="materialize-textarea"
-              v-model="comments"
-            ></textarea>
+            <Textarea id= "textarea1" v-model= "comments" inputClass="materialize-textarea"/>
           </div>
         </div>
         <div class="row">
@@ -42,7 +36,7 @@
         <div class="row">
           <!-- <button v-click="checkCreditRate()" class="waves-effect waves-light btn-large col s6 push-s3 no-padding">Determine
                         credit rate</button> -->
-          <Button
+          <Button @click.prevent = "showlogs()"
             buttonClass="waves-effect waves-light btn-large col s6 push-s3 no-padding"
             buttonText="Determine
                         credit rate"
@@ -56,24 +50,33 @@
 import Navigation from "../components/Navigation.vue";
 import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
+import Textarea from '../components/Textarea.vue';
 
 export default {
   name: "StepOne",
-  components: { Navigation, Input, Button },
+  components: { Navigation, Input, Button ,Textarea },
   data() {
     return {
       creditPurpose: "",
       comments: "",
       loanAmount: "",
       duration: "",
-      options: ["Mortgage", "Studnt Credit", "Car Credit"]
+      options: [
+        {text:"Mortgage", value:"Mortgage"},
+        {text:"Student Credit", value:"Student Credit"},
+        {text:"Car Credit", value:"Car Credit"}
+      ]
     };
   },
-  methods: {}
+  methods: {
+    showlogs() {
+      console.log( this.creditPurpose, 'creditPurpose');
+      console.log( this.comments, 'comments');
+      console.log( this.loanAmount, 'loanAmount');
+      console.log( this.duration, 'duration');
+    }
+  }
 };
 </script>
 <style scoped>
-.form-stepper {
-  width: 100%;
-}
 </style>

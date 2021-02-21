@@ -29,4 +29,19 @@ span, input{
     color:red;
     font-size: 10px;
 }
+.form-stepper {
+  width: 100%;
+}
+.buttons {
+    margin-top:3rem;
+}
+.button-back {
+    background:#979797;
+}
+.active {
+      color: var(--main-color);
+}
+.names {
+  margin-bottom: 0;
+}
 </style>
