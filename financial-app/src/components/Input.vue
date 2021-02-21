@@ -2,7 +2,7 @@
     <div class="input-field col s12 no-padding">
         <input :placeholder = "placeholder" :id=  "id" :type= "type" :class= "inputClass" 
         :value = "modelValue" @input= "$emit('update:modelValue', $event.target.value)"  />
-         <label :for= "id">{{ placeholder }}</label>
+         <label class ="active" :for= "id">{{ placeholder }}</label>
     </div>
 </template>
 <script>

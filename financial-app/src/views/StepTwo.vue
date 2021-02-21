@@ -78,11 +78,11 @@
           </div>
         </div>
         <div class="row buttons">
-            <Button @click.prevent = "showlogs()"
+            <Button @click.prevent = "back()"
             buttonClass="col s2 push-s3 waves-effect waves-light btn button-back"
             buttonText="BACK"
           />
-            <Button @click.prevent = "showlogs()"
+            <Button @click.prevent= "next()"
             buttonClass="col s2 push-s5 waves-effect waves-light btn"
             buttonText="NEXT"
           />
@@ -93,10 +93,11 @@
 </template>
 <script>
 import Button from '../components/Button.vue';
-import Navigation from "../components/Navigation.vue";
+import router from "./../router/index";
+import axios from 'axios';
 export default {
   name: "StepTwo",
-  components: { Button, Navigation },
+  components: { Button },
   data() {
     return {
       applicant: "",
@@ -110,13 +111,24 @@ export default {
     };
   },
   methods: {
-    showlogs() {
-      console.log( this.applicant, 'applicant');
-      console.log( this.maritalStatus, 'maritalStatus');
-      console.log( this.sameHouseholdStatus, 'sameHouseHold');
-    }
+      back() {
+        router.push('stepone');
+      },
+      next() {
+         axios
+            .post("http://localhost:3000/api/step2", { prop: "ok" })
+            .then(response =>  {
+                console.log(response);
+                router.push('stepthree');
+            })
+            .catch(error =>  {
+                console.log(error);
+              throw new Error(error.response.data.error);
+            });
+        },
+      }
   }
-};
+
 </script>
 <style scoped>
 .checkbox {

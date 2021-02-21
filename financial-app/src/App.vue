@@ -1,10 +1,13 @@
 <template>
+ <Navigation />
   <router-view />
 </template>
 
 <script>
+import Navigation from "./components/Navigation";
 import M from 'materialize-css'
 export default {
+  components: {Navigation},
   mounted() {
     M.AutoInit();
   }

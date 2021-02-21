@@ -1,6 +1,5 @@
 <template>
   <div id="step3">
-    <Navigation />
     <main class="container step3">
       <h5 class="center-align">Your contact information</h5>
       <form action="" class="form-stepper">
@@ -71,7 +70,6 @@
               id="partner-first-name"
               type="text"
               v-model="partnerFirstName"
-              inputClass="input-data"
             />
           </div>
         </div>
@@ -82,18 +80,17 @@
               id="partner-last-name"
               type="text"
               v-model="partnerLastName"
-              inputClass="input-data"
             />
           </div>
         </div>
         <div class="row buttons">
           <Button
-            @click.prevent="showlogs()"
+            @click="back()"
             buttonClass="col s2 push-s3 waves-effect waves-light btn button-back"
             buttonText="BACK"
           />
           <Button
-            @click.prevent="showlogs()"
+            @click="next()"
             buttonClass="col s2 push-s5 waves-effect waves-light btn"
             buttonText="NEXT"
           />
@@ -105,10 +102,11 @@
 <script>
 import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
-import Navigation from "../components/Navigation.vue";
+import router from "./../router/index";
+import axios from "axios";
 export default {
   name: "StepThree",
-  components: { Navigation, Input, Button },
+  components: { Input, Button },
   data() {
     return {
       applicantTitle: "",
@@ -125,19 +123,25 @@ export default {
     };
   },
   methods: {
-    showlogs() {
-      console.log(this.applicantTitle, "applicantTitle");
-      console.log(this.partnerTitle, "partnerTitle");
-      console.log(this.applicantFirstName, "applicantFirstName");
-      console.log(this.applicantLastName ,"applicantLastName");
-      console.log(this.partnerFirstName, "partnerFirstName");
-      console.log(this.partnerLastName, "partnerLastName");
+    back() {
+      router.push("steptwo");
+    },
+    next() {
+      axios
+        .post("http://localhost:3000/api/step3", { prop: "ok" })
+        .then(response => {
+          console.log(response);
+          router.push("stepfour");
+        })
+        .catch(error => {
+          console.log(error);
+          throw new Error(error.response.data.error);
+        });
     }
   }
 };
 </script>
 <style scoped>
-
 .step3 {
   margin-bottom: 5rem;
 }

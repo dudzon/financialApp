@@ -5,7 +5,7 @@
         <img src="../assets/logo.png" alt="logo" />
       </div>
       <div class="navigation__dropdown">
-        <select class="language">
+        <select class="browser-default language">
           <option value="EN">EN</option>
           <option value="PL">PL</option>
         </select>

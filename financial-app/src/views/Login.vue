@@ -1,6 +1,5 @@
 <template>
   <section id="login">
-    <Navigation />
     <main class="container">
       <form action="" class="form" @submit="login()">
         <div class="row">
@@ -32,7 +31,6 @@
 </template>
 
 <script>
-import Navigation from "../components/Navigation.vue";
 import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
 import router from "./../router/index";
@@ -42,7 +40,7 @@ const IS_AUTHENTICATED = "is_authenticated";
 
 export default {
   name: "Login",
-  components: { Navigation, Input, Button },
+  components: { Input, Button },
   mixins: [loginMixin],
   data() {
     return {
