@@ -8,12 +8,14 @@
             placeholder="Username"
             id="username"
             type="text"
+            inputClass= "validate"
             v-model="username"
           />
           <Input
             placeholder="Password"
             id="password"
             type="password"
+            inputClass= "validate"
             v-model="password"
           />
           <Button
@@ -23,8 +25,8 @@
           />
         </div>
       </form>
-      <p v-if = "statusName" class = "login login-success">Login successful</p>
-      <p v-else v-html= "errorName" class = "login login-error"></p>
+      <p v-if="statusName" class="login login-success">Login successful</p>
+      <p v-if="errorName" v-html="errorName" class="login login-error"></p>
     </main>
   </section>
 </template>
@@ -34,7 +36,7 @@ import Navigation from "../components/Navigation.vue";
 import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
 import router from "./../router/index";
-import { loginMixin } from "./../mixins/login"
+import { loginMixin } from "./../mixins/login";
 
 const IS_AUTHENTICATED = "is_authenticated";
 
@@ -51,24 +53,27 @@ export default {
     };
   },
   created() {
-      this.isUserAuthenticated();
+    this.isUserAuthenticated();
   },
   methods: {
-   login() {
-      this.loginRequest(this.username,this.password)
+    login() {
+      this.loginRequest(this.username, this.password)
         .then(() => {
           this.statusName = "success";
 
           this.authenticate();
-            setTimeout(() => {
-              router.push('calc')
-            }, 2000);
+          setTimeout(() => {
+            router.push("calc");
+          }, 2000);
         })
         .catch(error => {
-       this.errorName = error.response.data.error
-            setTimeout(() => {
-              this.errorName = "";
-            }, 2000);
+          console.log(this, "this");
+
+          this.errorName = error.response.data.error;
+
+          setTimeout(() => {
+            this.errorName = "";
+          }, 2000);
         });
       this.resetInputs();
     },
@@ -86,8 +91,7 @@ export default {
         router.push("calc");
       }
     }
-  },
-  
+  }
 };
 </script>
 
@@ -104,10 +108,10 @@ export default {
   right: 50%;
   transform: translate(50%, -50%);
 }
-.login-success { 
-    color:green;
+.login-success {
+  color: green;
 }
 .login-error {
-    color: red;
+  color: red;
 }
 </style>

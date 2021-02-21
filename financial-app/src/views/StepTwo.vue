@@ -1,5 +1,5 @@
 <template>
-    <div id="step4"></div>
+    <div id="step2"></div>
 </template>
 <script>
 export default {
