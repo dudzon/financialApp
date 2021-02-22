@@ -1,5 +1,22 @@
 <template>
   <div id="step4">
+    <div class="step-progress">
+      <div class="container">
+        <span>100%</span>
+        <div class="progress">
+          <div class="determinate" style="width: 100%"></div>
+        </div>
+        <div class="info">
+         <router-link to="/stepone">
+            <p>Debt situation</p>
+          </router-link>
+          <router-link to="/steptwo">
+            <p>Applicant</p>
+          </router-link>
+          <p><span class="active">Contact details</span></p>
+        </div>
+      </div>
+    </div>
     <main class="container">
       <form action="" class="form-stepper">
         <div class="row names">
@@ -58,11 +75,7 @@
         </div>
         <div class="row names">
           <div class="input-field col s6 push-s3 no-padding">
-            <Input
-              id="residence"
-              type="text"
-              v-model="residentPeriod"
-            />
+            <Input id="residence" type="text" v-model="residentPeriod" />
           </div>
         </div>
         <div class="row buttons">

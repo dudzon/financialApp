@@ -1,5 +1,22 @@
 <template>
   <div id="step3">
+    <div class="step-progress">
+      <div class="container">
+        <span>60%</span>
+        <div class="progress">
+          <div class="determinate" style="width: 60%"></div>
+        </div>
+        <div class="info">
+         <router-link to="/stepone">
+            <p>Debt situation</p>
+          </router-link>
+          <router-link to="/steptwo">
+            <p>Applicant</p>
+          </router-link>
+          <p><span class="active">Contact details</span></p>
+        </div>
+      </div>
+    </div>
     <main class="container step3">
       <h5 class="center-align">Your contact information</h5>
       <form action="" class="form-stepper">

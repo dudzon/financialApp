@@ -1,6 +1,22 @@
 <template>
   <div id="step2">
-    <Navigation />
+    <div class="step-progress">
+      <div class="container">
+        <span>20%</span>
+        <div class="progress">
+          <div class="determinate" style="width: 20%"></div>
+        </div>
+        <div class="info">
+          <router-link to="/stepone">
+            <p>Debt situation</p>
+          </router-link>
+          <p><span class="active">Applicant</span></p>
+          <router-link to="/stepthree">
+             <p>Contact details</p>
+          </router-link>
+        </div>
+      </div>
+    </div>
     <main class="container">
       <h5 class="center-align">Who applies for the credit?</h5>
       <form action="" class="form-stepper">
@@ -78,11 +94,13 @@
           </div>
         </div>
         <div class="row buttons">
-            <Button @click.prevent = "back()"
+          <Button
+            @click.prevent="back()"
             buttonClass="col s2 push-s3 waves-effect waves-light btn button-back"
             buttonText="BACK"
           />
-            <Button @click.prevent= "next()"
+          <Button
+            @click.prevent="next()"
             buttonClass="col s2 push-s5 waves-effect waves-light btn"
             buttonText="NEXT"
           />
@@ -92,9 +110,9 @@
   </div>
 </template>
 <script>
-import Button from '../components/Button.vue';
+import Button from "../components/Button.vue";
 import router from "./../router/index";
-import axios from 'axios';
+import axios from "axios";
 export default {
   name: "StepTwo",
   components: { Button },
@@ -111,27 +129,26 @@ export default {
     };
   },
   methods: {
-      back() {
-        router.push('stepone');
-      },
-      next() {
-         axios
-            .post("http://localhost:3000/api/step2", { prop: "ok" })
-            .then(response =>  {
-                console.log(response);
-                router.push('stepthree');
-            })
-            .catch(error =>  {
-                console.log(error);
-              throw new Error(error.response.data.error);
-            });
-        },
-      }
+    back() {
+      router.push("stepone");
+    },
+    next() {
+      axios
+        .post("http://localhost:3000/api/step2", { prop: "ok" })
+        .then(response => {
+          console.log(response);
+          router.push("stepthree");
+        })
+        .catch(error => {
+          console.log(error);
+          throw new Error(error.response.data.error);
+        });
+    }
   }
-
+};
 </script>
 <style scoped>
 .checkbox {
-    margin-top:2.5rem;
+  margin-top: 2.5rem;
 }
 </style>

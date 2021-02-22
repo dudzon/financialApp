@@ -1,5 +1,22 @@
 <template>
   <div id="step1">
+    <div class="step-progress">
+      <div class="container">
+        <span>0%</span>
+        <div class="progress">
+          <div class="determinate" style="width: 0%"></div>
+        </div>
+        <div class="info">
+          <p><span class="active">Debt Situation</span></p>
+          <router-link to="/steptwo">
+            <p>Applicant</p>
+          </router-link>
+          <router-link to="/stepthree">
+            <p>Contact details</p>
+          </router-link>
+        </div>
+      </div>
+    </div>
     <main class="container">
       <form action="" class="form-stepper">
         <div class="row">
@@ -63,7 +80,6 @@
   </div>
 </template>
 <script>
-
 import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
 import Textarea from "../components/Textarea.vue";
@@ -104,6 +120,6 @@ export default {
 </script>
 <style scoped>
 .input-data {
-    border:1px solid rgba(0,0,0,.2) !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
 }
 </style>
