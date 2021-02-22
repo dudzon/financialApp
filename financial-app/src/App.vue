@@ -27,7 +27,7 @@ span, input{
     margin-bottom:0;
     padding:0;
 }
-.error-data span[v-html='errorMessage']{
+.error-data span.error-message {
     display:block;
     color:red;
     font-size: 10px;

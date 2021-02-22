@@ -13,7 +13,7 @@
               v-model="creditAmount"
               inputClass=" browser-default credit-data right"
             />
-            <span v-html="errorMessage"></span>
+            <span class="error-message" ref="creditRef" ></span>
           </div>
         </div>
         <div class="progress progress-calc">
@@ -30,7 +30,7 @@
               v-model="duration"
               inputClass=" browser-default credit-data right"
             />
-            <span v-html="errorMessage"></span>
+            <span class="error-message" ref="durationRef"></span>
           </div>
         </div>
         <div class="progress">
@@ -79,6 +79,11 @@ import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
 import router from "./../router/index";
 import axios from "axios";
+import {validationMixin} from './../mixins/validation';
+const RATE = {
+  minimumRate: 5.67,
+  maximumRate: 9.8,
+};
 export default {
   name: "Calc",
   components: { Input, Button },
@@ -90,6 +95,7 @@ export default {
           monthlyRateMax: "",
       }
   },
+  mixins: [validationMixin],
   methods: {
       calc() {
         axios
@@ -105,6 +111,27 @@ export default {
       },
       calculateRate() {
           console.log('implement me');
+          this.clearErrors([this.$refs.creditRef, this.$refs.durationRef]);
+          const passValidation = this.validation();
+          if(!passValidation) {
+            return;
+          }
+       
+          const amount = +this.creditAmount;
+          const duration = +this.duration;
+          const interestMin = (amount * RATE.minimumRate) / 100;
+          const resultMin = (amount + interestMin) / duration;
+          const interestMax = (amount * RATE.maximumRate) / 100;
+          const resultMax = (amount + interestMax) / duration;
+          this.monthlyRateMin = Math.round(resultMin);
+          this.monthlyRateMax = Math.round(resultMax);
+
+      },
+      validation() { 
+        const areAllInputsValidated = []
+        areAllInputsValidated.push(this.validate(this.creditAmount, this.$refs.creditRef));
+        areAllInputsValidated.push(this.validate(this.duration, this.$refs.durationRef));
+        return areAllInputsValidated.every(input => input)
       }
   }
 };
