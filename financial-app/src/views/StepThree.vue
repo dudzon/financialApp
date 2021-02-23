@@ -7,7 +7,7 @@
           <div class="determinate" style="width: 60%"></div>
         </div>
         <div class="info">
-         <router-link to="/stepone">
+          <router-link to="/stepone">
             <p>Debt situation</p>
           </router-link>
           <router-link to="/steptwo">
@@ -99,19 +99,19 @@
             />
           </div>
         </div>
-        <div class="row buttons">
-          <Button
-            @click="back()"
-            buttonClass="col s2 push-s3 waves-effect waves-light btn button-back"
-            buttonText="BACK"
-          />
-          <Button
-            @click="next()"
-            buttonClass="col s2 push-s5 waves-effect waves-light btn"
-            buttonText="NEXT"
-          />
-        </div>
       </form>
+      <div class="row buttons">
+        <Button
+          @click="back()"
+          buttonClass="col s2 push-s3 waves-effect waves-light btn button-back"
+          buttonText="BACK"
+        />
+        <Button
+          @click="next()"
+          buttonClass="col s2 push-s5 waves-effect waves-light btn"
+          buttonText="NEXT"
+        />
+      </div>
     </main>
   </div>
 </template>
@@ -120,7 +120,7 @@ import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
 import router from "./../router/index";
 import axios from "axios";
-import * as store from './../store/index';
+import * as store from "./../store/index";
 export default {
   name: "StepThree",
   components: { Input, Button },
@@ -148,15 +148,15 @@ export default {
       axios
         .post("http://localhost:3000/api/step3", { prop: "ok" })
         .then(() => {
-          console.log(this.applicantLastName, 'applicantLastName')
-          this.$store.dispatch('getStepThreeData', {
+          console.log(this.applicantLastName, "applicantLastName");
+          this.$store.dispatch("getStepThreeData", {
             applicantTitle: this.applicantTitle,
             partnerTitle: this.partnerTitle,
             applicantFirstName: this.applicantFirstName,
             applicantLastName: this.applicantLastName,
             partnerFirstName: this.partnerFirstName,
             partnerLastName: this.partnerLastName
-          })
+          });
           router.push("stepfour");
         })
         .catch(error => {

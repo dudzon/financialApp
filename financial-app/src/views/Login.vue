@@ -1,20 +1,20 @@
 <template>
   <section id="login">
     <main class="container">
-      <form action="" class="form" @submit="login()">
+      <form action="" class="form" @submit.prevent="login()">
         <div class="row">
           <Input
             placeholder="Username"
             id="username"
             type="text"
-            inputClass= "validate"
+            inputClass="validate"
             v-model="username"
           />
           <Input
             placeholder="Password"
             id="password"
             type="password"
-            inputClass= "validate"
+            inputClass="validate"
             v-model="password"
           />
           <Button
@@ -35,7 +35,7 @@ import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
 import router from "./../router/index";
 import { loginMixin } from "./../mixins/login";
-import * as store from './../store/index';
+import * as store from "./../store/index";
 
 const IS_AUTHENTICATED = "is_authenticated";
 
@@ -70,12 +70,17 @@ export default {
           console.log(this, "this");
 
           this.errorName = error.response.data.error;
-
+          this.$store.dispatch('authenticateUser', false)
           setTimeout(() => {
             this.errorName = "";
           }, 2000);
         });
-   this.resetInputs();
+      this.$store.dispatch("getLoginData", {
+        password: this.password,
+        username: this.username
+      });
+      console.log(this.$store.state , 'login state')
+      this.resetInputs();
     },
     resetInputs() {
       this.username = "";
@@ -84,7 +89,9 @@ export default {
     authenticate() {
       if (!localStorage.getItem(IS_AUTHENTICATED)) {
         localStorage.setItem(IS_AUTHENTICATED, "true");
+        this.$store.dispatch('authenticateUser', true)
       }
+    
     },
     isUserAuthenticated() {
       if (localStorage.getItem(IS_AUTHENTICATED)) {

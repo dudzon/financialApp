@@ -7,8 +7,10 @@ export default createStore({
     isAuthenticated: null,
     creditExampleAmount: 0,
     creditExampleDuration: 0,
-    monthlyRateMin: null,
-    monthlyRateMax: null,
+    resultMin: 0,
+    resultMax: 0,
+    // monthlyRateMin: null,
+    // monthlyRateMax: null,
     creditPurpose: "",
     comments: "",
     loanAmount: "",
@@ -27,10 +29,24 @@ export default createStore({
     residence: "",
     residentPeriod: "",
   },
+  getters: {
+    monthlyRateMin(state) {
+      return Math.round(state.resultMin);
+    },
+    monthlyRateMax(state) {
+      return Math.round(state.resultMax);
+    }
+  },
   mutations: {
     getLoginData(state, payload) {
-      state.user = payload.user;
+      state.username = payload.username;
       state.password = payload.password;
+    },
+    getCalcData(state, payload) {
+      state.creditExampleAmount = payload.creditExampleAmount;
+      state.creditExampleDuration = payload.creditExampleDuration
+      state.resultMin = payload.resultMin;
+      state.resultMax = payload.resultMax
     },
     getStepOneData(state, payload) {
       state.creditPurpose = payload.creditPurpose;
@@ -59,11 +75,17 @@ export default createStore({
       state.residence = payload.residence;
       state.applicantLastName = payload.applicantLastName;
       state.residentPeriod = payload.residentPeriod;
+    },
+    authenticateUser(state, payload) {
+      state.isAuthenticated = payload
     }
   },
   actions: {
     getLoginData({ commit }, payload) {
       commit('getLoginData', payload);
+    },
+    getCalcData({ commit }, payload) {
+      commit('getCalcData', payload);
     },
     getStepOneData({ commit }, payload) {
       commit('getStepOneData', payload);
@@ -76,6 +98,9 @@ export default createStore({
     },
     getStepFourData({ commit }, payload) {
       commit('getStepFourData', payload);
+    },
+    authenticateUser({ commit }, payload) {
+      commit('authenticateUser', payload)
     }
   },
   modules: {

@@ -12,7 +12,7 @@
           </router-link>
           <p><span class="active">Applicant</span></p>
           <router-link to="/stepthree">
-             <p>Contact details</p>
+            <p>Contact details</p>
           </router-link>
         </div>
       </div>
@@ -93,19 +93,19 @@
             </label>
           </div>
         </div>
-        <div class="row buttons">
-          <Button
-            @click.prevent="back()"
-            buttonClass="col s2 push-s3 waves-effect waves-light btn button-back"
-            buttonText="BACK"
-          />
-          <Button
-            @click.prevent="next()"
-            buttonClass="col s2 push-s5 waves-effect waves-light btn"
-            buttonText="NEXT"
-          />
-        </div>
       </form>
+      <div class="row buttons">
+        <Button
+          @click.prevent="back()"
+          buttonClass="col s2 push-s3 waves-effect waves-light btn button-back"
+          buttonText="BACK"
+        />
+        <Button
+          @click.prevent="next()"
+          buttonClass="col s2 push-s5 waves-effect waves-light btn"
+          buttonText="NEXT"
+        />
+      </div>
     </main>
   </div>
 </template>
@@ -113,7 +113,7 @@
 import Button from "../components/Button.vue";
 import router from "./../router/index";
 import axios from "axios";
-import * as store from './../store/index';
+import * as store from "./../store/index";
 export default {
   name: "StepTwo",
   components: { Button },
@@ -138,11 +138,11 @@ export default {
       axios
         .post("http://localhost:3000/api/step2", { prop: "ok" })
         .then(() => {
-          this.$store.dispatch('getStepTwoData', {
+          this.$store.dispatch("getStepTwoData", {
             applicant: this.applicant,
             maritalStatus: this.maritalStatus,
-            sameHouseholdStatus:this.sameHouseholdStatus
-          })
+            sameHouseholdStatus: this.sameHouseholdStatus
+          });
 
           router.push("stepthree");
         })

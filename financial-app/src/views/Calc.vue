@@ -58,7 +58,8 @@
             </p>
           </div>
         </div>
-        <div class="row buttons">
+      </form>
+              <div class="row buttons">
         <Button
             @click="calculateRate()"
             buttonClass="col s6 waves-effect waves-light btn"
@@ -70,7 +71,6 @@
             buttonText="NEXT"
           />
         </div>
-      </form>
     </main>
   </div>
 </template>
@@ -80,6 +80,7 @@ import Button from "../components/Button.vue";
 import router from "./../router/index";
 import axios from "axios";
 import {validationMixin} from './../mixins/validation';
+import * as store from './../store/index';
 const RATE = {
   minimumRate: 5.67,
   maximumRate: 9.8,
@@ -91,26 +92,31 @@ export default {
       return {
           creditAmount: "",
           duration: "",
-          monthlyRateMin: "",
-          monthlyRateMax: "",
       }
   },
   mixins: [validationMixin],
+  store,
+  computed: {
+    monthlyRateMin() {
+      return this.$store.getters.monthlyRateMin;
+    },
+    monthlyRateMax() {
+      return this.$store.getters.monthlyRateMax;
+    }
+  },
   methods: {
       calc() {
         axios
             .post("http://localhost:3000/api/calc", { prop: "ok" })
-            .then(response =>  {
-            console.log(response)
+            .then(() =>  {
              router.push("stepone");
             })
            .catch(error => {
-            console.log(error);
            throw new Error(error.response.data.error);
         });
       },
       calculateRate() {
-          console.log('implement me');
+
           this.clearErrors([this.$refs.creditRef, this.$refs.durationRef]);
           const passValidation = this.validation();
           if(!passValidation) {
@@ -123,8 +129,12 @@ export default {
           const resultMin = (amount + interestMin) / duration;
           const interestMax = (amount * RATE.maximumRate) / 100;
           const resultMax = (amount + interestMax) / duration;
-          this.monthlyRateMin = Math.round(resultMin);
-          this.monthlyRateMax = Math.round(resultMax);
+          this.$store.dispatch('getCalcData', {
+            creditExampleAmount: amount,
+            creditExampleDuration: duration,
+            resultMin:resultMin,
+            resultMax:resultMax
+          })
 
       },
       validation() { 

@@ -67,15 +67,15 @@
             <span v-html="errorMessage"></span>
           </div>
         </div>
-        <div class="row">
-          <Button
-            @click="checkCreditRate()"
-            buttonClass="waves-effect waves-light btn-large col s6 push-s3 no-padding"
-            buttonText="Determine
-                        credit rate"
-          />
-        </div>
       </form>
+      <div class="row">
+        <Button
+          @click="checkCreditRate()"
+          buttonClass="waves-effect waves-light btn-large col s6 push-s3 no-padding"
+          buttonText="Determine
+                        credit rate"
+        />
+      </div>
     </main>
   </div>
 </template>
@@ -85,7 +85,7 @@ import Button from "../components/Button.vue";
 import Textarea from "../components/Textarea.vue";
 import router from "./../router/index";
 import axios from "axios";
-import * as store from './../store/index';
+import * as store from "./../store/index";
 
 export default {
   name: "StepOne",
@@ -109,13 +109,13 @@ export default {
       axios
         .post("http://localhost:3000/api/step1", { prop: "ok" })
         .then(() => {
-          console.log(this.creditPurpose, 'creditPurpose')
-          this.$store.dispatch('getStepOneData', {
+          console.log(this.creditPurpose, "creditPurpose");
+          this.$store.dispatch("getStepOneData", {
             creditPurpose: this.creditPurpose,
             comments: this.comments,
             loanAmount: this.loanAmount,
-            duration: this.duration
-          })
+            loanDuration: this.duration
+          });
           router.push("steptwo");
         })
         .catch(error => {

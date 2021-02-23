@@ -7,7 +7,7 @@
           <div class="determinate" style="width: 100%"></div>
         </div>
         <div class="info">
-         <router-link to="/stepone">
+          <router-link to="/stepone">
             <p>Debt situation</p>
           </router-link>
           <router-link to="/steptwo">
@@ -78,19 +78,19 @@
             <Input id="residence" type="text" v-model="residentPeriod" />
           </div>
         </div>
-        <div class="row buttons">
-          <Button
-            @click="back()"
-            buttonClass="col s2 push-s3 waves-effect waves-light btn button-back"
-            buttonText="BACK"
-          />
-          <Button
-            @click="next()"
-            buttonClass="col s2 push-s5 waves-effect waves-light btn"
-            buttonText="NEXT"
-          />
-        </div>
       </form>
+      <div class="row buttons">
+        <Button
+          @click="back()"
+          buttonClass="col s2 push-s3 waves-effect waves-light btn button-back"
+          buttonText="BACK"
+        />
+        <Button
+          @click="next()"
+          buttonClass="col s2 push-s5 waves-effect waves-light btn"
+          buttonText="NEXT"
+        />
+      </div>
     </main>
   </div>
 </template>
@@ -99,7 +99,7 @@ import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
 import router from "./../router/index";
 import axios from "axios";
-import * as store from './../store/index';
+import * as store from "./../store/index";
 export default {
   name: "StepFour",
   components: { Input, Button },
@@ -125,13 +125,13 @@ export default {
       axios
         .post("http://localhost:3000/api/step4", { prop: "ok" })
         .then(() => {
-          this.$store.dispatch('getStepFourData', {
+          this.$store.dispatch("getStepFourData", {
             dateOfBirth: this.dateOfBirth,
             nationality: this.nationality,
             residence: this.residence,
             residentPeriod: this.residentPeriod
-          })
-          console.log(this.$store.state, 'state');
+          });
+          console.log(this.$store.state, "state");
         })
         .catch(error => {
           console.log(error);
