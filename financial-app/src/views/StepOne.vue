@@ -85,6 +85,7 @@ import Button from "../components/Button.vue";
 import Textarea from "../components/Textarea.vue";
 import router from "./../router/index";
 import axios from "axios";
+import * as store from './../store/index';
 
 export default {
   name: "StepOne",
@@ -102,12 +103,19 @@ export default {
       ]
     };
   },
+  store,
   methods: {
     checkCreditRate() {
       axios
         .post("http://localhost:3000/api/step1", { prop: "ok" })
-        .then(response => {
-          console.log(response);
+        .then(() => {
+          console.log(this.creditPurpose, 'creditPurpose')
+          this.$store.dispatch('getStepOneData', {
+            creditPurpose: this.creditPurpose,
+            comments: this.comments,
+            loanAmount: this.loanAmount,
+            duration: this.duration
+          })
           router.push("steptwo");
         })
         .catch(error => {

@@ -59,7 +59,6 @@
             />
           </div>
         </div>
-
         <h5 class="center-align">Fill in the information about your partner</h5>
         <div class="row">
           <div class="input-field col s6 push-s3 no-padding">
@@ -121,6 +120,7 @@ import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
 import router from "./../router/index";
 import axios from "axios";
+import * as store from './../store/index';
 export default {
   name: "StepThree",
   components: { Input, Button },
@@ -139,6 +139,7 @@ export default {
       ]
     };
   },
+  store,
   methods: {
     back() {
       router.push("steptwo");
@@ -146,8 +147,16 @@ export default {
     next() {
       axios
         .post("http://localhost:3000/api/step3", { prop: "ok" })
-        .then(response => {
-          console.log(response);
+        .then(() => {
+          console.log(this.applicantLastName, 'applicantLastName')
+          this.$store.dispatch('getStepThreeData', {
+            applicantTitle: this.applicantTitle,
+            partnerTitle: this.partnerTitle,
+            applicantFirstName: this.applicantFirstName,
+            applicantLastName: this.applicantLastName,
+            partnerFirstName: this.partnerFirstName,
+            partnerLastName: this.partnerLastName
+          })
           router.push("stepfour");
         })
         .catch(error => {

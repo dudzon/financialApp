@@ -35,6 +35,7 @@ import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
 import router from "./../router/index";
 import { loginMixin } from "./../mixins/login";
+import * as store from './../store/index';
 
 const IS_AUTHENTICATED = "is_authenticated";
 
@@ -53,6 +54,7 @@ export default {
   created() {
     this.isUserAuthenticated();
   },
+  store,
   methods: {
     login() {
       this.loginRequest(this.username, this.password)
@@ -73,7 +75,7 @@ export default {
             this.errorName = "";
           }, 2000);
         });
-      this.resetInputs();
+   this.resetInputs();
     },
     resetInputs() {
       this.username = "";

@@ -99,6 +99,7 @@ import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
 import router from "./../router/index";
 import axios from "axios";
+import * as store from './../store/index';
 export default {
   name: "StepFour",
   components: { Input, Button },
@@ -115,6 +116,7 @@ export default {
       ]
     };
   },
+  store,
   methods: {
     back() {
       router.push("stepthree");
@@ -122,8 +124,14 @@ export default {
     next() {
       axios
         .post("http://localhost:3000/api/step4", { prop: "ok" })
-        .then(response => {
-          console.log(response);
+        .then(() => {
+          this.$store.dispatch('getStepFourData', {
+            dateOfBirth: this.dateOfBirth,
+            nationality: this.nationality,
+            residence: this.residence,
+            residentPeriod: this.residentPeriod
+          })
+          console.log(this.$store.state, 'state');
         })
         .catch(error => {
           console.log(error);
