@@ -9,9 +9,9 @@ const cors = require('cors');
 app.use(cors());
 app.use(bodyParser.json());
 
-
+// app.use('/api,routes');
 app.use("/", express.static(__dirname + "./../dist"));
-app.use('/api');
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
