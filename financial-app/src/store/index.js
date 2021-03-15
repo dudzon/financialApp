@@ -73,7 +73,6 @@ export default createStore({
       state.dateOfBirth = payload.dateOfBirth;
       state.nationality = payload.nationality;
       state.residence = payload.residence;
-      state.applicantLastName = payload.applicantLastName;
       state.residentPeriod = payload.residentPeriod;
     },
     authenticateUser(state, payload) {
