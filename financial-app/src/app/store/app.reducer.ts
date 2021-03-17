@@ -1,5 +1,5 @@
 import * as fromLogin from '../login/store/login.reducer';
-import * as fromCalc from '../login/store/login.reducer';
+import * as fromCalc from '../calc/store/calc.reducer';
 import * as from1Step from '../step1/store/step1.reducer';
 import * as from2Step from '../step2/store/step2.reducer';
 import * as from3Step from '../step3/store/step3.reducer';
@@ -21,11 +21,11 @@ export interface AppState {
   step4: Step4State;
 }
 
-export const appReducer: ActionReducerMap<AppState> = {
-  login: fromLogin.loginReducer,
-  calc: fromCalc.calcReducer,
-  step1: from1Step.step1Reducer,
-  step2: from2Step.step2Reducer,
-  step3: from3Step.step3Reducer,
-  step4: from4Step.step4Reducer,
-};
+// export const appReducer: ActionReducerMap<AppState> = {
+//   login: fromLogin.loginReducer,
+//   calc: fromCalc.calcReducer,
+//   step1: from1Step.step1Reducer,
+//   step2: from2Step.step2Reducer,
+//   step3: from3Step.step3Reducer,
+//   step4: from4Step.step4Reducer,
+// };
