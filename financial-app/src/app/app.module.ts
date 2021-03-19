@@ -11,9 +11,11 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 // import { appReducer } from './store/app.reducer';
 import { LoginModule } from './login/login.module';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LanguageTogglerComponent } from './components/language-toggler/language-toggler.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NavbarComponent, LanguageTogglerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

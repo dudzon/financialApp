@@ -1,0 +1,11 @@
+
+:host {
+  display:flex;
+  align-items: center;
+}
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+.mat-form-field {
+  width: 3rem;
+}

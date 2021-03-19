@@ -1,1 +1,15 @@
-<p>login works!</p>
+<section id="login">
+    <main class="container">
+        <form [formGroup]="loginForm" (ngSubmit)="submitForm()" novalidate class="form">
+            <mat-form-field appearance="outline">
+                <mat-label>{{ControlName.username}}</mat-label>
+                <input matInput [type]="LoginInputType.text" [id]="ControlName.username" [formControlName]="ControlName.username"/>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>{{ControlName.password}}</mat-label>
+                <input matInput [type]="LoginInputType.password" [id]="ControlName.password" [formControlName]="ControlName.password" />
+            </mat-form-field>
+            <app-button class="button-login" [text]="loginButtonText"></app-button>
+        </form>
+    </main>
+</section>

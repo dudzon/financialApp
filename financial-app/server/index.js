@@ -16,9 +16,9 @@ app.use("/", express.static(__dirname + "./../dist"));
 // app.get("/", (req, res) => {
 //     res.redirect("login");
 // });
-// app.get("login", (req, res) => {
-//     res.sendFile(path.resolve(__dirname + "./../dist/index.html"));
-// });
+app.get("login", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "./../dist/index.html"));
+});
 app.get("/*", (req, res) => {
     res.sendFile(path.resolve(__dirname + "./../dist/index.html"));
 });
