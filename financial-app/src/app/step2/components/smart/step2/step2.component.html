@@ -1,1 +1,47 @@
-<p>step2 works!</p>
+<section id="step2">
+    <main class="container">
+        <h3>Who applies for the credit?</h3>
+        <form [formGroup]="step2Form" (ngSubmit)="submitForm()">
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <mat-radio-group aria-label="who applies for the credit?" id="applicant" [formControlName]="ControlName.applicant">
+                        <mat-radio-button value="Myself">Myself</mat-radio-button>
+                        <mat-radio-button value="Me and my Partner">Me and my Partner</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span> What is your marital status?</span>
+                    <mat-form-field appearance="outline">
+                        <mat-select [formControlName]="ControlName.maritalStatus" id="maritalStatus">
+                            <mat-option *ngFor="let maritalOption of maritalOptions"
+                                [value]="maritalOption.value">
+                                {{maritalOption.text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span style= "margin-bottom: 10px;">Do you live in the same household?</span>
+                    <mat-radio-group aria-label="who applies for the credit?" id="sameHouseholdStatus" [formControlName]="ControlName.sameHouseholdStatus">
+                        <mat-radio-button value="Yes">Yes</mat-radio-button>
+                        <mat-radio-button value="No">No</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+
+
+            <div class="row buttons">
+                <app-button class="col s2 push-s3 no-padding" [btnType]="classicBtn" [backgroundColor]="backBtnColor"
+                    [text]="btnBackText"></app-button>
+                <app-button class="col s2 push-s5 no-padding" [btnType]="submitBtn" [backgroundColor]="successBtnColor"
+                    [text]="btnText"></app-button>
+            </div>
+        </form>
+    </main>
+</section>
