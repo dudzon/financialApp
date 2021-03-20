@@ -1,1 +1,48 @@
-<p>calc works!</p>
+<section id="calc">
+    <main class="container">
+        <form [formGroup]="calcForm" (ngSubmit)="submitForm()">
+            <div class="row">
+                <div class="col s2 push-s3">
+                    <span>Credit Amount in EUR</span>
+                </div>
+                <mat-form-field appearance="outline" class="col s3 push-s3">
+                    <input matInput type="text" id="creditAmount" [formControlName]="ControlName.creditAmount">
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <div class="col s2 push-s3">
+                    <span>Duration</span>
+                </div>
+                <mat-form-field appearance="outline" class="col s3 push-s3">
+                    <input matInput type="text" id="duration" [formControlName]="ControlName.duration">
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <div class="col s2 push-s3">
+                    <span class="texts__main">Monthly rate</span>
+                </div>
+                <div class="col s2 push-s3">
+                    <p>
+                        from <span></span><span>EUR</span> to
+                        <span></span><span>EUR</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s2 push-s3">
+                    <span>Nominal interest</span>
+                </div>
+                <div class="col s2 push-s3">
+                    <p>
+                        from <span>5.67%</span> to <span>9.8%</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <app-button class="col s5 push-s3 no-padding" [backgroundColor]= "successBtnColor" [text]="btnText"></app-button>
+            </div>
+        </form>
+    </main>
+</section>
