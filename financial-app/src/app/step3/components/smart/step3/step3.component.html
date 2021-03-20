@@ -1,1 +1,73 @@
-<p>step3 works!</p>
+<section id="step3">
+    <main class="container">
+        <h3>Your contact information</h3>
+        <form [formGroup]="step3Form" (ngSubmit)="submitForm()">
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span>Title</span>
+                    <mat-form-field appearance="outline">
+                        <mat-select [formControlName]="ControlName.applicantTitle" id="applicantTitle">
+                            <mat-option *ngFor="let titleOption of titleOptions"
+                                [value]="titleOption.value">
+                                {{titleOption.text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span> What is your name?</span>
+                    <mat-form-field appearance="outline">
+                        <input matInput id="applicantFirstName" [formControlName]="ControlName.applicantFirstName" placeholder="First Name"/>
+                    </mat-form-field>
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <mat-form-field appearance="outline">
+                        <input matInput id="applicantLastName" [formControlName]="ControlName.applicantLastName" placeholder="Last Name"/>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <h3>Fill information about your partner</h3>
+                <div class="col s6 push-s3 no-padding flex">
+                    <span>Title</span>
+                    <mat-form-field appearance="outline">
+                        <mat-select [formControlName]="ControlName.partnerTitle" id="partnerTitle">
+                            <mat-option *ngFor="let titleOption of titleOptions"
+                                [value]="titleOption.value">
+                                {{titleOption.text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span> What is your partner's name?</span>
+                    <mat-form-field appearance="outline">
+                        <input matInput id="partnerFirstName" [formControlName]="ControlName.partnerFirstName" placeholder="First Name"/>
+                    </mat-form-field>
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <mat-form-field appearance="outline">
+                        <input matInput id="partnerLastName" [formControlName]="ControlName.partnerLastName" placeholder="Last Name"/>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row buttons">
+                <app-button class="col s2 push-s3 no-padding" [btnType]="classicBtn" [backgroundColor]= "backBtnColor" [text]="btnBackText"></app-button>
+                <app-button class="col s2 push-s5 no-padding" [btnType]="submitBtn" [backgroundColor] ="successBtnColor" [text]="btnText"></app-button>
+            </div>
+        </form>
+    </main>
+</section>

@@ -12,7 +12,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "server": "node server/index.js"
+    "server": "node server/index.js",
+    "classic":"ng serve"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +29,8 @@
     "@angular/router": "~11.1.1",
     "@ngrx/effects": "^11.0.1",
     "@ngrx/store": "^11.0.1",
+    "angular2-materialize": "^15.1.10",
+    "materialize-css": "^1.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

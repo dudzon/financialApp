@@ -1,5 +1,5 @@
 <section id="login">
-    <main class="container">
+    <main>
         <form [formGroup]="loginForm" (ngSubmit)="submitForm()" novalidate class="form">
             <mat-form-field appearance="outline">
                 <mat-label>{{ControlName.username}}</mat-label>
@@ -9,7 +9,7 @@
                 <mat-label>{{ControlName.password}}</mat-label>
                 <input matInput [type]="LoginInputType.password" [id]="ControlName.password" [formControlName]="ControlName.password" />
             </mat-form-field>
-            <app-button class="button-login" [text]="loginButtonText"></app-button>
+            <app-button class="button-login" [backgroundColor]= "successBtnColor" [text]="loginButtonText"></app-button>
         </form>
     </main>
 </section>

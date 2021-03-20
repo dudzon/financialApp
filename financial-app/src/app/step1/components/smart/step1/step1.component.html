@@ -1,1 +1,50 @@
-<p>step1 works!</p>
+<section id="step1">
+    <main class="container">
+        <form [formGroup]="step1Form" (ngSubmit)="submitForm()">
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span>Credit Purpose</span>
+                    <mat-form-field appearance="outline">
+                        <mat-select [formControlName]="ControlName.creditPurpose" id="creditPurpose">
+                            <mat-option *ngFor="let creditPurposeOption of creditPurposeOptions"
+                                [value]="creditPurposeOption.value">
+                                {{creditPurposeOption.text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span> Do you have any comments for your credit application?</span>
+                    <mat-form-field appearance="outline">
+                        <textarea matInput id="comments" [formControlName]="ControlName.comments"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span>Desired loan amount</span>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" id="loanAmount" [formControlName]="ControlName.loanAmount">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span>Duration in months</span>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" id="duration" [formControlName]="ControlName.duration">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <app-button class="col s6 push-s3 no-padding" [backgroundColor]= "successBtnColor" [text]="btnText"></app-button>
+            </div>
+
+        </form>
+    </main>
+</section>

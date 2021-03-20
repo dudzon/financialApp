@@ -7,6 +7,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatFormFieldModule,
     MatProgressBarModule,
     MatRadioModule,
+    MatNativeDateModule,
   ],
   exports: [
     MatButtonModule,
@@ -29,6 +31,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatFormFieldModule,
     MatProgressBarModule,
     MatRadioModule,
+    MatNativeDateModule,
   ],
 })
 export class AngularMaterialModule {}

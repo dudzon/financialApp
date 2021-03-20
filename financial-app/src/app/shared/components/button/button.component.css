@@ -1,6 +1,5 @@
 button {
     width:100%;
-    background: var(--main-color);
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 1px;

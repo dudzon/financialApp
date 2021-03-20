@@ -1,1 +1,66 @@
-<p>step4 works!</p>
+<section id="step4">
+    <main class="container">
+        <h3>Your contact information</h3>
+        <form [formGroup]="step4Form" (ngSubmit)="submitForm()">
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span>When were you born?</span>
+                    <mat-form-field appearance="outline">
+                        <input matInput id="dateOfBirth" [matDatepicker]="dobPicker"
+                            [formControlName]="ControlName.dateOfBirth">
+                        <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dobPicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span> What is your nationality?</span>
+                    <mat-form-field appearance="outline">
+                        <mat-select [formControlName]="ControlName.nationality" id="nationality">
+                            <mat-option *ngFor="let nationalityOption of nationalityOptions"
+                                [value]="nationalityOption.value">
+                                {{nationalityOption.text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span> Which residence permit do you have?</span>
+                    <mat-form-field appearance="outline">
+                        <mat-select [formControlName]="ControlName.residence" id="residence">
+                            <mat-option *ngFor="let nationalityOption of nationalityOptions"
+                                [value]="nationalityOption.value">
+                                {{nationalityOption.text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 push-s3 no-padding flex">
+                    <span>How long have you been resident in Poland?</span>
+                    <mat-form-field appearance="outline">
+                        <input matInput id="residencePeriod" [matDatepicker]="residencePeriodPicker"
+                            [formControlName]="ControlName.residentPeriod">
+                        <mat-datepicker-toggle matSuffix [for]="residencePeriodPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #residencePeriodPicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="row buttons">
+                <app-button class="col s2 push-s3 no-padding" [btnType]="classicBtn" [backgroundColor]="backBtnColor"
+                    [text]="btnBackText"></app-button>
+                <app-button class="col s2 push-s5 no-padding" [btnType]="submitBtn" [backgroundColor]="successBtnColor"
+                    [text]="btnText"></app-button>
+            </div>
+        </form>
+    </main>
+</section>

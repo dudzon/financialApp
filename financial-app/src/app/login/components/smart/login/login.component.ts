@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ControlName } from '@app/login/models/control-name';
 import { Autounsubscribe } from '@app/shared/classes/autounsubscribe';
+import { ButtonColors } from '@app/shared/models/button-color';
 import { InputType } from '@app/shared/models/input-type';
 
 @Component({
@@ -14,6 +15,7 @@ export class LoginComponent extends Autounsubscribe implements OnInit {
   public loginButtonText = 'Login';
   public LoginInputType = InputType;
   public ControlName = ControlName;
+  public successBtnColor: ButtonColors = ButtonColors.primary;
 
   constructor(private fb: FormBuilder) {
     super();
@@ -21,8 +23,8 @@ export class LoginComponent extends Autounsubscribe implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      username: [''],
-      password: [''],
+      [ControlName.username]: [''],
+      [ControlName.password]: [''],
     });
   }
 

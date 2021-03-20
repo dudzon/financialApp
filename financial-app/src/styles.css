@@ -20,15 +20,14 @@ span, input{
     color:red;
     font-size: 10px;
 }
-.form-stepper {
-  width: 100%;
+.flex {
+    display:flex;
+    flex-direction: column;
 }
 .buttons {
     margin-top:3rem;
 }
-.button-back {
-    background:#979797;
-}
+
 .active {
       color: var(--main-color);
 }
