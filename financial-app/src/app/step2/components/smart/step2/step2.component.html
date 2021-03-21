@@ -1,4 +1,5 @@
 <section id="step2">
+    <app-progress [progressNumber]="progressWidth"></app-progress>
     <main class="container">
         <h3>Who applies for the credit?</h3>
         <form [formGroup]="step2Form" (ngSubmit)="submitForm()">
@@ -38,7 +39,7 @@
 
             <div class="row buttons">
                 <app-button class="col s2 push-s3 no-padding" [btnType]="classicBtn" [backgroundColor]="backBtnColor"
-                    [text]="btnBackText"></app-button>
+                    [text]="btnBackText" (click) ="onBack($event)"></app-button>
                 <app-button class="col s2 push-s5 no-padding" [btnType]="submitBtn" [backgroundColor]="successBtnColor"
                     [text]="btnText"></app-button>
             </div>

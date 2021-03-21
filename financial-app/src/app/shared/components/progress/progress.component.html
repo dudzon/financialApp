@@ -1,0 +1,13 @@
+<div class="step-progress">
+    <div class="container">
+        <span>{{progressNumber}}</span>
+        <div class="progress">
+            <div class="determinate" [style.width]="progressNumber"></div>
+        </div>
+        <ul class="info">
+            <li><a [routerLink]="['/step1']" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>Debt Situation</a></li>
+            <li><a [routerLink]="['/step2']" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>Applicant</a></li>
+            <li><a [routerLink]="['/step3']" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>Contact details</a></li>
+        </ul>
+    </div>
+</div>

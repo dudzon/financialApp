@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ButtonColors } from '@app/shared/models/button-color';
 import { ButtonType } from '@app/shared/models/button-type';
 import { DropdownOptions } from '@app/shared/models/dropdown-options';
+import { progressWidth } from '@app/shared/models/progress-width';
+import { Routes } from '@app/shared/models/routes';
 import { ControlName } from '@app/step4/models/control-name';
 
 @Component({
@@ -24,8 +27,9 @@ export class Step4Component implements OnInit {
   public backBtnColor: ButtonColors = ButtonColors.secondary;
   public submitBtn!: ButtonType.submit;
   public classicBtn!: ButtonType.button;
+  public progressWidth = progressWidth.step4;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.step4Form = this.fb.group({
@@ -38,5 +42,10 @@ export class Step4Component implements OnInit {
 
   submitForm(): void {
     console.log(this.step4Form);
+  }
+
+  onBack(event: Event): void {
+    event.preventDefault();
+    this.router.navigate([Routes.step3]);
   }
 }
