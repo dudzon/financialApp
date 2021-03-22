@@ -26,7 +26,8 @@ function calc(req, res) {
 }
 
 function step1(req, res) {
-    if (req.body.prop === "ok") {
+    console.log(req, 'req')
+    if (req.body) {
         console.log(req.body);
         res.json(true);
     } else {

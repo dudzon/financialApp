@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { Store } from '@ngrx/store';
+
 import { ButtonColors } from '@app/shared/models/button-color';
 import { ButtonType } from '@app/shared/models/button-type';
 import { DropdownOptions } from '@app/shared/models/dropdown-options';
 import { progressWidth } from '@app/shared/models/progress-width';
 import { Routes } from '@app/shared/models/routes';
 import { ControlName } from '@app/step2/models/control-name';
+import * as fromApp from '@app/store/app.reducer';
 
 @Component({
   selector: 'app-step2',
@@ -29,7 +33,11 @@ export class Step2Component implements OnInit {
   public classicBtn!: ButtonType.button;
   public progressWidth = progressWidth.step2;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private store: Store<fromApp.AppState>
+  ) {}
 
   ngOnInit(): void {
     this.step2Form = this.fb.group({
@@ -37,6 +45,7 @@ export class Step2Component implements OnInit {
       [ControlName.maritalStatus]: [''],
       [ControlName.sameHouseholdStatus]: [''],
     });
+    console.log(this.store, 'store');
   }
 
   submitForm(): void {

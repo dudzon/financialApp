@@ -9,10 +9,11 @@ import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-// import { appReducer } from './store/app.reducer';
+import { appReducer } from './store/app.reducer';
 import { LoginModule } from './login/login.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LanguageTogglerComponent } from './components/language-toggler/language-toggler.component';
+import { Step1Effects } from './step1/store/step1.effects';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, LanguageTogglerComponent],
@@ -22,8 +23,8 @@ import { LanguageTogglerComponent } from './components/language-toggler/language
     LoginModule,
     SharedModule,
     HttpClientModule,
-    // EffectsModule.forRoot([]),
-    // StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot([Step1Effects]),
+    StoreModule.forRoot(appReducer),
     BrowserAnimationsModule,
   ],
   providers: [],

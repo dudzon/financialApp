@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="row">
-                <app-button class="col s6 push-s3 no-padding" [backgroundColor]= "successBtnColor" [text]="btnText"></app-button>
+                <app-button [disabled] = "!step1Form.valid" class="col s6 push-s3 no-padding" [backgroundColor]= "successBtnColor" [text]="btnText"></app-button>
             </div>
 
         </form>

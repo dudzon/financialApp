@@ -1,18 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { takeUntil } from 'rxjs/operators';
+
+import { Autounsubscribe } from '@app/shared/classes/autounsubscribe';
 import { ButtonColors } from '@app/shared/models/button-color';
 import { DropdownOptions } from '@app/shared/models/dropdown-options';
 import { progressWidth } from '@app/shared/models/progress-width';
 import { Routes } from '@app/shared/models/routes';
 import { ControlName } from '@app/step1/models/control-name';
+import { Store } from '@ngrx/store';
+import * as fromApp from '@app/store/app.reducer';
+import * as Step1Actions from '@app/step1/store/step1.actions';
+import { Step1State } from '@app/step1/models/step1State';
 
 @Component({
   selector: 'app-step1',
   templateUrl: './step1.component.html',
   styleUrls: ['./step1.component.css'],
 })
-export class Step1Component implements OnInit {
+export class Step1Component extends Autounsubscribe implements OnInit {
   step1Form!: FormGroup;
   ControlName = ControlName;
   creditPurposeOptions: DropdownOptions[] = [
@@ -23,20 +31,40 @@ export class Step1Component implements OnInit {
   btnText = 'Determinate Credit Rate';
   public progressWidth = progressWidth.step1;
   public successBtnColor: ButtonColors = ButtonColors.primary;
-
-  constructor(private fb: FormBuilder, private router: Router) {}
+  public isValid!: boolean;
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private store: Store<fromApp.AppState>
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.step1Form = this.fb.group({
-      [ControlName.creditPurpose]: [''],
-      [ControlName.comments]: [''],
-      [ControlName.loanAmount]: [''],
-      [ControlName.duration]: [''],
+      [ControlName.creditPurpose]: ['', Validators.required],
+      [ControlName.comments]: ['', Validators.required],
+      [ControlName.loanAmount]: ['', Validators.required],
+      [ControlName.duration]: ['', Validators.required],
     });
   }
 
   submitForm(): void {
-    console.log(this.step1Form);
-    this.router.navigate([Routes.step2]);
+    const updatedState: Step1State = {
+      creditPurpose: this.step1Form.get(ControlName.creditPurpose)?.value,
+      comments: this.step1Form.get(ControlName.comments)?.value,
+      loanAmount: this.step1Form.get(ControlName.loanAmount)?.value,
+      duration: this.step1Form.get(ControlName.duration)?.value,
+    };
+    if (this.step1Form.valid) {
+      this.store.dispatch(Step1Actions.updateStore({ payload: updatedState }));
+
+      this.router.navigate([Routes.step2]);
+    }
+  }
+  getFormValidityStatus(): void {
+    this.step1Form.statusChanges
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((status) => (this.isValid = status));
   }
 }
