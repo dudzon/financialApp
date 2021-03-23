@@ -16,16 +16,16 @@ export interface AppState {
   // login: LoginState;
   // calc: CalcState;
   step1: Step1State;
-  // step2: Step2State;
-  // step3: Step3State;
-  // step4: Step4State;
+  step2: Step2State;
+  step3: Step3State;
+  step4: Step4State;
 }
 
 export const appReducer: ActionReducerMap<AppState> = {
   // login: fromLogin.loginReducer,
   // calc: fromCalc.calcReducer,
   step1: from1Step.reducer,
-  // step2: from2Step.step2Reducer,
-  // step3: from3Step.step3Reducer,
-  // step4: from4Step.step4Reducer,
+  step2: from2Step.reducer,
+  step3: from3Step.reducer,
+  step4: from4Step.reducer,
 };

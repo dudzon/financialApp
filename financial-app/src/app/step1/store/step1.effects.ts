@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
+
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, catchError, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 import * as Step1Actions from './step1.actions';
 import { HttpService } from '@app/services/http.service';
-
-import { of } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class Step1Effects {

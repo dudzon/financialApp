@@ -26,7 +26,6 @@ function calc(req, res) {
 }
 
 function step1(req, res) {
-    console.log(req, 'req')
     if (req.body) {
         console.log(req.body);
         res.json(true);
@@ -36,7 +35,7 @@ function step1(req, res) {
 }
 
 function step2(req, res) {
-    if (req.body.prop === "ok") {
+    if (req.body) {
         res.json(true);
     } else {
         res.status(500).send({ error: "Some kind of error" });
@@ -44,7 +43,7 @@ function step2(req, res) {
 }
 
 function step3(req, res) {
-    if (req.body.prop === "ok") {
+    if (req.body) {
         res.json(true);
     } else {
         res.status(500).send({ error: "Some kind of error" });
@@ -52,7 +51,7 @@ function step3(req, res) {
 }
 
 function step4(req, res) {
-    if (req.body.prop === "ok") {
+    if (req.body) {
         res.json(true);
     } else {
         res.status(500).send({ error: "Some kind of error" });

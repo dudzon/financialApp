@@ -59,7 +59,7 @@
             <div class="row buttons">
                 <app-button class="col s2 push-s3 no-padding" [btnType]="classicBtn" [backgroundColor]="backBtnColor"
                     [text]="btnBackText" (click) ="onBack($event)"></app-button>
-                <app-button class="col s2 push-s5 no-padding" [btnType]="submitBtn" [backgroundColor]="successBtnColor"
+                <app-button [disabled] = "!step4Form.valid" class="col s2 push-s5 no-padding" [btnType]="submitBtn" [backgroundColor]="successBtnColor"
                     [text]="btnText"></app-button>
             </div>
         </form>
