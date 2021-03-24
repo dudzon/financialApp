@@ -24,8 +24,8 @@
                 </div>
                 <div class="col s2 push-s3">
                     <p>
-                        from <span></span><span>EUR</span> to
-                        <span></span><span>EUR</span>
+                        from <span>{{minRate}}</span><span>EUR</span> to
+                        <span>{{maxRate}}</span><span>EUR</span>
                     </p>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="row">
-                <app-button class="col s5 push-s3 no-padding" [backgroundColor]= "successBtnColor" [text]="btnText"></app-button>
+                <app-button [disabled] = "!calcForm.valid" class="col s5 push-s3 no-padding" [backgroundColor]= "successBtnColor" [text]="btnText"></app-button>
             </div>
         </form>
     </main>

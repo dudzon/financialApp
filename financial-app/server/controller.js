@@ -18,7 +18,8 @@ function login(req, res) {
 }
 
 function calc(req, res) {
-    if (req.body.prop === "ok") {
+    if (req.body) {
+        console.log(req.body);
         res.json(true);
     } else {
         res.status(500).send({ error: "Some kind of error" });

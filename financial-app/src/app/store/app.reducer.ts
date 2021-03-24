@@ -14,7 +14,7 @@ import { ActionReducerMap } from '@ngrx/store';
 
 export interface AppState {
   // login: LoginState;
-  // calc: CalcState;
+  calc: CalcState;
   step1: Step1State;
   step2: Step2State;
   step3: Step3State;
@@ -23,7 +23,7 @@ export interface AppState {
 
 export const appReducer: ActionReducerMap<AppState> = {
   // login: fromLogin.loginReducer,
-  // calc: fromCalc.calcReducer,
+  calc: fromCalc.reducer,
   step1: from1Step.reducer,
   step2: from2Step.reducer,
   step3: from3Step.reducer,

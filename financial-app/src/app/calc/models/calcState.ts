@@ -1,6 +1,6 @@
 export interface CalcState {
-  creditExampleAmount: number;
-  creditExampleDuration: number;
-  resultMin: number;
-  resultMax: number;
+  creditAmount?: number | undefined;
+  duration?: number | undefined;
+  resultMin?: number;
+  resultMax?: number;
 }

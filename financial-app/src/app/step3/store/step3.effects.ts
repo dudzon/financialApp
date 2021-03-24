@@ -8,7 +8,7 @@ import { HttpService } from '@app/services/http.service';
 import { of } from 'rxjs';
 
 @Injectable()
-export class Step1Effects {
+export class Step3Effects {
   postStep3Data$ = createEffect(() =>
     this.actions$.pipe(
       ofType(Step3Actions.updateStore),

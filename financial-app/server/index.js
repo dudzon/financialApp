@@ -31,11 +31,11 @@ app.get("/*", (req, res) => {
 
 
 app.post("/api/login", controller.login);
-app.post("/api/calc", controller.calc);
+app.post("/api/calc", cors(), controller.calc);
 app.post("/api/step1", cors(), controller.step1);
-app.post("/api/step2", controller.step2);
-app.post("/api/step3", controller.step3);
-app.post("/api/step4", controller.step4);
+app.post("/api/step2", cors(), controller.step2);
+app.post("/api/step3", cors(), controller.step3);
+app.post("/api/step4", cors(), controller.step4);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

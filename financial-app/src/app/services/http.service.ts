@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CalcState } from '@app/calc/models/calcState';
 import { Step2State } from '@app/step2/models/step2State';
 import { Step3State } from '@app/step3/models/step3State';
 import { Step4State } from '@app/step4/models/step4State';
@@ -17,6 +18,19 @@ const httpOptions = {
 })
 export class HttpService {
   constructor(private http: HttpClient) {}
+
+  postCalcData(data: CalcState): Observable<CalcState> {
+    return this.http.post<CalcState>(
+      'http://localhost:3000/api/calc',
+      {
+        creditAmount: data.creditAmount,
+        duration: data.duration,
+        resultMin: data.resultMin,
+        resultMax: data.resultMax,
+      },
+      httpOptions
+    );
+  }
 
   postStep1Data(data: Step1State): Observable<Step1State> {
     return this.http.post<Step1State>(
