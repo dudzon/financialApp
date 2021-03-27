@@ -18,8 +18,10 @@ import { Step1Effects } from './step1/store/step1.effects';
 import { Step2Effects } from './step2/store/step2.effects';
 import { Step3Effects } from './step3/store/step3.effects';
 import { Step4Effects } from './step4/store/step4.effects';
+import { LoginEffects } from './login/store/login.effects';
 
 const AppEffects = [
+  LoginEffects,
   CalcEffects,
   Step1Effects,
   Step2Effects,

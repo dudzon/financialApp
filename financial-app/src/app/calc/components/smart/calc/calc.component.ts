@@ -18,6 +18,7 @@ import { Routes } from '@app/shared/models/routes';
 import * as fromApp from '@app/store/app.reducer';
 import * as CalcActions from '@app/calc/store/calc.actions';
 import * as fromCalc from '@app/calc/store/calc.selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-calc',
@@ -29,8 +30,12 @@ export class CalcComponent extends Autounsubscribe implements OnInit {
   ControlName = ControlName;
   btnText = 'Apply Your Loan';
   public successBtnColor: ButtonColors = ButtonColors.primary;
-  public minRate!: number;
-  public maxRate!: number;
+  public minRate$: Observable<number> = this.store.select(
+    fromCalc.selectMinRate
+  ) as Observable<number>;
+  public maxRate$: Observable<number> = this.store.select(
+    fromCalc.selectMaxRate
+  ) as Observable<number>;
 
   constructor(
     private fb: FormBuilder,
@@ -48,24 +53,6 @@ export class CalcComponent extends Autounsubscribe implements OnInit {
     this.calcForm.statusChanges
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(() => this.getRates());
-
-    this.store
-      .select(fromCalc.getMinRate)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((value) => {
-        if (value) {
-          this.minRate = value;
-        }
-      });
-
-    this.store
-      .select(fromCalc.getMaxRate)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((value) => {
-        if (value) {
-          this.maxRate = value;
-        }
-      });
   }
 
   get creditAmount(): FormControl {
@@ -83,8 +70,6 @@ export class CalcComponent extends Autounsubscribe implements OnInit {
     const updatedState: CalcState = {
       creditAmount: +this.creditAmount.value,
       duration: +this.duration.value,
-      resultMin: this.minRate,
-      resultMax: this.maxRate,
     };
     if (this.calcForm.valid) {
       this.store.dispatch(CalcActions.updateStore({ payload: updatedState }));

@@ -9,7 +9,7 @@ import { HttpService } from '@app/services/http.service';
 
 @Injectable()
 export class CalcEffects {
-  postStep1Data$ = createEffect(() =>
+  postCalcData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CalcActions.updateStore),
       switchMap((action) => {

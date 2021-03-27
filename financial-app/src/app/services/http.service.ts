@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CalcState } from '@app/calc/models/calcState';
+import { LoginState } from '@app/login/models/loginState';
 import { Step2State } from '@app/step2/models/step2State';
 import { Step3State } from '@app/step3/models/step3State';
 import { Step4State } from '@app/step4/models/step4State';
@@ -18,6 +19,18 @@ const httpOptions = {
 })
 export class HttpService {
   constructor(private http: HttpClient) {}
+
+  postLoginData(data: LoginState): Observable<LoginState> {
+    return this.http.post<LoginState>(
+      'http://localhost:3000/api/login',
+      {
+        username: data.username,
+        password: data.password,
+        isAuthenticated: data.isAuthenticated,
+      },
+      httpOptions
+    );
+  }
 
   postCalcData(data: CalcState): Observable<CalcState> {
     return this.http.post<CalcState>(
