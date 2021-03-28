@@ -29,6 +29,7 @@ export class LoginComponent extends Autounsubscribe implements OnInit {
   public LoginInputType = InputType;
   public ControlName = ControlName;
   public successBtnColor: ButtonColors = ButtonColors.primary;
+  private IS_AUTHENTICATED = 'is_authenticated';
 
   constructor(
     private fb: FormBuilder,
@@ -47,6 +48,8 @@ export class LoginComponent extends Autounsubscribe implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isUserAuthenticated();
+
     this.loginForm = this.fb.group({
       [ControlName.username]: ['', Validators.required],
       [ControlName.password]: ['', Validators.required],
@@ -64,6 +67,12 @@ export class LoginComponent extends Autounsubscribe implements OnInit {
       this.store.dispatch(LoginActions.updateStore({ payload: updatedState }));
       this.router.navigate([Routes.calc]);
     }
-    // this.router.navigate([Routes.calc]);
+  }
+
+  isUserAuthenticated(): void {
+    if (localStorage.getItem(this.IS_AUTHENTICATED)) {
+      this.store.dispatch(LoginActions.isUserAuthenticated());
+      this.router.navigate([Routes.calc]);
+    }
   }
 }

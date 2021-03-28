@@ -9,6 +9,10 @@ export const updateStore = createAction(
 
 export const authenticate = createAction('[Login Component] Authenticate User');
 
+export const isUserAuthenticated = createAction(
+  '[Login Component] Is User Authenticated'
+);
+
 export const error = createAction(
   '[Step1 Component] Backend error',
   props<{ payload: { error: HttpErrorResponse } }>()

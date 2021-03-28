@@ -30,6 +30,13 @@ const loginReducer = createReducer(
       isAuthenticated: true,
     };
   }),
+  on(LoginActions.isUserAuthenticated, (state) => {
+    const isAuthenticated = true;
+    return {
+      ...state,
+      isAuthenticated,
+    };
+  }),
   on(LoginActions.error, (state, action) => {
     return { ...state };
   })
