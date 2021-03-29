@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -21,6 +22,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatProgressBarModule,
     MatRadioModule,
     MatNativeDateModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatButtonModule,
@@ -32,6 +34,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatProgressBarModule,
     MatRadioModule,
     MatNativeDateModule,
+    MatSnackBarModule,
   ],
 })
 export class AngularMaterialModule {}

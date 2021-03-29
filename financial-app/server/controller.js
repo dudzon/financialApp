@@ -13,7 +13,7 @@ function login(req, res) {
     ) {
         res.json(true);
     } else {
-        res.status(500).send({ error: "Wrong credentials" });
+        res.status(500).send({ message: "Wrong credentials" });
     }
 }
 
@@ -22,7 +22,7 @@ function calc(req, res) {
         console.log(req.body);
         res.json(true);
     } else {
-        res.status(500).send({ error: "Some kind of error" });
+        res.status(500).send({ message: "Some kind of error" });
     }
 }
 
@@ -31,7 +31,7 @@ function step1(req, res) {
         console.log(req.body);
         res.json(true);
     } else {
-        res.status(500).send({ error: "Some kind of error" });
+        res.status(500).send({ message: "Some kind of error" });
     }
 }
 
@@ -39,7 +39,7 @@ function step2(req, res) {
     if (req.body) {
         res.json(true);
     } else {
-        res.status(500).send({ error: "Some kind of error" });
+        res.status(500).send({ message: "Some kind of error" });
     }
 }
 
@@ -47,7 +47,7 @@ function step3(req, res) {
     if (req.body) {
         res.json(true);
     } else {
-        res.status(500).send({ error: "Some kind of error" });
+        res.status(500).send({ message: "Some kind of error" });
     }
 }
 
@@ -55,6 +55,6 @@ function step4(req, res) {
     if (req.body) {
         res.json(true);
     } else {
-        res.status(500).send({ error: "Some kind of error" });
+        res.status(500).send({ message: "Some kind of error" });
     }
 }

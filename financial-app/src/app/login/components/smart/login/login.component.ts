@@ -17,6 +17,7 @@ import { InputType } from '@app/shared/models/input-type';
 import { Routes } from '@app/shared/models/routes';
 import * as fromApp from '@app/store/app.reducer';
 import * as LoginActions from '@app/login/store/login.actions';
+import { SnackbarService } from '@app/services/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -65,7 +66,7 @@ export class LoginComponent extends Autounsubscribe implements OnInit {
     };
     if (this.loginForm.valid) {
       this.store.dispatch(LoginActions.updateStore({ payload: updatedState }));
-      this.router.navigate([Routes.calc]);
+      // this.router.navigate([Routes.calc]);
     }
   }
 

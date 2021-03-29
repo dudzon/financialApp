@@ -15,5 +15,5 @@ export const isUserAuthenticated = createAction(
 
 export const error = createAction(
   '[Step1 Component] Backend error',
-  props<{ payload: { error: HttpErrorResponse } }>()
+  props<{ payload: { error: string } }>()
 );

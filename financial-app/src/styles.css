@@ -7,6 +7,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --grey: #e5e5e5;
   --progress-background-color: #ddd;
   --main-color: #b4cd3a;
+  --snackbar-text: #fff;
 }
 span, input{
     font-size: .8rem;
@@ -48,4 +49,13 @@ span, input{
 }
 ::ng-deep app-language-toggler .mat-form-field-flex {
     height:initial;
+}
+.mat-snackbar-success {
+    background:#99aa00;
+    color: var(--snackbar-text);
+}
+
+.mat-snackbar-error {
+    background: #B00020;
+    color: var(--snackbar-text);
 }
