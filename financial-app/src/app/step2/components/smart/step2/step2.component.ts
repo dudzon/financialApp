@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
@@ -53,6 +58,18 @@ export class Step2Component extends Autounsubscribe implements OnInit {
       [ControlName.maritalStatus]: ['', Validators.required],
       [ControlName.sameHouseholdStatus]: ['', Validators.required],
     });
+  }
+
+  get applicant(): FormControl {
+    return this.step2Form.get(ControlName.applicant) as FormControl;
+  }
+
+  get maritalStatus(): FormControl {
+    return this.step2Form.get(ControlName.maritalStatus) as FormControl;
+  }
+
+  get sameHoouseholdStatus(): FormControl {
+    return this.step2Form.get(ControlName.sameHouseholdStatus) as FormControl;
   }
 
   submitForm(): void {

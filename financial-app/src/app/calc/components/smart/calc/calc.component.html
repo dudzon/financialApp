@@ -7,6 +7,7 @@
                 </div>
                 <mat-form-field appearance="outline" class="col s3 push-s3">
                     <input matInput type="text" id="creditAmount" [formControlName]="ControlName.creditAmount">
+                      <mat-error *ngIf="creditAmount.invalid">This field is required</mat-error>
                 </mat-form-field>
             </div>
             <div class="row">
@@ -15,6 +16,7 @@
                 </div>
                 <mat-form-field appearance="outline" class="col s3 push-s3">
                     <input matInput type="text" id="duration" [formControlName]="ControlName.duration">
+                      <mat-error *ngIf="duration.invalid">This field is required</mat-error>
                 </mat-form-field>
             </div>
 

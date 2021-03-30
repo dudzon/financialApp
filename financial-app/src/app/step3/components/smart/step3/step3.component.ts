@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
@@ -56,6 +61,30 @@ export class Step3Component extends Autounsubscribe implements OnInit {
       [ControlName.partnerLastName]: ['', Validators.required],
     });
     console.log(this.store);
+  }
+
+  get applicantTitle(): FormControl {
+    return this.step3Form.get(ControlName.applicantTitle) as FormControl;
+  }
+
+  get applicantFirstName(): FormControl {
+    return this.step3Form.get(ControlName.applicantFirstName) as FormControl;
+  }
+
+  get applicantLastName(): FormControl {
+    return this.step3Form.get(ControlName.applicantLastName) as FormControl;
+  }
+
+  get partnerTitle(): FormControl {
+    return this.step3Form.get(ControlName.partnerTitle) as FormControl;
+  }
+
+  get partnerFirstName(): FormControl {
+    return this.step3Form.get(ControlName.partnerFirstName) as FormControl;
+  }
+
+  get partnerLastName(): FormControl {
+    return this.step3Form.get(ControlName.partnerLastName) as FormControl;
   }
 
   submitForm(): void {

@@ -5,8 +5,8 @@ import { Step1State } from '../models/step1State';
 const initialState: Step1State = {
   creditPurpose: '',
   comments: '',
-  loanAmount: '',
-  duration: '',
+  loanAmount: 0,
+  duration: 0,
 };
 
 const step1Reducer = createReducer(

@@ -12,6 +12,7 @@
                                 {{creditPurposeOption.text}}
                             </mat-option>
                         </mat-select>
+                         <mat-error *ngIf="creditPurpose.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -21,6 +22,7 @@
                     <span> Do you have any comments for your credit application?</span>
                     <mat-form-field appearance="outline">
                         <textarea matInput id="comments" [formControlName]="ControlName.comments"></textarea>
+                         <mat-error *ngIf="comments.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -30,6 +32,7 @@
                     <span>Desired loan amount</span>
                     <mat-form-field appearance="outline">
                         <input matInput type="text" id="loanAmount" [formControlName]="ControlName.loanAmount">
+                         <mat-error *ngIf="loanAmount.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -39,6 +42,7 @@
                     <span>Duration in months</span>
                     <mat-form-field appearance="outline">
                         <input matInput type="text" id="duration" [formControlName]="ControlName.duration">
+                         <mat-error *ngIf="duration.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>

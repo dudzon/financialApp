@@ -11,6 +11,7 @@
                             [formControlName]="ControlName.dateOfBirth">
                         <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
                         <mat-datepicker #dobPicker></mat-datepicker>
+                        <mat-error *ngIf="dateOfBirth.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -25,6 +26,7 @@
                                 {{nationalityOption.text}}
                             </mat-option>
                         </mat-select>
+                        <mat-error *ngIf="nationality.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -39,6 +41,7 @@
                                 {{nationalityOption.text}}
                             </mat-option>
                         </mat-select>
+                        <mat-error *ngIf="residence.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -51,6 +54,7 @@
                             [formControlName]="ControlName.residentPeriod">
                         <mat-datepicker-toggle matSuffix [for]="residencePeriodPicker"></mat-datepicker-toggle>
                         <mat-datepicker #residencePeriodPicker></mat-datepicker>
+                        <mat-error *ngIf="residentPeriod.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>

@@ -13,6 +13,7 @@
                                 {{titleOption.text}}
                             </mat-option>
                         </mat-select>
+                        <mat-error *ngIf="applicantTitle.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -22,6 +23,7 @@
                     <span> What is your name?</span>
                     <mat-form-field appearance="outline">
                         <input matInput id="applicantFirstName" [formControlName]="ControlName.applicantFirstName" placeholder="First Name"/>
+                        <mat-error *ngIf="applicantFirstName.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -30,6 +32,7 @@
                 <div class="col s6 push-s3 no-padding flex">
                     <mat-form-field appearance="outline">
                         <input matInput id="applicantLastName" [formControlName]="ControlName.applicantLastName" placeholder="Last Name"/>
+                        <mat-error *ngIf="applicantLastName.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -45,6 +48,7 @@
                                 {{titleOption.text}}
                             </mat-option>
                         </mat-select>
+                        <mat-error *ngIf="partnerTitle.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -54,6 +58,7 @@
                     <span> What is your partner's name?</span>
                     <mat-form-field appearance="outline">
                         <input matInput id="partnerFirstName" [formControlName]="ControlName.partnerFirstName" placeholder="First Name"/>
+                        <mat-error *ngIf="partnerFirstName.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -62,6 +67,7 @@
                 <div class="col s6 push-s3 no-padding flex">
                     <mat-form-field appearance="outline">
                         <input matInput id="partnerLastName" [formControlName]="ControlName.partnerLastName" placeholder="Last Name"/>
+                        <mat-error *ngIf="partnerLastName.invalid">This field is required</mat-error>
                     </mat-form-field>
                 </div>
             </div>

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
@@ -53,6 +58,22 @@ export class Step4Component extends Autounsubscribe implements OnInit {
       [ControlName.residence]: ['', Validators.required],
       [ControlName.residentPeriod]: ['', Validators.required],
     });
+  }
+
+  get dateOfBirth(): FormControl {
+    return this.step4Form.get(ControlName.dateOfBirth) as FormControl;
+  }
+
+  get nationality(): FormControl {
+    return this.step4Form.get(ControlName.nationality) as FormControl;
+  }
+
+  get residence(): FormControl {
+    return this.step4Form.get(ControlName.residence) as FormControl;
+  }
+
+  get residentPeriod(): FormControl {
+    return this.step4Form.get(ControlName.residentPeriod) as FormControl;
   }
 
   submitForm(): void {
