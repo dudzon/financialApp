@@ -2,29 +2,29 @@
     <main class="container">
         <form [formGroup]="calcForm" (ngSubmit)="submitForm()">
             <div class="row">
-                <div class="col s2 push-s3">
+                <div class="col s2 push-s1">
                     <span>Credit Amount in EUR</span>
                 </div>
-                <mat-form-field appearance="outline" class="col s3 push-s3">
+                <mat-form-field appearance="outline" class="col s8 push-s1">
                     <input matInput type="text" id="creditAmount" [formControlName]="ControlName.creditAmount">
                       <mat-error *ngIf="creditAmount.invalid">This field is required</mat-error>
                 </mat-form-field>
             </div>
             <div class="row">
-                <div class="col s2 push-s3">
+                <div class="col s2 push-s1">
                     <span>Duration</span>
                 </div>
-                <mat-form-field appearance="outline" class="col s3 push-s3">
+                <mat-form-field appearance="outline" class="col s8 push-s1">
                     <input matInput type="text" id="duration" [formControlName]="ControlName.duration">
                       <mat-error *ngIf="duration.invalid">This field is required</mat-error>
                 </mat-form-field>
             </div>
 
             <div class="row">
-                <div class="col s2 push-s3">
+                <div class="col s2 push-s1">
                     <span class="texts__main">Monthly rate</span>
                 </div>
-                <div class="col s2 push-s3">
+                <div class="col s8 push-s1">
                     <p>
                         from <span>{{minRate$ | async}}</span><span>EUR</span> to
                         <span>{{maxRate$ | async}}</span><span>EUR</span>
@@ -33,10 +33,10 @@
             </div>
 
             <div class="row">
-                <div class="col s2 push-s3">
+                <div class="col s2 push-s1">
                     <span>Nominal interest</span>
                 </div>
-                <div class="col s2 push-s3">
+                <div class="col s8 push-s1">
                     <p>
                         from <span>5.67%</span> to <span>9.8%</span>
                     </p>
