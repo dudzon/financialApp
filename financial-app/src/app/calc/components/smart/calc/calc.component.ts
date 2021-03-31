@@ -46,6 +46,7 @@ export class CalcComponent extends Autounsubscribe implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.store);
     this.calcForm = this.fb.group({
       [ControlName.creditAmount]: ['', Validators.required],
       [ControlName.duration]: ['', Validators.required],

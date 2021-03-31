@@ -66,7 +66,7 @@ export class LoginComponent extends Autounsubscribe implements OnInit {
     };
     if (this.loginForm.valid) {
       this.store.dispatch(LoginActions.updateStore({ payload: updatedState }));
-      // this.router.navigate([Routes.calc]);
+      this.router.navigate([Routes.calc]);
     }
   }
 
