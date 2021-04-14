@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -25,7 +25,9 @@ import { Observable } from 'rxjs';
   templateUrl: './calc.component.html',
   styleUrls: ['./calc.component.css'],
 })
-export class CalcComponent extends Autounsubscribe implements OnInit {
+export class CalcComponent
+  extends Autounsubscribe
+  implements OnInit, OnDestroy {
   calcForm!: FormGroup;
   ControlName = ControlName;
   btnText = 'Apply Your Loan';
@@ -87,5 +89,8 @@ export class CalcComponent extends Autounsubscribe implements OnInit {
       };
       this.store.dispatch(CalcActions.calculateRate({ payload: calcData }));
     }
+  }
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -26,7 +26,9 @@ import { Step4State } from '@app/step4/models/step4State';
   templateUrl: './step4.component.html',
   styleUrls: ['./step4.component.css'],
 })
-export class Step4Component extends Autounsubscribe implements OnInit {
+export class Step4Component
+  extends Autounsubscribe
+  implements OnInit, OnDestroy {
   public step4Form!: FormGroup;
   ControlName = ControlName;
   nationalityOptions: DropdownOptions[] = [
@@ -100,5 +102,8 @@ export class Step4Component extends Autounsubscribe implements OnInit {
     this.step4Form.statusChanges
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((status) => (this.isValid = status));
+  }
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }

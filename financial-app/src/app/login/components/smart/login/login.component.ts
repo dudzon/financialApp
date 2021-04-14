@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -24,7 +24,9 @@ import { SnackbarService } from '@app/services/snackbar.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent extends Autounsubscribe implements OnInit {
+export class LoginComponent
+  extends Autounsubscribe
+  implements OnInit, OnDestroy {
   loginForm!: FormGroup;
   public loginButtonText = 'Login';
   public LoginInputType = InputType;
@@ -75,5 +77,9 @@ export class LoginComponent extends Autounsubscribe implements OnInit {
       this.store.dispatch(LoginActions.isUserAuthenticated());
       this.router.navigate([Routes.calc]);
     }
+  }
+
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }

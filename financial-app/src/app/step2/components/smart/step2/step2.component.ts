@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -27,7 +27,9 @@ import { Autounsubscribe } from '@app/shared/classes/autounsubscribe';
   templateUrl: './step2.component.html',
   styleUrls: ['./step2.component.css'],
 })
-export class Step2Component extends Autounsubscribe implements OnInit {
+export class Step2Component
+  extends Autounsubscribe
+  implements OnInit, OnDestroy {
   public step2Form!: FormGroup;
   ControlName = ControlName;
   maritalOptions: DropdownOptions[] = [
@@ -95,5 +97,8 @@ export class Step2Component extends Autounsubscribe implements OnInit {
     this.step2Form.statusChanges
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((status) => (this.isValid = status));
+  }
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }

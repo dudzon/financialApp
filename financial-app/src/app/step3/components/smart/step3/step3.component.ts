@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -26,7 +26,9 @@ import { Step3State } from '@app/step3/models/step3State';
   templateUrl: './step3.component.html',
   styleUrls: ['./step3.component.css'],
 })
-export class Step3Component extends Autounsubscribe implements OnInit {
+export class Step3Component
+  extends Autounsubscribe
+  implements OnInit, OnDestroy {
   public step3Form!: FormGroup;
   ControlName = ControlName;
   titleOptions: DropdownOptions[] = [
@@ -115,5 +117,8 @@ export class Step3Component extends Autounsubscribe implements OnInit {
     this.step3Form.statusChanges
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((status) => (this.isValid = status));
+  }
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }

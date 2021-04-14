@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -26,7 +26,9 @@ import { Step1State } from '@app/step1/models/step1State';
   templateUrl: './step1.component.html',
   styleUrls: ['./step1.component.css'],
 })
-export class Step1Component extends Autounsubscribe implements OnInit {
+export class Step1Component
+  extends Autounsubscribe
+  implements OnInit, OnDestroy {
   step1Form!: FormGroup;
   ControlName = ControlName;
   creditPurposeOptions: DropdownOptions[] = [
@@ -46,29 +48,28 @@ export class Step1Component extends Autounsubscribe implements OnInit {
     private store: Store<fromApp.AppState>
   ) {
     super();
+    this.step1Form = this.fb.group({
+      [ControlName.creditPurpose]: ['', Validators.required],
+      [ControlName.comments]: ['', Validators.required],
+      [ControlName.loanAmount]: ['', Validators.required],
+      [ControlName.duration]: ['', Validators.required],
+    });
   }
 
   ngOnInit(): void {
     this.store
       .select(fromStep1.selectCreditAmount)
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(
-        (creditAmount: number) => (this.selectCreditAmount = creditAmount)
+      .subscribe((creditAmount: number) =>
+        this.loanAmount.setValue(creditAmount)
       );
 
     this.store
       .select(fromStep1.selectCreditDuration)
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(
-        (creditDuration: number) => (this.selectCreditDuration = creditDuration)
+      .subscribe((creditDuration: number) =>
+        this.duration.setValue(creditDuration)
       );
-
-    this.step1Form = this.fb.group({
-      [ControlName.creditPurpose]: ['', Validators.required],
-      [ControlName.comments]: ['', Validators.required],
-      [ControlName.loanAmount]: [this.selectCreditAmount, Validators.required],
-      [ControlName.duration]: [this.selectCreditDuration, Validators.required],
-    });
   }
 
   get creditPurpose(): FormControl {
@@ -104,5 +105,8 @@ export class Step1Component extends Autounsubscribe implements OnInit {
     this.step1Form.statusChanges
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((status) => (this.isValid = status));
+  }
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }
