@@ -1,0 +1,239 @@
+{
+    "login": [
+        {
+            "field": "username",
+            "label": "username",
+            "valid": ["required"],
+            "defaultValue": "",
+            "type":"input"
+        },
+        {
+            "field": "password",
+            "label": "password",
+            "valid": ["required"],
+            "defaultValue": "",
+            "type":"input"
+        },
+        {
+            "field": "button",
+            "disabled": true,
+            "defaultValue": "Login",
+            "buttonColor":"",
+            "type":"button"
+        }
+    ],
+    "calc": [
+        {
+            "field": "creditAmount",
+            "label": "Credit Amount in EUR",
+            "valid": ["required"],
+            "defaultValue": "",
+            "type":"input"
+        },
+        {
+            "field": "duration",
+            "label": "Duration in months",
+            "valid": ["required"],
+            "defaultValue": "",
+            "type":"input"
+        },
+        {
+            "field": "button",
+            "disabled": true,
+            "defaultValue": "Apply your loan",
+            "buttonColor":"",
+            "type":"button"
+        }
+    ],
+    "step1": [
+        {
+            "field": "creditPurpose",
+            "label": "Credit Purpose",
+            "valid": ["required"],
+            "defaultValue": "",
+            "options": ["Mortgage","Student Credit", "Car Credit"],
+            "type":"select"
+        },
+        {
+            "field": "comments",
+            "label": "Do you have any comments for your credit application?",
+            "valid": ["required"],
+            "defaultValue": "",
+            "type":"textarea"
+        },
+        {
+            "field": "loanAmount",
+            "label": "Desired loan amount",
+            "valid": ["required"],
+            "defaultValue": "",
+            "type":"input"
+        },
+        {
+                   
+            "field": "duration",
+            "label": "Duration in months",
+            "valid": ["required"],
+            "defaultValue": "",
+            "type":"input"
+        },
+        {
+            "field": "button",
+            "disabled": true,
+            "defaultValue": "Determinate credit rate",
+            "buttonColor":"",
+            "type":"button"
+        }
+    ],
+    "step2": [
+        {
+            "field":"applicant",
+            "label":"Who applies for the credit?",
+            "valid":["required"],
+            "options":["Myself", "Me and my partner"],
+            "defaultValue": "",
+            "type":"checkbox"
+        },
+        {
+            "field": "maritalStatus",
+            "label": "What is your marital status?",
+            "valid": ["required"],
+            "defaultValue": "",
+            "options": ["Divorced","Single", "Married"],
+            "type":"select"
+        },
+        {
+            "field":"sameHouseholdStatus",
+            "label":"Do you live in the same household?",
+            "valid":["required"],
+            "options":["Yes", "No"],
+            "defaultValue": "",
+            "type":"checkbox"
+        },
+        {
+            "field": "button",
+            "disabled": false,
+            "defaultValue": "Back",
+            "buttonColor":"",
+            "type":"button"
+        },
+        {
+            "field": "button",
+            "disabled": true,
+            "defaultValue": "Next",
+            "buttonColor":"",
+            "type":"button"
+        }
+    ],
+    "step3": [
+        {
+            "field": "applicantTitle",
+            "label": "Title",
+            "valid": ["required"],
+            "defaultValue": "",
+            "options": ["Miss","Mister", "No title"],
+            "type":"select"
+        },
+        {      
+            "field": "applicantFirstName",
+            "label": "What is your name",
+            "valid": ["required"],
+            "defaultValue": "",
+            "placeholder":"First Name",
+            "type":"input"
+        },
+        {      
+            "field": "applicantLastName",
+            "label": "",
+            "valid": ["required"],
+            "defaultValue": "",
+            "placeholder": "Last Name",
+            "type":"input"
+        },
+        {
+            "field": "partnerTitle",
+            "label": "Title",
+            "valid": ["required"],
+            "defaultValue": "",
+            "options": ["Miss","Mister", "No title"],
+            "type":"select"
+        },
+        {      
+            "field": "partnerFirstName",
+            "label": "What is your partner's name",
+            "valid": ["required"],
+            "defaultValue": "",
+            "placeholder":"First Name",
+            "type":"input"
+        },
+        {      
+            "field": "partnerLastName",
+            "label": "",
+            "valid": ["required"],
+            "defaultValue": "",
+            "placeholder": "Last Name",
+            "type":"input"
+        },
+        {
+            "field": "button",
+            "disabled": false,
+            "defaultValue": "Back",
+            "buttonColor":"",
+            "type":"button"
+        },
+        {
+            "field": "button",
+            "disabled": true,
+            "defaultValue": "Next",
+            "buttonColor":"",
+            "type":"button"
+        }
+    ],
+    "step4": [
+        {    
+            "field": "dateOfBirth",
+            "label": "When were you born?",
+            "valid": ["required"],
+            "defaultValue": "",
+            "for":"dobPicker",
+            "templateVar":"#dobPicker",
+            "type":"datepicker"
+        },
+        {  "field": "nationality",
+            "label": "What is your nationality?",
+            "valid": ["required"],
+            "defaultValue": "",
+            "options": ["Poland","Germany", "Czech Republic"],
+            "type":"select"
+        },
+        {  "field": "residence",
+            "label": "Which residence permit do you have?",
+            "valid": ["required"],
+            "defaultValue": "",
+            "options": ["Poland","Germany", "Czech Republic"],
+            "type":"select"
+        },
+        {    
+            "field": "residentPeriod",
+            "label": "How long have you been resident in Poland?",
+            "valid": ["required"],
+            "defaultValue": "",
+            "for":"residencePeriodPicker",
+            "templateVar":"#residencePeriodPicker",
+            "type":"datepicker"
+        },
+        {
+            "field": "button",
+            "disabled": false,
+            "defaultValue": "Back",
+            "buttonColor":"",
+            "type":"button"
+        },
+        {
+            "field": "button",
+            "disabled": true,
+            "defaultValue": "Next",
+            "buttonColor":"",
+            "type":"button"
+        }
+    ]
+}
