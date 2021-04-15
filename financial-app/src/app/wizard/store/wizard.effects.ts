@@ -6,6 +6,7 @@ import { switchMap, map, catchError, tap, delay } from 'rxjs/operators';
 import * as WizardActions from './wizard.actions';
 import { ConfigService } from '../services/config.service';
 import { of } from 'rxjs';
+import { configLoaded } from './wizard.actions';
 
 @Injectable()
 export class WizardEffects {
@@ -17,7 +18,9 @@ export class WizardEffects {
         return this.configSrv.getConfig().pipe(
           map((data) => {
             console.log(data, 'data');
-            return WizardActions.configLoaded({ payload: { config: data } });
+            // debugger;
+            // configLoaded({ payload: { config: data } });
+            return data;
           }),
           catchError((error: HttpErrorResponse) => {
             return of(WizardActions.error(error.error.message));

@@ -9,6 +9,7 @@ const initialState: State = {};
 const wizardReducer = createReducer(
   initialState,
   on(WizardActions.getConfig, (state) => {
+    // debugger;
     console.log(state, 'getConfig');
     return {
       ...state,
