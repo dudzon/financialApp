@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { WizardRoutingModule } from './wizard-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './modules/material/material.module';
 import { WizardComponent } from './wizard.component';
 import { InputComponent } from './components/input/input.component';
@@ -12,6 +12,9 @@ import { DatepickerComponent } from './components/datepicker/datepicker.componen
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ButtonComponent } from './components/button/button.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormBuilderComponent } from './components/form-builder/form-builder.component';
+import { FormFieldBuilderComponent } from './components/form-field-builder/form-field-builder.component';
+import { AddComponentDirective } from './directives/add-component.directive';
 
 @NgModule({
   declarations: [
@@ -22,8 +25,19 @@ import { HttpClientModule } from '@angular/common/http';
     DatepickerComponent,
     CheckboxComponent,
     ButtonComponent,
+    FormBuilderComponent,
+    FormFieldBuilderComponent,
+    AddComponentDirective,
   ],
   imports: [
+    CommonModule,
+    HttpClientModule,
+    WizardRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+  ],
+  exports: [
     CommonModule,
     HttpClientModule,
     WizardRoutingModule,

@@ -1,4 +1,6 @@
 <mat-form-field appearance="outline">
-    <input matInput>
+ <input matInput type="text"  [placeholder]="placeholder || ''" [value] = "value"
+    [attr.disabled]="isDisabled ? true : null" (blur)="onInputBlurred()">
     <mat-error></mat-error>
 </mat-form-field>
+

@@ -1,0 +1,9 @@
+<div class="navigation__dropdown">
+<mat-form-field>
+  <mat-select [(value)]="languageSelected">
+    <mat-option *ngFor="let language of languages" [value]="language">
+      {{language}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</div>

@@ -1,0 +1,17 @@
+<section id="{{id}}">
+    <main>
+        <form action="" (ngSubmit)=" submitForm()" novalidate class="form" [formGroup]="form">
+            <div *ngFor="let field of template">
+                <!-- <app-form-field-builder  [formControlName] = "field.field" [field]="field"></app-form-field-builder> -->
+                <app-form-field-builder [field]="field"></app-form-field-builder>
+            </div>
+        <!-- <ng-container
+        *ngFor="let field of template;"
+        appAddComponent
+        [config]="field"
+        [group]="form">
+      </ng-container> -->
+        </form>
+    </main>
+</section>
+

@@ -1,1 +1,144 @@
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  --grey: #e5e5e5;
+  --progress-background-color: #ddd;
+  --main-color: #b4cd3a;
+  --snackbar-text: #fff;
+}
+span, input{
+    font-size: .8rem;
+}
+.input-field {
+    margin-bottom:0;
+    padding:0;
+}
+.error-data span.error-message {
+    display:block;
+    color:red;
+    font-size: 10px;
+}
+.flex {
+    display:flex;
+    flex-direction: column;
+}
+.buttons {
+    margin:2rem 0 2rem 0;
+}
+
+.names {
+  margin-bottom: 0;
+}
+::ng-deep .mat-form-field-underline {
+    display: none;
+}
+::ng-deep .mat-form-field-infix input {
+  border-bottom: none !important;
+}
+::ng-deep .mat-form-field-flex {
+    position: relative;
+    height:60px;
+}
+::ng-deep .mat-form-field-infix input,
+::ng-deep .mat-form-field-infix textarea {
+    position:absolute;
+    top: -5px;
+}
+::ng-deep app-language-toggler .mat-form-field-flex {
+    height:initial;
+}
+.mat-snackbar-success {
+    background:#99aa00;
+    color: var(--snackbar-text);
+}
+
+.mat-snackbar-error {
+    background: #B00020;
+    color: var(--snackbar-text);
+}
+/* LOGIN */
+
+#login {
+  height: 100vh;
+}
+#login .button-login {
+  margin-top: 3rem;
+}
+.form {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  width:15rem;
+  display:flex;
+  flex-direction: column;
+  transform: translate(50%, -50%);
+}
+::ng-deep .mat-form-field-underline {
+    display: none;
+}
+::ng-deep .mat-form-field-infix input {
+  border-bottom: none !important;
+}
+::ng-deep .mat-form-field-flex {
+    position: relative;
+    height:60px;
+}
+::ng-deep .mat-form-field-infix input,
+::ng-deep .mat-form-field-infix textarea {
+    position:absolute;
+    top: -5px;
+}
+::ng-deep app-language-toggler .mat-form-field-flex {
+    height:initial;
+}
+::ng-deep .mat-focused input {
+    box-shadow: none !important ;
+}
+
+/* CALC */
+
+#calc {
+    margin-top:3rem;
+} 
+span {
+    display:inline-block;
+    margin-top:1.5rem;
+} 
+
+/* STEP1 */
+.app-button {
+    margin-bottom:2rem;
+}
+/* STEP2 */
+
+main{
+    margin-top:3rem;
+}
+h3{
+    text-align:center;
+}
+::ng-deep .mat-radio-label-content {
+    padding:0 !important;
+    margin: 0 10px;
+}
+
+/* STEP3 */
+
+
+main{
+    margin-top:3rem;
+}
+h3,h4 {
+    text-align:center;
+}
+
+/* STEP4 */
+
+main{
+    margin-top:3rem;
+}
+h3{
+    text-align:center;
+}

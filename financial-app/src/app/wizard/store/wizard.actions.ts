@@ -11,8 +11,3 @@ export const configLoaded = createAction(
   '[Wizard Component] Config Loaded',
   props<{ payload: { config: any } }>()
 );
-
-export const getConfigTest = createAction(
-  '[Wizard Component] Get Config',
-  props<any>()
-);
