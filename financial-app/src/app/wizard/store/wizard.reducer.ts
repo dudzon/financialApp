@@ -10,16 +10,16 @@ const wizardReducer = createReducer(
   initialState,
   on(WizardActions.getConfig, (state) => {
     // debugger;
-    console.log(state, 'getConfig');
+    // console.log(state, 'getConfig');
     return {
       ...state,
     };
   }),
   on(WizardActions.configLoaded, (state, action) => {
-    console.log(action, 'action');
-    console.log(state, 'state configLoaded');
+    // console.log(action, 'action');
+    // console.log(state, 'state configLoaded');
     const newState = action.payload.config;
-    console.log(newState, 'newstate cl');
+    // console.log(newState, 'newstate cl');
 
     return {
       ...state,

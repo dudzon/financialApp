@@ -58,6 +58,9 @@ span, input{
     background: #B00020;
     color: var(--snackbar-text);
 }
+mat-form-field {
+    width:100%;
+}
 /* LOGIN */
 
 #login {
@@ -66,7 +69,7 @@ span, input{
 #login .button-login {
   margin-top: 3rem;
 }
-.form {
+#login .form {
   position: absolute;
   top: 50%;
   right: 50%;
@@ -75,37 +78,16 @@ span, input{
   flex-direction: column;
   transform: translate(50%, -50%);
 }
-::ng-deep .mat-form-field-underline {
-    display: none;
-}
-::ng-deep .mat-form-field-infix input {
-  border-bottom: none !important;
-}
-::ng-deep .mat-form-field-flex {
-    position: relative;
-    height:60px;
-}
-::ng-deep .mat-form-field-infix input,
-::ng-deep .mat-form-field-infix textarea {
-    position:absolute;
-    top: -5px;
-}
-::ng-deep app-language-toggler .mat-form-field-flex {
-    height:initial;
-}
-::ng-deep .mat-focused input {
-    box-shadow: none !important ;
-}
 
 /* CALC */
 
 #calc {
     margin-top:3rem;
 } 
-span {
+/* #calc span {
     display:inline-block;
     margin-top:1.5rem;
-} 
+}  */
 
 /* STEP1 */
 .app-button {

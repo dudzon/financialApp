@@ -1,0 +1,9 @@
+button {
+    width:100%;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+::ng-deep .mat-button-wrapper {
+    margin-top:0;
+}

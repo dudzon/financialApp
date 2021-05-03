@@ -1,8 +1,6 @@
 import {
   Component,
   ComponentFactoryResolver,
-  forwardRef,
-  Injector,
   Input,
   OnInit,
   ViewChild,
@@ -15,7 +13,7 @@ import { TextareaComponent } from '../textarea/textarea.component';
 import { ButtonComponent } from '../button/button.component';
 import { AddComponentDirective } from '@app/wizard/directives/add-component.directive';
 import { FormComponent } from '@app/wizard/models/form-component';
-import { NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 export type ComponentTypes =
   | InputComponent
   | SelectComponent
@@ -31,17 +29,14 @@ export type ComponentTypes =
 })
 export class FormFieldBuilderComponent implements OnInit {
   @Input() field: any;
-  @Input() controlName: any;
+  @Input() control!: FormControl;
+
   @ViewChild(AddComponentDirective, { static: true })
   addComponent!: AddComponentDirective;
-  constructor(
-    public injector: Injector,
-    private componentFactoryResolver: ComponentFactoryResolver
-  ) {}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
   ngOnInit(): void {
-    console.log(this.field, 'field');
-    // console.log(this.controlName, 'controlname');
+    console.log(this.field, 'field from form-fiel-builder');
     this.loadComponent();
   }
 
@@ -67,9 +62,7 @@ export class FormFieldBuilderComponent implements OnInit {
 
   loadComponent(): void {
     const component = this.chooseComponent(this.field);
-    // const ngControl = this.injector.get(NgControl);
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory<FormComponent>(
-      // this.chooseComponent(this.field)
       component
     );
 
@@ -78,8 +71,8 @@ export class FormFieldBuilderComponent implements OnInit {
     const componentRef = viewContainerRef.createComponent<FormComponent>(
       componentFactory
     );
-    // ngControl.valueAccessor = componentRef.instance;
-    // componentRef.instance.data = component.data;
-    // componentRef.instance.field = component.field;
+    componentRef.instance.field = this.field;
+    // @ts-ignore
+    componentRef.instance.control = this.control;
   }
 }

@@ -1,15 +1,15 @@
 {
     "login": [
         {
-            "field": "username",
-            "label": "username",
+            "field": "Username",
+            "label": "Username",
             "valid": ["required"],
             "defaultValue": "",
             "type":"input"
         },
         {
-            "field": "password",
-            "label": "password",
+            "field": "Password",
+            "label": "Password",
             "valid": ["required"],
             "defaultValue": "",
             "type":"input"
@@ -18,222 +18,269 @@
             "field": "button",
             "disabled": true,
             "defaultValue": "Login",
-            "buttonColor":"",
+            "buttonColor":"#b4cd3a",
             "type":"button"
         }
     ],
     "calc": [
         {
-            "field": "creditAmount",
+            "field": "Credit Amount",
             "label": "Credit Amount in EUR",
             "valid": ["required"],
             "defaultValue": "",
-            "type":"input"
+            "type":"input",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {
-            "field": "duration",
+            "field": "Duration",
             "label": "Duration in months",
             "valid": ["required"],
             "defaultValue": "",
-            "type":"input"
+            "type":"input",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {
             "field": "button",
             "disabled": true,
             "defaultValue": "Apply your loan",
-            "buttonColor":"",
-            "type":"button"
+            "buttonColor":"#b4cd3a",
+            "type":"button",
+            "inputClass": "col push-s3 s8"
         }
     ],
     "step1": [
         {
-            "field": "creditPurpose",
+            "field": "Credit Purpose",
             "label": "Credit Purpose",
             "valid": ["required"],
             "defaultValue": "",
             "options": ["Mortgage","Student Credit", "Car Credit"],
-            "type":"select"
+            "type":"select",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {
-            "field": "comments",
+            "field": "Comments",
             "label": "Do you have any comments for your credit application?",
             "valid": ["required"],
             "defaultValue": "",
-            "type":"textarea"
+            "type":"textarea",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {
-            "field": "loanAmount",
+            "field": "Loan Amount",
             "label": "Desired loan amount",
             "valid": ["required"],
             "defaultValue": "",
-            "type":"input"
+            "type":"input",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {
                    
-            "field": "duration",
+            "field": "Loan duration",
             "label": "Duration in months",
             "valid": ["required"],
             "defaultValue": "",
-            "type":"input"
+            "type":"input",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {
             "field": "button",
             "disabled": true,
             "defaultValue": "Determinate credit rate",
-            "buttonColor":"",
-            "type":"button"
+            "buttonColor":"#b4cd3a",
+            "type":"button",
+            "inputClass": "col push-s3 s8"
         }
     ],
     "step2": [
         {
-            "field":"applicant",
+            "field":"Applicant",
             "label":"Who applies for the credit?",
             "valid":["required"],
             "options":["Myself", "Me and my partner"],
             "defaultValue": "",
-            "type":"checkbox"
+            "type":"checkbox",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {
-            "field": "maritalStatus",
+            "field": "Marital Status",
             "label": "What is your marital status?",
             "valid": ["required"],
             "defaultValue": "",
             "options": ["Divorced","Single", "Married"],
-            "type":"select"
+            "type":"select",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {
-            "field":"sameHouseholdStatus",
+            "field":"Household Status",
             "label":"Do you live in the same household?",
             "valid":["required"],
             "options":["Yes", "No"],
             "defaultValue": "",
-            "type":"checkbox"
+            "type":"checkbox",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {
             "field": "button",
             "disabled": false,
             "defaultValue": "Back",
-            "buttonColor":"",
-            "type":"button"
+            "buttonColor":"#979797",
+            "type":"button",
+            "inputClass": "col push-s3 s8"
+            
         },
         {
             "field": "button",
             "disabled": true,
             "defaultValue": "Next",
-            "buttonColor":"",
-            "type":"button"
+            "buttonColor":"#b4cd3a",
+            "type":"button",
+            "inputClass": "col push-s3 s8"
         }
     ],
     "step3": [
         {
-            "field": "applicantTitle",
+            "field": "Applicant Title",
             "label": "Title",
             "valid": ["required"],
             "defaultValue": "",
             "options": ["Miss","Mister", "No title"],
-            "type":"select"
+            "type":"select",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {      
-            "field": "applicantFirstName",
+            "field": "Applicant First Name",
             "label": "What is your name",
             "valid": ["required"],
             "defaultValue": "",
             "placeholder":"First Name",
-            "type":"input"
+            "type":"input",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {      
-            "field": "applicantLastName",
+            "field": "Applicant Last Name",
             "label": "",
             "valid": ["required"],
             "defaultValue": "",
             "placeholder": "Last Name",
-            "type":"input"
+            "type":"input",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {
-            "field": "partnerTitle",
+            "field": "Partner Title",
             "label": "Title",
             "valid": ["required"],
             "defaultValue": "",
             "options": ["Miss","Mister", "No title"],
-            "type":"select"
+            "type":"select",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {      
-            "field": "partnerFirstName",
+            "field": "Partner First Name",
             "label": "What is your partner's name",
             "valid": ["required"],
             "defaultValue": "",
             "placeholder":"First Name",
-            "type":"input"
+            "type":"input",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {      
-            "field": "partnerLastName",
+            "field": "Partner Last Name",
             "label": "",
             "valid": ["required"],
             "defaultValue": "",
             "placeholder": "Last Name",
-            "type":"input"
+            "type":"input",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {
             "field": "button",
             "disabled": false,
             "defaultValue": "Back",
-            "buttonColor":"",
-            "type":"button"
+            "buttonColor":"#979797",
+            "type":"button",
+            "inputClass": "col push-s3 s8"
         },
         {
             "field": "button",
             "disabled": true,
             "defaultValue": "Next",
-            "buttonColor":"",
-            "type":"button"
+            "buttonColor":"#b4cd3a",
+            "type":"button",
+            "inputClass": "col push-s3 s8"
         }
     ],
     "step4": [
         {    
-            "field": "dateOfBirth",
+            "field": "Date of Birth",
             "label": "When were you born?",
             "valid": ["required"],
             "defaultValue": "",
             "for":"dobPicker",
             "templateVar":"#dobPicker",
-            "type":"datepicker"
+            "type":"datepicker",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
-        {  "field": "nationality",
+        {  "field": "Nationality",
             "label": "What is your nationality?",
             "valid": ["required"],
             "defaultValue": "",
             "options": ["Poland","Germany", "Czech Republic"],
-            "type":"select"
+            "type":"select",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
-        {  "field": "residence",
+        {  "field": "Residence",
             "label": "Which residence permit do you have?",
             "valid": ["required"],
             "defaultValue": "",
             "options": ["Poland","Germany", "Czech Republic"],
-            "type":"select"
+            "type":"select",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {    
-            "field": "residentPeriod",
+            "field": "Residence Period",
             "label": "How long have you been resident in Poland?",
             "valid": ["required"],
             "defaultValue": "",
             "for":"residencePeriodPicker",
             "templateVar":"#residencePeriodPicker",
-            "type":"datepicker"
+            "type":"datepicker",
+            "inputClass": "col s8 push-s1",
+            "wrapperClass":"col s2 push-s1"
         },
         {
             "field": "button",
             "disabled": false,
             "defaultValue": "Back",
-            "buttonColor":"",
-            "type":"button"
+            "buttonColor":"#979797",
+            "type":"button",
+            "inputClass": "col push-s3 s8"
         },
         {
             "field": "button",
             "disabled": true,
             "defaultValue": "Next",
-            "buttonColor":"",
-            "type":"button"
+            "buttonColor":"#b4cd3a",
+            "type":"button",
+            "inputClass": "col push-s3 s8"
         }
     ]
 }

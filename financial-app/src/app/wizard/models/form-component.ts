@@ -1,11 +1,6 @@
+import { FormControl } from '@angular/forms';
+
 export interface FormComponent {
-  data: any;
   field: any;
+  // control: FormControl;
 }
-
-// import { FormGroup } from '@angular/forms';
-
-// export interface FormComponent {
-//   config: any;
-//   group: FormGroup;
-// }

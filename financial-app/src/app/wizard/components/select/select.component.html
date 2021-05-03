@@ -1,6 +1,7 @@
 <mat-form-field appearance="outline">
-    <mat-select>
-        <mat-option></mat-option>
+    <mat-select [value] = "value" [formControl] ="control"
+    [attr.disabled]="isDisabled ? true : null" (blur)="onInputBlurred()" (selectionChange)="onChanged($event)">
+        <mat-option *ngFor="let option of field.options" [value]="option">{{ option }}</mat-option>
     </mat-select>
     <mat-error></mat-error>
 </mat-form-field>

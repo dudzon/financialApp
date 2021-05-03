@@ -1,17 +1,40 @@
 <section id="{{id}}">
-    <main>
-        <form action="" (ngSubmit)=" submitForm()" novalidate class="form" [formGroup]="form">
+    <main class="container">
+        <form action="" (ngSubmit)=" submitForm()" novalidate class="{{ getFormClass(route) }} " [formGroup]="form">
             <div *ngFor="let field of template">
-                <!-- <app-form-field-builder  [formControlName] = "field.field" [field]="field"></app-form-field-builder> -->
-                <app-form-field-builder [field]="field"></app-form-field-builder>
+                <div class="row">
+                    <div class="{{ field.wrapperClass }}">
+                        <span>{{ field.label }}</span>
+                    </div>
+                    <ng-container *ngIf="route === 'calc' && field.type === 'button'">
+                        <div class="row">
+                            <div class="col s2 push-s1">
+                                <span class="texts__main">Monthly rate</span>
+                            </div>
+                            <div class="col s8 push-s1">
+                                <p>
+                                    <!-- from <span>{{minRate$ | async}}</span><span>EUR</span> to
+                            <span>{{maxRate$ | async}}</span><span>EUR</span> -->
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s2 push-s1">
+                                <span>Nominal interest</span>
+                            </div>
+                            <div class="col s8 push-s1">
+                                <p>
+                                    from <span>5.67%</span> to <span>9.8%</span>
+                                </p>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <app-form-field-builder [control]="$any(form.controls[field.field])" [field]="field"
+                        class="{{ field.inputClass }}">
+                    </app-form-field-builder>
+                </div>
             </div>
-        <!-- <ng-container
-        *ngFor="let field of template;"
-        appAddComponent
-        [config]="field"
-        [group]="form">
-      </ng-container> -->
         </form>
     </main>
 </section>
-

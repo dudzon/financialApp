@@ -1,13 +1,10 @@
-import {
-  Component,
-  EventEmitter,
-  forwardRef,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { FormComponent } from '@app/wizard/models/form-component';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import {
+  NG_VALUE_ACCESSOR,
+  ControlValueAccessor,
+  FormControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -23,23 +20,18 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 })
 export class InputComponent
   implements OnInit, FormComponent, ControlValueAccessor {
-  @Input() data: any;
   @Input() field: any;
-  @Input() controlName: any;
+  @Input() control!: FormControl;
   @Input() placeholder: any;
-  @Output() changed = new EventEmitter<string>();
 
-  public value = 'dupa';
-  public onChange!: (value: string) => void;
-  public onTouched!: () => void;
+  public value!: string;
+
   public isDisabled!: boolean;
-  // public field!: any;
+
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.controlName, 'from input component');
     console.log(this.field, 'field from input component');
-    console.log(this.data, 'from input component');
   }
 
   public writeValue(value: string): void {
@@ -62,31 +54,9 @@ export class InputComponent
   public onInputBlurred(): void {
     this.onTouched();
   }
+  public setDisabledState(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
+  }
+  private onChange: any = () => {};
+  private onTouched: any = () => {};
 }
-
-// import { Component, OnInit, ViewContainerRef } from '@angular/core';
-// import { FormGroup } from '@angular/forms';
-// import { FormComponent } from '@app/wizard/models/form-component';
-
-// @Component({
-//   selector: 'app-input',
-//   styleUrls: ['./input.component.css'],
-//   template: `
-//     <div [formGroup]="group">
-//       <label>{{ config.label }}</label>
-//       <input
-//         type="text"
-//         [attr.placeholder]="config.placeholder"
-//         [formControlName]="config.name"
-//       />
-//     </div>
-//   `,
-// })
-// export class InputComponent implements OnInit, FormComponent {
-//   config: any;
-//   group!: FormGroup;
-
-//   ngOnInit(): void {
-//     console.log(this.config, 'config from Input');
-//   }
-// }
