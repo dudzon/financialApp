@@ -2,8 +2,10 @@ import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Autounsubscribe } from '@app/wizard/classes/autounsubscribe';
 import { ConfigService } from '@app/wizard/services/config.service';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import * as fromWizard from '../../store/wizard.reducer';
 
 @Component({
   selector: 'app-form-builder',
@@ -17,25 +19,24 @@ export class FormBuilderComponent
   @Input() id!: string | null;
   form!: FormGroup;
   route!: string | null;
-  constructor(private configSrv: ConfigService) {
+  constructor(
+    private configSrv: ConfigService,
+    private store: Store<fromWizard.State>
+  ) {
     super();
   }
 
   ngOnChanges(): void {
     this.form = new FormGroup({});
     this.getControls();
+    console.log(this.store, 'store - form-builder, onChanges');
   }
 
   ngOnInit(): void {
+    console.log(this.store, 'store - form-builder, onInit');
     this.configSrv.getId$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((route: string | null) => (this.route = route));
-    // console.log(this.template, 'template');
-    // // this.form = new FormGroup({});
-    // // this.filterButtons();
-    // // // this.getControls();
-    // // console.log(this.id, 'id');
-    // console.log(this.form, 'form');
   }
 
   submitForm(): void {

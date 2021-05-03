@@ -22,7 +22,7 @@ export class WizardComponent
   config: any;
   routeName!: string;
   constructor(
-    private store: Store<fromWizard.State>,
+    public store: Store<fromWizard.State>,
     private router: Router,
     private configSrv: ConfigService
   ) {
@@ -41,10 +41,6 @@ export class WizardComponent
         this.config = data.wizard[this.routeName];
         console.log(this.config, 'config');
       });
-    // console.log(this.id$, 'id$');
-
-    // console.log(this.config, 'config');
-    // console.log(this.store, 'store');
   }
 
   ngOnDestroy(): void {
