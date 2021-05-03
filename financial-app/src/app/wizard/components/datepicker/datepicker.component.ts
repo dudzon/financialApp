@@ -24,8 +24,10 @@ export class DatepickerComponent implements OnInit, FormComponent {
   public value!: string;
 
   public isDisabled!: boolean;
-
-  ngOnInit(): void {}
+  dupa!: string;
+  ngOnInit(): void {
+    this.dupa = this.field.templateVar;
+  }
 
   public writeValue(value: string): void {
     this.value = value;
