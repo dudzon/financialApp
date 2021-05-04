@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormBuilderComponent } from './components/form-builder/form-builder.component';
 import { FormFieldBuilderComponent } from './components/form-field-builder/form-field-builder.component';
 import { AddComponentDirective } from './directives/add-component.directive';
+import { ProgressComponent } from '../wizard/components/progress/progress.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { AddComponentDirective } from './directives/add-component.directive';
     FormBuilderComponent,
     FormFieldBuilderComponent,
     AddComponentDirective,
+    ProgressComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +39,7 @@ import { AddComponentDirective } from './directives/add-component.directive';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    RouterModule,
   ],
   exports: [
     CommonModule,

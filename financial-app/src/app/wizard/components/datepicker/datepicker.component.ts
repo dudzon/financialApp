@@ -1,7 +1,6 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormComponent } from '@app/wizard/models/form-component';
-import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'app-datepicker',
@@ -24,10 +23,8 @@ export class DatepickerComponent implements OnInit, FormComponent {
   public value!: string;
 
   public isDisabled!: boolean;
-  dupa!: string;
-  ngOnInit(): void {
-    this.dupa = this.field.templateVar;
-  }
+
+  ngOnInit(): void {}
 
   public writeValue(value: string): void {
     this.value = value;
