@@ -29,7 +29,7 @@ export class WizardComponent
   ) {
     super();
     this.routeName = router.url.replace('/', '');
-    if (this.routeName === 'step1') {
+    if (this.routeName === Routes.login) {
       this.store.dispatch(WizardActions.getConfig());
     }
     this.configSrv.updateConfigNameSubject(this.routeName);
@@ -55,13 +55,13 @@ export class WizardComponent
 
   getProgressValue(route: string): string {
     switch (route) {
-      case 'step1':
+      case Routes.step1:
         return '0%';
-      case 'step2':
+      case Routes.step2:
         return '20%';
-      case 'step3':
+      case Routes.step3:
         return '60%';
-      case 'step4':
+      case Routes.step4:
         return '80%';
       default:
         return '0%';

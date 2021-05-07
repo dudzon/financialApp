@@ -14,6 +14,8 @@ import { Step3Payload } from '@app/wizard/models/step3Payload';
 import { Step4Payload } from '@app/wizard/models/step4Payload';
 import { Routes } from '@app/wizard/models/routes';
 import { Router } from '@angular/router';
+import { CalcPayload } from '@app/wizard/models/calcPayload';
+import { LoginPayload } from '@app/wizard/models/loginPayload';
 
 @Component({
   selector: 'app-form-builder',
@@ -45,15 +47,9 @@ export class FormBuilderComponent
 
   ngOnInit(): void {
     console.log(this.store, 'store - form-builder, onInit');
-    // this.configSrv.getId$
-    //   .pipe(takeUntil(this.unsubscribe$))
-    //   .subscribe((route: string | null) => (this.route = route));
   }
 
   submitForm(): void {
-    // console.log(this.form, 'saved');
-    // console.log(this.form.value, 'form value');
-
     this.getPayload(this.route as string);
     this.goToNextRoute(this.route as string);
     console.log(this.store, 'store');
@@ -93,28 +89,42 @@ export class FormBuilderComponent
 
   getPayload(route: string): void {
     switch (route) {
-      case 'step1':
+      case Routes.login:
+        this.store.dispatch(
+          WizardActions.updateLogin({
+            payload: this.form.value as LoginPayload,
+          })
+        );
+        break;
+      case Routes.calc:
+        this.store.dispatch(
+          WizardActions.updateCalc({
+            payload: this.form.value as CalcPayload,
+          })
+        );
+        break;
+      case Routes.step1:
         this.store.dispatch(
           WizardActions.updateState1({
             payload: this.form.value as Step1Payload,
           })
         );
         break;
-      case 'step2':
+      case Routes.step2:
         this.store.dispatch(
           WizardActions.updateState2({
             payload: this.form.value as Step2Payload,
           })
         );
         break;
-      case 'step3':
+      case Routes.step3:
         this.store.dispatch(
           WizardActions.updateState3({
             payload: this.form.value as Step3Payload,
           })
         );
         break;
-      case 'step4':
+      case Routes.step4:
         this.store.dispatch(
           WizardActions.updateState4({
             payload: this.form.value as Step4Payload,
@@ -128,13 +138,19 @@ export class FormBuilderComponent
 
   goToNextRoute(route: string): void {
     switch (route) {
-      case 'step1':
+      case Routes.login:
+        this.router.navigate([Routes.calc]);
+        break;
+      case Routes.calc:
+        this.router.navigate([Routes.step1]);
+        break;
+      case Routes.step1:
         this.router.navigate([Routes.step2]);
         break;
-      case 'step2':
+      case Routes.step2:
         this.router.navigate([Routes.step3]);
         break;
-      case 'step3':
+      case Routes.step3:
         this.router.navigate([Routes.step4]);
         break;
     }

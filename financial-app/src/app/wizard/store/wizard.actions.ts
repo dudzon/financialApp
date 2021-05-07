@@ -66,3 +66,21 @@ export const updateState4 = createAction(
     };
   }>()
 );
+export const updateCalc = createAction(
+  '[Wizard] Update calc',
+  props<{
+    payload: {
+      'Credit Amount': number;
+      Duration: number;
+    };
+  }>()
+);
+export const updateLogin = createAction(
+  '[Wizard] Update Login',
+  props<{
+    payload: {
+      Username: string;
+      Password: string;
+    };
+  }>()
+);

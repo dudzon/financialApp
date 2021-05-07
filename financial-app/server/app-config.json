@@ -6,7 +6,8 @@
             "valid": ["required"],
             "defaultValue": "",
             "type":"input",
-            "value": ""
+            "value": "",
+            "isAuthenticated": ""
         },
         {
             "field": "Password",
@@ -33,7 +34,9 @@
             "type":"input",
             "inputClass": "col s8 push-s1",
             "wrapperClass":"col s2 push-s1",
-            "value": ""
+            "value": "",
+            "resultMin": "",
+            "resultMax": ""
         },
         {
             "field": "Duration",

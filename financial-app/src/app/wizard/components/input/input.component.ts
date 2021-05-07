@@ -1,14 +1,10 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { FormComponent } from '@app/wizard/models/form-component';
 import {
   NG_VALUE_ACCESSOR,
   ControlValueAccessor,
   FormControl,
 } from '@angular/forms';
-import * as fromWizard from '../../store/wizard.reducer';
-import * as WizardActions from '../../store/wizard.actions';
-import * as fromWizardSelectors from '../../store/wizard.selectors';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-input',
@@ -22,8 +18,7 @@ import { Store } from '@ngrx/store';
     },
   ],
 })
-export class InputComponent
-  implements OnInit, FormComponent, ControlValueAccessor {
+export class InputComponent implements FormComponent, ControlValueAccessor {
   @Input() field: any;
   @Input() control!: FormControl;
   @Input() placeholder: any;
@@ -31,20 +26,6 @@ export class InputComponent
   public value!: string;
 
   public isDisabled!: boolean;
-
-  constructor(private store: Store<fromWizard.State>) {}
-
-  ngOnInit(): void {
-    // console.log(this.field, 'field from input component');
-    // console.log(this.control, 'control');
-    // this.control.valueChanges.subscribe((val: string) => {
-    //   // this.store.dispatch(
-    //   //   WizardActions.updateLoanAmount({ payload: { value: val } })
-    //   // );
-    //   this.updateState(val);
-    // });
-    //here maybe dispatch
-  }
 
   public writeValue(value: string): void {
     this.value = value;
@@ -71,16 +52,4 @@ export class InputComponent
   }
   private onChange: any = () => {};
   private onTouched: any = () => {};
-
-  // public updateState(val: string): void {
-  //   console.log(this.store, 'store from updateState');
-  //   switch (this.field.field) {
-  //     case 'Loan Amount':
-  //       this.store.dispatch(
-  //         WizardActions.updateLoanAmount({ payload: { value: val } })
-  //       );
-  //       break;
-  //     case 'Loan duration':
-  //   }
-  // }
 }
