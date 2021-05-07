@@ -36,7 +36,6 @@ export class FormFieldBuilderComponent implements OnInit {
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
   ngOnInit(): void {
-    console.log(this.field, 'field from form-fiel-builder');
     this.loadComponent();
   }
 

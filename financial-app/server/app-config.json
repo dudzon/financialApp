@@ -5,14 +5,16 @@
             "label": "Username",
             "valid": ["required"],
             "defaultValue": "",
-            "type":"input"
+            "type":"input",
+            "value": ""
         },
         {
             "field": "Password",
             "label": "Password",
             "valid": ["required"],
             "defaultValue": "",
-            "type":"input"
+            "type":"input",
+            "value": ""
         },
         {
             "field": "button",
@@ -30,7 +32,8 @@
             "defaultValue": "",
             "type":"input",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {
             "field": "Duration",
@@ -39,7 +42,8 @@
             "defaultValue": "",
             "type":"input",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {
             "field": "button",
@@ -59,7 +63,8 @@
             "options": ["Mortgage","Student Credit", "Car Credit"],
             "type":"select",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {
             "field": "Comments",
@@ -68,7 +73,8 @@
             "defaultValue": "",
             "type":"textarea",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {
             "field": "Loan Amount",
@@ -77,7 +83,8 @@
             "defaultValue": "",
             "type":"input",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {
                    
@@ -87,7 +94,8 @@
             "defaultValue": "",
             "type":"input",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {
             "field": "button",
@@ -107,7 +115,8 @@
             "defaultValue": "",
             "type":"checkbox",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {
             "field": "Marital Status",
@@ -117,7 +126,8 @@
             "options": ["Divorced","Single", "Married"],
             "type":"select",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {
             "field":"Household Status",
@@ -127,7 +137,8 @@
             "defaultValue": "",
             "type":"checkbox",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {
             "field": "button",
@@ -156,7 +167,8 @@
             "options": ["Miss","Mister", "No title"],
             "type":"select",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {      
             "field": "Applicant First Name",
@@ -166,7 +178,8 @@
             "placeholder":"First Name",
             "type":"input",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {      
             "field": "Applicant Last Name",
@@ -176,7 +189,8 @@
             "placeholder": "Last Name",
             "type":"input",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {
             "field": "Partner Title",
@@ -186,7 +200,8 @@
             "options": ["Miss","Mister", "No title"],
             "type":"select",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {      
             "field": "Partner First Name",
@@ -196,7 +211,8 @@
             "placeholder":"First Name",
             "type":"input",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {      
             "field": "Partner Last Name",
@@ -206,7 +222,8 @@
             "placeholder": "Last Name",
             "type":"input",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {
             "field": "button",
@@ -235,7 +252,8 @@
             "templateVar":"#dobPicker",
             "type":"datepicker",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {  "field": "Nationality",
             "label": "What is your nationality?",
@@ -244,7 +262,8 @@
             "options": ["Poland","Germany", "Czech Republic"],
             "type":"select",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {  "field": "Residence",
             "label": "Which residence permit do you have?",
@@ -253,7 +272,8 @@
             "options": ["Poland","Germany", "Czech Republic"],
             "type":"select",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {    
             "field": "Residence Period",
@@ -264,7 +284,8 @@
             "templateVar":"#residencePeriodPicker",
             "type":"datepicker",
             "inputClass": "col s8 push-s1",
-            "wrapperClass":"col s2 push-s1"
+            "wrapperClass":"col s2 push-s1",
+            "value": ""
         },
         {
             "field": "button",

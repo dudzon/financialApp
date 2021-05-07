@@ -6,6 +6,14 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import * as fromWizard from '../../store/wizard.reducer';
+import * as WizardActions from '../../store/wizard.actions';
+import * as fromWizardSelectors from '../../store/wizard.selectors';
+import { Step1Payload } from '@app/wizard/models/step1Payload';
+import { Step2Payload } from '@app/wizard/models/step2Payload';
+import { Step3Payload } from '@app/wizard/models/step3Payload';
+import { Step4Payload } from '@app/wizard/models/step4Payload';
+import { Routes } from '@app/wizard/models/routes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-builder',
@@ -21,33 +29,44 @@ export class FormBuilderComponent
   route!: string | null;
   constructor(
     private configSrv: ConfigService,
-    private store: Store<fromWizard.State>
+    private store: Store<fromWizard.State>,
+    private router: Router
   ) {
     super();
-  }
-
-  ngOnChanges(): void {
-    this.form = new FormGroup({});
-    this.getControls();
-    console.log(this.store, 'store - form-builder, onChanges');
-  }
-
-  ngOnInit(): void {
-    console.log(this.store, 'store - form-builder, onInit');
     this.configSrv.getId$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((route: string | null) => (this.route = route));
   }
 
+  ngOnChanges(): void {
+    this.form = new FormGroup({});
+    this.getControls();
+  }
+
+  ngOnInit(): void {
+    console.log(this.store, 'store - form-builder, onInit');
+    // this.configSrv.getId$
+    //   .pipe(takeUntil(this.unsubscribe$))
+    //   .subscribe((route: string | null) => (this.route = route));
+  }
+
   submitForm(): void {
-    console.log(this.form, 'saved');
+    // console.log(this.form, 'saved');
+    // console.log(this.form.value, 'form value');
+
+    this.getPayload(this.route as string);
+    this.goToNextRoute(this.route as string);
+    console.log(this.store, 'store');
   }
 
   getControls(): void {
     const filtered = this.filterButtons();
     if (filtered) {
       filtered.forEach((item: any) =>
-        this.form.addControl(item.field, new FormControl())
+        this.form.addControl(
+          item.field,
+          new FormControl('', { updateOn: 'submit' })
+        )
       );
     }
   }
@@ -69,6 +88,55 @@ export class FormBuilderComponent
         return 'calcForm';
       default:
         return 'form';
+    }
+  }
+
+  getPayload(route: string): void {
+    switch (route) {
+      case 'step1':
+        this.store.dispatch(
+          WizardActions.updateState1({
+            payload: this.form.value as Step1Payload,
+          })
+        );
+        break;
+      case 'step2':
+        this.store.dispatch(
+          WizardActions.updateState2({
+            payload: this.form.value as Step2Payload,
+          })
+        );
+        break;
+      case 'step3':
+        this.store.dispatch(
+          WizardActions.updateState3({
+            payload: this.form.value as Step3Payload,
+          })
+        );
+        break;
+      case 'step4':
+        this.store.dispatch(
+          WizardActions.updateState4({
+            payload: this.form.value as Step4Payload,
+          })
+        );
+        break;
+      default:
+        throw new Error('Action not found');
+    }
+  }
+
+  goToNextRoute(route: string): void {
+    switch (route) {
+      case 'step1':
+        this.router.navigate([Routes.step2]);
+        break;
+      case 'step2':
+        this.router.navigate([Routes.step3]);
+        break;
+      case 'step3':
+        this.router.navigate([Routes.step4]);
+        break;
     }
   }
 

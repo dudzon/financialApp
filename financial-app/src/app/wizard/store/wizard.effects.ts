@@ -31,7 +31,7 @@ export class WizardEffects {
 
   constructor(
     private actions$: Actions,
-    private configSrv: ConfigService
-  ) // private store: Store<fromWizard.State>
-  {}
+    private configSrv: ConfigService,
+    private store: Store<fromWizard.State>
+  ) {}
 }

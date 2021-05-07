@@ -5,6 +5,10 @@ import {
   ControlValueAccessor,
   FormControl,
 } from '@angular/forms';
+import * as fromWizard from '../../store/wizard.reducer';
+import * as WizardActions from '../../store/wizard.actions';
+import * as fromWizardSelectors from '../../store/wizard.selectors';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-input',
@@ -28,10 +32,18 @@ export class InputComponent
 
   public isDisabled!: boolean;
 
-  constructor() {}
+  constructor(private store: Store<fromWizard.State>) {}
 
   ngOnInit(): void {
-    console.log(this.field, 'field from input component');
+    // console.log(this.field, 'field from input component');
+    // console.log(this.control, 'control');
+    // this.control.valueChanges.subscribe((val: string) => {
+    //   // this.store.dispatch(
+    //   //   WizardActions.updateLoanAmount({ payload: { value: val } })
+    //   // );
+    //   this.updateState(val);
+    // });
+    //here maybe dispatch
   }
 
   public writeValue(value: string): void {
@@ -59,4 +71,16 @@ export class InputComponent
   }
   private onChange: any = () => {};
   private onTouched: any = () => {};
+
+  // public updateState(val: string): void {
+  //   console.log(this.store, 'store from updateState');
+  //   switch (this.field.field) {
+  //     case 'Loan Amount':
+  //       this.store.dispatch(
+  //         WizardActions.updateLoanAmount({ payload: { value: val } })
+  //       );
+  //       break;
+  //     case 'Loan duration':
+  //   }
+  // }
 }
