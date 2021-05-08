@@ -12,6 +12,11 @@ export interface State {
   [x: string]: any;
 }
 
+const RATE = {
+  minimumRate: 5.67,
+  maximumRate: 9.8,
+};
+
 const initialState: State = {};
 
 function updateState(state: any, chunkState: string, action: any): any {
@@ -107,6 +112,32 @@ const wizardReducer = createReducer(
   }),
   on(WizardActions.error, (state, action) => {
     return { ...state };
+  }),
+  on(WizardActions.calculateRate, (state, action) => {
+    const amount = action.payload['Credit Amount'] as number;
+    const duration = action.payload.Duration as number;
+    const interestMin = (amount * RATE.minimumRate) / 100;
+    const interestMax = (amount * RATE.maximumRate) / 100;
+    const resultMin = Math.round((amount + interestMin) / duration);
+    const resultMax = Math.round((amount + interestMax) / duration);
+    const newState: any = [...state.calc];
+
+    let field = newState.find((item: any) => item.field === 'Credit Amount');
+    const index = newState.findIndex(
+      (item: any) => item.field === 'Credit Amount'
+    );
+
+    field = {
+      ...field,
+      resultMin,
+      resultMax,
+    };
+
+    newState[index] = field;
+    return {
+      ...state,
+      calc: newState,
+    };
   })
 );
 

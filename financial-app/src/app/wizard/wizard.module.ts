@@ -17,6 +17,7 @@ import { FormFieldBuilderComponent } from './components/form-field-builder/form-
 import { AddComponentDirective } from './directives/add-component.directive';
 import { ProgressComponent } from '../wizard/components/progress/progress.component';
 import { RouterModule } from '@angular/router';
+import { CalcContentComponent } from '../components/calc-content/calc-content.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { RouterModule } from '@angular/router';
     FormFieldBuilderComponent,
     AddComponentDirective,
     ProgressComponent,
+    CalcContentComponent,
   ],
   imports: [
     CommonModule,

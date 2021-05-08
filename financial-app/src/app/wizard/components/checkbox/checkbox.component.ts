@@ -1,5 +1,11 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  NG_VALUE_ACCESSOR,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { FormComponent } from '@app/wizard/models/form-component';
 import { InputComponent } from '../input/input.component';
 
@@ -24,7 +30,10 @@ export class CheckboxComponent implements OnInit, FormComponent {
 
   public isDisabled!: boolean;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.control.setValidators(this.setValidatorsForControl());
+    this.control.updateValueAndValidity();
+  }
 
   public writeValue(value: string): void {
     this.value = value;
@@ -51,4 +60,25 @@ export class CheckboxComponent implements OnInit, FormComponent {
   }
   private onChange: any = () => {};
   private onTouched: any = () => {};
+  private setValidator(validatorName: string): ValidatorFn {
+    let validator: ValidatorFn;
+    switch (validatorName) {
+      case 'required':
+        validator = Validators.required;
+        break;
+      default:
+        throw new Error('No Validator found');
+    }
+    return validator;
+  }
+  private setValidatorsForControl(): ValidatorFn[] {
+    let validators = this.field.valid;
+    const newValidators: any[] = [];
+    validators = validators.map((validatorName: string) => {
+      const newValidator = this.setValidator(validatorName);
+      newValidators.push(newValidator);
+    });
+
+    return newValidators;
+  }
 }

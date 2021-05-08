@@ -1,13 +1,19 @@
-import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  OnDestroy,
+  SimpleChanges,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Autounsubscribe } from '@app/wizard/classes/autounsubscribe';
 import { ConfigService } from '@app/wizard/services/config.service';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import * as fromWizard from '../../store/wizard.reducer';
 import * as WizardActions from '../../store/wizard.actions';
-import * as fromWizardSelectors from '../../store/wizard.selectors';
 import { Step1Payload } from '@app/wizard/models/step1Payload';
 import { Step2Payload } from '@app/wizard/models/step2Payload';
 import { Step3Payload } from '@app/wizard/models/step3Payload';
@@ -21,6 +27,7 @@ import { LoginPayload } from '@app/wizard/models/loginPayload';
   selector: 'app-form-builder',
   templateUrl: './form-builder.component.html',
   styleUrls: ['./form-builder.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormBuilderComponent
   extends Autounsubscribe
@@ -40,13 +47,22 @@ export class FormBuilderComponent
       .subscribe((route: string | null) => (this.route = route));
   }
 
-  ngOnChanges(): void {
-    this.form = new FormGroup({});
-    this.getControls();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.id !== Routes.calc) {
+      this.form = new FormGroup({});
+      this.getControls();
+    }
   }
 
   ngOnInit(): void {
     console.log(this.store, 'store - form-builder, onInit');
+    if (this.id === Routes.calc) {
+      this.form = new FormGroup({});
+      this.getControls();
+      this.form.statusChanges
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe(() => this.getRates());
+    }
   }
 
   submitForm(): void {
@@ -61,7 +77,7 @@ export class FormBuilderComponent
       filtered.forEach((item: any) =>
         this.form.addControl(
           item.field,
-          new FormControl('', { updateOn: 'submit' })
+          new FormControl('', { updateOn: 'blur' })
         )
       );
     }
@@ -156,30 +172,16 @@ export class FormBuilderComponent
     }
   }
 
-  // showCustomTemplatePart(): string {
-  //   return ` <div class="row">
-  //                   <div class="col s2 push-s1">
-  //                       <span class="texts__main">Monthly rate</span>
-  //                   </div>
-  //                   <div class="col s8 push-s1">
-  //                       <p>
-  //                           <!-- from <span>{{minRate$ | async}}</span><span>EUR</span> to
-  //                           <span>{{maxRate$ | async}}</span><span>EUR</span> -->
-  //                       </p>
-  //                   </div>
-  //               </div>
-  //               <div class="row">
-  //                   <div class="col s2 push-s1">
-  //                       <span>Nominal interest</span>
-  //                   </div>
-  //                   <div class="col s8 push-s1">
-  //                       <p>
-  //                           from <span>5.67%</span> to <span>9.8%</span>
-  //                       </p>
-  //                   </div>
-  //               </div>
-  //         `;
-  // }
+  getRates(): void {
+    console.log(this.form, 'form-calc');
+    if (this.form.valid) {
+      const payload: CalcPayload = {
+        ['Credit Amount']: +this.form.get('Credit Amount')?.value,
+        Duration: +this.form.get('Duration')?.value,
+      };
+      this.store.dispatch(WizardActions.calculateRate({ payload }));
+    }
+  }
 
   ngOnDestroy(): void {
     super.ngOnDestroy();

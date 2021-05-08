@@ -149,7 +149,8 @@
             "defaultValue": "Back",
             "buttonColor":"#979797",
             "type":"button",
-            "inputClass": "col push-s3 s8"
+            "inputClass": "col push-s3 s8",
+            "action":"back"
             
         },
         {
@@ -234,7 +235,8 @@
             "defaultValue": "Back",
             "buttonColor":"#979797",
             "type":"button",
-            "inputClass": "col push-s3 s8"
+            "inputClass": "col push-s3 s8",
+            "action":"back"
         },
         {
             "field": "button",
@@ -296,7 +298,8 @@
             "defaultValue": "Back",
             "buttonColor":"#979797",
             "type":"button",
-            "inputClass": "col push-s3 s8"
+            "inputClass": "col push-s3 s8",
+            "action":"back"
         },
         {
             "field": "button",

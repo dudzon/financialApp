@@ -84,3 +84,12 @@ export const updateLogin = createAction(
     };
   }>()
 );
+export const calculateRate = createAction(
+  '[Calc Component] Calculate Rate',
+  props<{
+    payload: {
+      'Credit Amount': number;
+      Duration: number;
+    };
+  }>()
+);

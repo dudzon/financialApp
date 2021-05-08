@@ -1,9 +1,17 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import {
+  Component,
+  forwardRef,
+  Input,
+  OnInit,
+  AfterViewInit,
+} from '@angular/core';
 import { FormComponent } from '@app/wizard/models/form-component';
 import {
   NG_VALUE_ACCESSOR,
   ControlValueAccessor,
   FormControl,
+  Validators,
+  ValidatorFn,
 } from '@angular/forms';
 
 @Component({
@@ -18,13 +26,20 @@ import {
     },
   ],
 })
-export class InputComponent implements FormComponent, ControlValueAccessor {
+export class InputComponent
+  implements OnInit, FormComponent, ControlValueAccessor {
   @Input() field: any;
   @Input() control!: FormControl;
   @Input() placeholder: any;
 
+  ngOnInit(): void {
+    this.control.setValidators(this.setValidatorsForControl());
+    this.control.updateValueAndValidity();
+  }
+  // tslint:disable-next-line:member-ordering
   public value!: string;
 
+  // tslint:disable-next-line:member-ordering
   public isDisabled!: boolean;
 
   public writeValue(value: string): void {
@@ -44,12 +59,35 @@ export class InputComponent implements FormComponent, ControlValueAccessor {
     this.onChange(value);
   }
 
-  public onInputBlurred(): void {
-    this.onTouched();
+  public onInputFocused(): void {
+    console.log(this.control, 'control focus');
+    this.control.patchValue('');
   }
   public setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
   }
   private onChange: any = () => {};
   private onTouched: any = () => {};
+
+  private setValidator(validatorName: string): ValidatorFn {
+    let validator: ValidatorFn;
+    switch (validatorName) {
+      case 'required':
+        validator = Validators.required;
+        break;
+      default:
+        throw new Error('No Validator found');
+    }
+    return validator;
+  }
+  private setValidatorsForControl(): ValidatorFn[] {
+    let validators = this.field.valid;
+    const newValidators: any[] = [];
+    validators = validators.map((validatorName: string) => {
+      const newValidator = this.setValidator(validatorName);
+      newValidators.push(newValidator);
+    });
+
+    return newValidators;
+  }
 }

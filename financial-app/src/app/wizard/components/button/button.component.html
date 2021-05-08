@@ -1,1 +1,1 @@
- <button [style.backgroundColor] = "field.buttonColor" mat-raised-button>{{ field.defaultValue }}</button>
+ <button [style.backgroundColor] = "field.buttonColor" mat-raised-button (click)="onAction(field.action,$event)">{{ field.defaultValue }}</button>
