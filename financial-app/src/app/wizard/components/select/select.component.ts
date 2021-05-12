@@ -1,11 +1,7 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
-import {
-  FormControl,
-  NG_VALUE_ACCESSOR,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
+import { BaseValidator } from '@app/wizard/classes/base-validator';
 import { FormComponent } from '@app/wizard/models/form-component';
 
 @Component({
@@ -20,20 +16,27 @@ import { FormComponent } from '@app/wizard/models/form-component';
     },
   ],
 })
-export class SelectComponent implements OnInit, FormComponent {
-  constructor() {}
+export class SelectComponent
+  extends BaseValidator
+  implements OnInit, FormComponent
+{
+  constructor() {
+    super();
+  }
 
   @Input() field: any;
   @Input() control!: FormControl;
   @Input() placeholder: any;
 
   public value!: string;
+  public errorMessage!: string;
 
   public isDisabled!: boolean;
 
   ngOnInit(): void {
-    this.control.setValidators(this.setValidatorsForControl());
+    this.control.setValidators(this.setValidatorsForControl(this.field));
     this.control.updateValueAndValidity();
+    this.errorMessage = this.setValidationMessages(this.control);
   }
 
   public writeValue(value: string): void {
@@ -68,26 +71,4 @@ export class SelectComponent implements OnInit, FormComponent {
   }
   private onChange: any = () => {};
   private onTouched: any = () => {};
-
-  private setValidator(validatorName: string): ValidatorFn {
-    let validator: ValidatorFn;
-    switch (validatorName) {
-      case 'required':
-        validator = Validators.required;
-        break;
-      default:
-        throw new Error('No Validator found');
-    }
-    return validator;
-  }
-  private setValidatorsForControl(): ValidatorFn[] {
-    let validators = this.field.valid;
-    const newValidators: any[] = [];
-    validators = validators.map((validatorName: string) => {
-      const newValidator = this.setValidator(validatorName);
-      newValidators.push(newValidator);
-    });
-
-    return newValidators;
-  }
 }

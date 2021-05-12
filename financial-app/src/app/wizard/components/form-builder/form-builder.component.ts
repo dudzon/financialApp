@@ -6,6 +6,7 @@ import {
   OnDestroy,
   SimpleChanges,
   ChangeDetectionStrategy,
+  SimpleChange,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Autounsubscribe } from '@app/wizard/classes/autounsubscribe';
@@ -50,18 +51,21 @@ export class FormBuilderComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes, 'changes');
     if (this.id !== Routes.calc) {
       this.form = new FormGroup({});
       this.getControls();
+      this.patchOnChanges(changes.template);
     }
   }
 
   ngOnInit(): void {
-    console.log(this.store, 'store - form-builder, onInit');
+    // console.log(this.store, 'store - form-builder, onInit');
     if (this.id === Routes.calc) {
       this.form = new FormGroup({});
       this.getControls();
-      this.form.statusChanges
+      console.log(this.form);
+      this.form.valueChanges
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe(() => this.getRates());
     }
@@ -179,13 +183,27 @@ export class FormBuilderComponent
   }
 
   getRates(): void {
-    console.log(this.form, 'form-calc');
     if (this.form.valid) {
       const payload: CalcPayload = {
         ['Credit Amount']: +this.form.get('Credit Amount')?.value,
         Duration: +this.form.get('Duration')?.value,
       };
       this.store.dispatch(WizardActions.calculateRate({ payload }));
+    }
+  }
+
+  patchOnChanges(template: SimpleChange): void {
+    if (template.previousValue) {
+      const username: FormControl = this.form.get('Username') as FormControl;
+      const password: FormControl = this.form.get('Password') as FormControl;
+      const usernameValue = template.currentValue.find(
+        (item: any) => item.field === 'Username'
+      );
+      const passwordValue = template.currentValue.find(
+        (item: any) => item.field === 'Password'
+      );
+      username?.patchValue(usernameValue.value);
+      password?.patchValue(passwordValue.value);
     }
   }
 

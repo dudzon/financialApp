@@ -1,5 +1,5 @@
 <mat-form-field appearance="outline">
     <textarea matInput type="text"  [placeholder]="placeholder || ''" [value] = "value" [formControl] ="control"
     [attr.disabled]="isDisabled ? true : null" (blur)="onInputBlurred()"></textarea>
-    <mat-error></mat-error>
+<mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>

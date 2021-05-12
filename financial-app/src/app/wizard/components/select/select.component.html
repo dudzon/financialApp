@@ -3,5 +3,5 @@
     [attr.disabled]="isDisabled ? true : null" (blur)="onInputBlurred()" (selectionChange)="onChanged($event)">
         <mat-option *ngFor="let option of field.options" [value]="option">{{ option }}</mat-option>
     </mat-select>
-    <mat-error></mat-error>
+    <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>

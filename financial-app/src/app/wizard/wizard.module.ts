@@ -18,6 +18,7 @@ import { AddComponentDirective } from './directives/add-component.directive';
 import { ProgressComponent } from '../wizard/components/progress/progress.component';
 import { RouterModule } from '@angular/router';
 import { CalcContentComponent } from '../components/calc-content/calc-content.component';
+import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -50,5 +51,6 @@ import { CalcContentComponent } from '../components/calc-content/calc-content.co
     ReactiveFormsModule,
     MaterialModule,
   ],
+  providers: [AuthGuard],
 })
 export class WizardModule {}

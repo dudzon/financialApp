@@ -45,7 +45,9 @@ export class WizardEffects {
       ofType(WizardActions.updateLogin),
       switchMap((action) => {
         return this.http.postLoginData(action.payload).pipe(
-          tap(() => this.snackbar.success('Login is successful')),
+          tap(() => {
+            this.snackbar.success('Login is successful');
+          }),
           delay(3000),
           map(() => {
             this.router.navigate([Routes.calc]);

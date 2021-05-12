@@ -2,6 +2,6 @@
     <mat-label>{{ field.field }}</mat-label>
  <input matInput type="text"  [id]="field.field" [placeholder]="placeholder || ''" [value] = "value" [formControl] ="control"
     [attr.disabled]="isDisabled ? true : null"  (focus)="onInputFocused()"> 
-    <mat-error></mat-error>
+    <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>
 

@@ -2,4 +2,5 @@
     <mat-radio-button *ngFor="let option of field.options" [value]="option">
     <span>{{ option }}</span>
     </mat-radio-button>
+    <mat-error>{{ errorMessage }}</mat-error>
 </mat-radio-group>

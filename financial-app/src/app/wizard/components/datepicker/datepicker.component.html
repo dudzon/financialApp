@@ -2,5 +2,5 @@
     <input matInput [matDatepicker]="picker" [formControl] ="control"> 
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-    <mat-error></mat-error>
+    <mat-error>{{ errorMessage }}</mat-error>
 </mat-form-field>

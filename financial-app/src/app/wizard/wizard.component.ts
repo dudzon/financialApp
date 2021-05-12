@@ -12,6 +12,8 @@ import * as WizardActions from './store/wizard.actions';
 import * as fromWizard from './store/wizard.reducer';
 import * as fromWizardSelectors from './store/wizard.selectors';
 
+const IS_AUTHENTICATED = 'is_authenticated';
+
 @Component({
   selector: 'app-wizard',
   templateUrl: './wizard.component.html',
@@ -33,7 +35,14 @@ export class WizardComponent
     this.routeName = router.url.replace('/', '');
     if (this.routeName === Routes.login) {
       this.store.dispatch(WizardActions.getConfig());
+      if (localStorage.getItem(IS_AUTHENTICATED)) {
+        console.log('storage');
+        // debugger;
+        this.router.navigate([Routes.calc]);
+      }
+      // debugger;
     }
+
     this.configSrv.updateConfigNameSubject(this.routeName);
   }
   id$: Observable<string | null> = this.configSrv.getId$;
@@ -44,10 +53,6 @@ export class WizardComponent
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((data: any) => {
         this.config = data.wizard[this.routeName];
-        // if (this.config) {
-        //   this.isUserAuthenticated();
-        // }
-        console.log(this.config, 'tc');
       });
   }
 
