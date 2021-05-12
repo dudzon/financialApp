@@ -16,6 +16,7 @@ const RATE = {
   minimumRate: 5.67,
   maximumRate: 9.8,
 };
+const IS_AUTHENTICATED = 'is_authenticated';
 
 const initialState: State = {};
 
@@ -108,6 +109,7 @@ const wizardReducer = createReducer(
     return updateState(state, Routes.calc, action);
   }),
   on(WizardActions.updateLogin, (state, action) => {
+    console.log(action.payload, 'payload from login');
     return updateState(state, Routes.login, action);
   }),
   on(WizardActions.error, (state, action) => {
@@ -137,6 +139,46 @@ const wizardReducer = createReducer(
     return {
       ...state,
       calc: newState,
+    };
+  }),
+  on(WizardActions.authenticate, (state, action) => {
+    if (!localStorage.getItem(IS_AUTHENTICATED)) {
+      localStorage.setItem(IS_AUTHENTICATED, 'true');
+    }
+
+    const newState: any = [...state.login];
+
+    let field = newState.find((item: any) => item.field === 'Username');
+    const index = newState.findIndex((item: any) => item.field === 'Username');
+
+    field = {
+      ...field,
+      isAuthenticated: true,
+    };
+
+    newState[index] = field;
+    return {
+      ...state,
+      login: newState,
+    };
+  }),
+  on(WizardActions.isUserAuthenticated, (state, action) => {
+    const isAuthenticated = true;
+
+    const newState: any = [...state.login];
+
+    let field = newState.find((item: any) => item.field === 'Username');
+    const index = newState.findIndex((item: any) => item.field === 'Username');
+
+    field = {
+      ...field,
+      isAuthenticated: true,
+    };
+
+    newState[index] = field;
+    return {
+      ...state,
+      login: newState,
     };
   })
 );

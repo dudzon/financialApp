@@ -19,9 +19,11 @@ import * as fromWizardSelectors from './store/wizard.selectors';
 })
 export class WizardComponent
   extends Autounsubscribe
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   config: any;
   routeName!: string;
+  private IS_AUTHENTICATED = 'is_authenticated';
   constructor(
     public store: Store<fromWizard.State>,
     private router: Router,
@@ -42,6 +44,9 @@ export class WizardComponent
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((data: any) => {
         this.config = data.wizard[this.routeName];
+        // if (this.config) {
+        //   this.isUserAuthenticated();
+        // }
         console.log(this.config, 'tc');
       });
   }
@@ -65,6 +70,12 @@ export class WizardComponent
         return '80%';
       default:
         return '0%';
+    }
+  }
+
+  isUserAuthenticated(): void {
+    if (localStorage.getItem(this.IS_AUTHENTICATED)) {
+      this.router.navigate([Routes.calc]);
     }
   }
 

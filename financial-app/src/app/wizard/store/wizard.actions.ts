@@ -85,11 +85,17 @@ export const updateLogin = createAction(
   }>()
 );
 export const calculateRate = createAction(
-  '[Calc Component] Calculate Rate',
+  '[Wizard] Calculate Rate',
   props<{
     payload: {
       'Credit Amount': number;
       Duration: number;
     };
   }>()
+);
+
+export const authenticate = createAction('[Wizard] Authenticate User');
+
+export const isUserAuthenticated = createAction(
+  '[Wizard] Is User Authenticated'
 );

@@ -31,11 +31,13 @@ import { LoginPayload } from '@app/wizard/models/loginPayload';
 })
 export class FormBuilderComponent
   extends Autounsubscribe
-  implements OnInit, OnChanges, OnDestroy {
+  implements OnInit, OnChanges, OnDestroy
+{
   @Input() template: any;
   @Input() id!: string | null;
   form!: FormGroup;
   route!: string | null;
+
   constructor(
     private configSrv: ConfigService,
     private store: Store<fromWizard.State>,
@@ -66,8 +68,18 @@ export class FormBuilderComponent
   }
 
   submitForm(): void {
-    this.getPayload(this.route as string);
-    this.goToNextRoute(this.route as string);
+    if (this.id === Routes.login && this.form.valid) {
+      console.log(this.form, 'form');
+      this.store.dispatch(
+        WizardActions.updateLogin({
+          payload: this.form.value as LoginPayload,
+        })
+      );
+    } else {
+      this.getPayload(this.route as string);
+      this.goToNextRoute(this.route as string);
+    }
+
     console.log(this.store, 'store');
   }
 
@@ -78,6 +90,7 @@ export class FormBuilderComponent
         this.form.addControl(
           item.field,
           new FormControl('', { updateOn: 'blur' })
+          // new FormControl('')
         )
       );
     }
@@ -105,13 +118,6 @@ export class FormBuilderComponent
 
   getPayload(route: string): void {
     switch (route) {
-      case Routes.login:
-        this.store.dispatch(
-          WizardActions.updateLogin({
-            payload: this.form.value as LoginPayload,
-          })
-        );
-        break;
       case Routes.calc:
         this.store.dispatch(
           WizardActions.updateCalc({

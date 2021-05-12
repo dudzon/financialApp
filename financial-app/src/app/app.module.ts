@@ -12,10 +12,11 @@ import { WizardEffects } from './wizard/store/wizard.effects';
 import { reducer } from './wizard/store/wizard.reducer';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LanguageTogglerComponent } from './components/language-toggler/language-toggler.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 const Effects = [WizardEffects];
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, LanguageTogglerComponent],
+  declarations: [AppComponent, NavbarComponent, LanguageTogglerComponent, NotificationComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
