@@ -35,11 +35,11 @@ export class WizardComponent
     this.routeName = router.url.replace('/', '');
     if (this.routeName === Routes.login) {
       this.store.dispatch(WizardActions.getConfig());
-      if (localStorage.getItem(IS_AUTHENTICATED)) {
-        console.log('storage');
-        // debugger;
-        this.router.navigate([Routes.calc]);
-      }
+      // if (localStorage.getItem(IS_AUTHENTICATED)) {
+      //   console.log('storage');
+      //   // debugger;
+      //   this.router.navigate([Routes.login]);
+      // }
       // debugger;
     }
 

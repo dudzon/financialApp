@@ -32,19 +32,29 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (localStorage.getItem(IS_AUTHENTICATED)) {
-      this.store.dispatch(WizardActions.getConfig());
-      // this.store.dispatch(WizardActions.isUserAuthenticated());
-      // this.router.navigate([Routes.step1]);
-      // this.router.navigate(['']);
-      // this.store.dispatch(WizardActions.isUserAuthenticated());
+    // if (localStorage.getItem(IS_AUTHENTICATED)) {
+    //   this.store.dispatch(WizardActions.getConfig());
+    //   // this.store.dispatch(WizardActions.isUserAuthenticated());
+    //   // this.router.navigate([Routes.step1]);
+    //   // this.router.navigate(['']);
+    //   // this.store.dispatch(WizardActions.isUserAuthenticated());
 
-      // setTimeout(() => {
-      //   // this.store.dispatch(WizardActions.getConfig());
-      // }, 3000);
+    //   // setTimeout(() => {
+    //   //   // this.store.dispatch(WizardActions.getConfig());
+    //   // }, 3000);
 
-      return true;
-    } else {
+    //   return true;
+    // } else {
+    //   this.snackbar.error(
+    //     'You are not allowed to visit this page. Please log in'
+    //   );
+    //   setTimeout(() => {
+    //     this.router.navigate([Routes.login]);
+    //   }, 3000);
+
+    //   return false;
+    // }
+    if (!localStorage.getItem(IS_AUTHENTICATED)) {
       this.snackbar.error(
         'You are not allowed to visit this page. Please log in'
       );
@@ -53,6 +63,12 @@ export class AuthGuard implements CanActivate {
       }, 3000);
 
       return false;
+    } else {
+      this.store.dispatch(WizardActions.getConfig());
+      // this.snackbar.error('You have to start from login page');
+      // this.router.navigate([Routes.login]);
+      // this.store.dispatch(WizardActions.isUserAuthenticated());
+      return true;
     }
   }
 }
