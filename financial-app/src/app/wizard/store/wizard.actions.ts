@@ -96,6 +96,9 @@ export const calculateRate = createAction(
 
 export const authenticate = createAction('[Wizard] Authenticate User');
 
-export const isUserAuthenticated = createAction(
-  '[Wizard] Is User Authenticated'
-);
+// export const isUserAuthenticated = createAction(
+//   '[Wizard] Is User Authenticated'
+//   // props<{ payload: { config: any } }>()
+// );
+
+export const loggedUser = createAction('[Wizard] Logged User');

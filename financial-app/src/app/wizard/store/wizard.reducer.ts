@@ -145,28 +145,8 @@ const wizardReducer = createReducer(
     if (!localStorage.getItem(IS_AUTHENTICATED)) {
       localStorage.setItem(IS_AUTHENTICATED, 'true');
     }
-
+    // debugger;
     const newState: any = [...state.login];
-
-    let field = newState.find((item: any) => item.field === 'Username');
-    const index = newState.findIndex((item: any) => item.field === 'Username');
-
-    field = {
-      ...field,
-      isAuthenticated: true,
-    };
-
-    newState[index] = field;
-    return {
-      ...state,
-      login: newState,
-    };
-  }),
-  on(WizardActions.isUserAuthenticated, (state, action) => {
-    const isAuthenticated = true;
-
-    const newState: any = [...state.login];
-
     let field = newState.find((item: any) => item.field === 'Username');
     const index = newState.findIndex((item: any) => item.field === 'Username');
 
@@ -181,6 +161,27 @@ const wizardReducer = createReducer(
       login: newState,
     };
   })
+  // on(WizardActions.isUserAuthenticated, (state, action) => {
+  //   debugger;
+  //   const isAuthenticated = true;
+
+  //   const newState: any = [...state.login];
+  //   // const newState: any = [...action.payload.config.login];
+
+  //   let field = newState.find((item: any) => item.field === 'Username');
+  //   const index = newState.findIndex((item: any) => item.field === 'Username');
+
+  //   field = {
+  //     ...field,
+  //     isAuthenticated: true,
+  //   };
+
+  //   newState[index] = field;
+  //   return {
+  //     ...state,
+  //     login: newState,
+  //   };
+  // })
 );
 
 // tslint:disable-next-line:typedef

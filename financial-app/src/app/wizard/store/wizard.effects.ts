@@ -13,6 +13,7 @@ import {
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as WizardActions from './wizard.actions';
+import * as WizardSelector from './wizard.selectors';
 import { ConfigService } from '../services/config.service';
 
 import * as fromWizard from './wizard.reducer';
@@ -21,6 +22,7 @@ import { HttpService } from '../services/http.service';
 import { Routes } from '../models/routes';
 import { Router } from '@angular/router';
 
+const IS_AUTHENTICATED = 'is_authenticated';
 @Injectable()
 export class WizardEffects {
   getConfig$ = createEffect(() =>
@@ -29,7 +31,6 @@ export class WizardEffects {
       switchMap(() => {
         return this.configSrv.getConfig().pipe(
           map((data) => {
-            console.log(data, 'data');
             return WizardActions.configLoaded({ payload: { config: data } });
           }),
           catchError((error: HttpErrorResponse) => {
@@ -63,6 +64,23 @@ export class WizardEffects {
       })
     )
   );
+
+  // getAuthenticateState$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(WizardActions.loggedUser),
+  //     switchMap(() => {
+  //       return this.configSrv.getConfig();
+  //     }),
+  //     map((data) => {
+  //       console.log(data, 'data');
+  //       return WizardActions.configLoaded({ payload: { config: data } });
+  //     }),
+  //     map((data) => {
+  //       console.log(data, 'authstate');
+  //       return WizardActions.isUserAuthenticated();
+  //     })
+  //   )
+  // );
 
   constructor(
     private actions$: Actions,

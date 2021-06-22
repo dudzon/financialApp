@@ -23,7 +23,16 @@
             "defaultValue": "Login",
             "buttonColor":"#b4cd3a",
             "type":"button"
+        },
+        {
+            "field": "button",
+            "disabled": true,
+            "defaultValue": "Login with Google",
+            "buttonColor":"#b4cd3a",
+            "type":"button",
+            "action":"googleLogin"
         }
+
     ],
     "calc": [
         {

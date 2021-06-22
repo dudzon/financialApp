@@ -7,6 +7,7 @@ export const stateForComponent = () =>
     componentState,
     (state: any, props: any) => state[props.config]
   );
+export const WizardState = (state: State) => state.wizard;
 export const calcState = (state: State) => state.wizard.calc;
 
 export const selectMinRate = createSelector(calcState, (state: any) => {

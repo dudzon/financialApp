@@ -5,6 +5,10 @@ import { FormComponent } from '@app/wizard/models/form-component';
 import { Routes } from '@app/wizard/models/routes';
 import { ConfigService } from '@app/wizard/services/config.service';
 import { takeUntil } from 'rxjs/operators';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import * as WizardActions from '@app/wizard/store/wizard.actions';
+import * as fromWizard from '@app/wizard/store/wizard.reducer';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-button',
@@ -13,10 +17,16 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ButtonComponent
   extends Autounsubscribe
-  implements OnInit, FormComponent {
+  implements OnInit, FormComponent
+{
   @Input() field!: any;
   route!: string | null;
-  constructor(private router: Router, private configSrv: ConfigService) {
+  constructor(
+    private router: Router,
+    private configSrv: ConfigService,
+    private SocialAuthSrv: SocialAuthService,
+    private store: Store<fromWizard.State>
+  ) {
     super();
     this.configSrv.getId$
       .pipe(takeUntil(this.unsubscribe$))
@@ -38,6 +48,9 @@ export class ButtonComponent
       case 'back':
         this.onBack(event);
         break;
+      case 'googleLogin':
+        this.loginWithGoogle();
+        break;
       default:
         throw new Error('No action found for button');
     }
@@ -55,5 +68,14 @@ export class ButtonComponent
         this.router.navigate([Routes.step3]);
         break;
     }
+  }
+
+  loginWithGoogle(): void {
+    this.SocialAuthSrv.signIn(GoogleLoginProvider.PROVIDER_ID).then(
+      (resolve: any) => {
+        this.store.dispatch(WizardActions.authenticate());
+        this.router.navigate([Routes.calc]);
+      }
+    );
   }
 }

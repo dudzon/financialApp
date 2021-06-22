@@ -13,19 +13,42 @@ import { reducer } from './wizard/store/wizard.reducer';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LanguageTogglerComponent } from './components/language-toggler/language-toggler.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
+import { environment } from './../environments/environment.dev';
 
 const Effects = [WizardEffects];
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, LanguageTogglerComponent, NotificationComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    LanguageTogglerComponent,
+    NotificationComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     EffectsModule.forRoot(Effects),
     StoreModule.forRoot({ wizard: reducer }),
+    SocialLoginModule,
     WizardModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: true,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.OAUTH_CLIENT_ID as string
+            ),
+          },
+        ],
+      },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

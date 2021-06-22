@@ -60,7 +60,7 @@ export class FormBuilderComponent
   }
 
   ngOnInit(): void {
-    // console.log(this.store, 'store - form-builder, onInit');
+    console.log(this.store, 'store - form-builder, onInit');
     if (this.id === Routes.calc) {
       this.form = new FormGroup({});
       this.getControls();
@@ -122,6 +122,13 @@ export class FormBuilderComponent
 
   getPayload(route: string): void {
     switch (route) {
+      case Routes.login:
+        this.store.dispatch(
+          WizardActions.updateLogin({
+            payload: this.form.value as LoginPayload,
+          })
+        );
+        break;
       case Routes.calc:
         this.store.dispatch(
           WizardActions.updateCalc({

@@ -8,13 +8,15 @@ import {
 } from '@angular/router';
 
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
 
 import { SnackbarService } from '@app/wizard/services/snackbar.service';
 import * as WizardActions from '@app/wizard/store/wizard.actions';
 import * as fromWizard from '@app/wizard/store/wizard.reducer';
+import * as fromWizardSelectors from '@app/wizard/store/wizard.selectors';
 
 import { Routes } from '../models/routes';
+import { map } from 'rxjs/operators';
 
 const IS_AUTHENTICATED = 'is_authenticated';
 @Injectable()
@@ -32,28 +34,6 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    // if (localStorage.getItem(IS_AUTHENTICATED)) {
-    //   this.store.dispatch(WizardActions.getConfig());
-    //   // this.store.dispatch(WizardActions.isUserAuthenticated());
-    //   // this.router.navigate([Routes.step1]);
-    //   // this.router.navigate(['']);
-    //   // this.store.dispatch(WizardActions.isUserAuthenticated());
-
-    //   // setTimeout(() => {
-    //   //   // this.store.dispatch(WizardActions.getConfig());
-    //   // }, 3000);
-
-    //   return true;
-    // } else {
-    //   this.snackbar.error(
-    //     'You are not allowed to visit this page. Please log in'
-    //   );
-    //   setTimeout(() => {
-    //     this.router.navigate([Routes.login]);
-    //   }, 3000);
-
-    //   return false;
-    // }
     if (!localStorage.getItem(IS_AUTHENTICATED)) {
       this.snackbar.error(
         'You are not allowed to visit this page. Please log in'
@@ -64,10 +44,10 @@ export class AuthGuard implements CanActivate {
 
       return false;
     } else {
-      this.store.dispatch(WizardActions.getConfig());
-      // this.snackbar.error('You have to start from login page');
-      // this.router.navigate([Routes.login]);
+      // this.store.dispatch(WizardActions.getConfig());
+      this.snackbar.success('You are authenticated');
       // this.store.dispatch(WizardActions.isUserAuthenticated());
+      console.log(this.store, 'store from guard');
       return true;
     }
   }

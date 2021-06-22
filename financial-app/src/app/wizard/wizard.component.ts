@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Autounsubscribe } from '@app/wizard/classes/autounsubscribe';
 
 import { Store } from '@ngrx/store';
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { from, Observable } from 'rxjs';
 import { filter, take, takeUntil, tap } from 'rxjs/operators';
 import { Routes } from './models/routes';
@@ -29,23 +30,25 @@ export class WizardComponent
   constructor(
     public store: Store<fromWizard.State>,
     private router: Router,
-    private configSrv: ConfigService
+    private configSrv: ConfigService,
+    private socialAuthSrv: SocialAuthService
   ) {
     super();
     this.routeName = router.url.replace('/', '');
-    if (this.routeName === Routes.login) {
+    this.socialAuthSrv.authState
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((user) => {
+        this.user = user;
+        console.log(this.user, 'user');
+      });
+    if (this.routeName === Routes.login && !this.user) {
       this.store.dispatch(WizardActions.getConfig());
-      // if (localStorage.getItem(IS_AUTHENTICATED)) {
-      //   console.log('storage');
-      //   // debugger;
-      //   this.router.navigate([Routes.login]);
-      // }
-      // debugger;
     }
 
     this.configSrv.updateConfigNameSubject(this.routeName);
   }
   id$: Observable<string | null> = this.configSrv.getId$;
+  user!: SocialUser;
 
   ngOnInit(): void {
     this.store
